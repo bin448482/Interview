@@ -99,14 +99,15 @@ def _render_header(doc, info: models.PersonalInfo, include_contact: bool, theme,
     if info.github:
         contact_parts.append(info.github)
     if contact_parts:
-        contact_para = doc.add_paragraph(" · ".join(contact_parts))
-        contact_para.alignment = WD_ALIGN_PARAGRAPH.LEFT
-        contact_para.paragraph_format.space_before = Pt(6)
-        contact_para.paragraph_format.space_after = Pt(12)
-        for run in contact_para.runs:
-            run.font.size = Pt(9)
-            run.font.color.rgb = RGBColor(0, 0, 0)
-            run.font.name = "Calibri"
+        for contact_item in contact_parts:
+            contact_para = doc.add_paragraph(contact_item)
+            contact_para.alignment = WD_ALIGN_PARAGRAPH.LEFT
+            contact_para.paragraph_format.space_before = Pt(3)
+            contact_para.paragraph_format.space_after = Pt(3)
+            for run in contact_para.runs:
+                run.font.size = Pt(11)
+                run.font.color.rgb = RGBColor(0, 0, 0)
+                run.font.name = "Calibri"
 
 
 def _render_section_heading(doc, text: str, theme, Pt, RGBColor):
