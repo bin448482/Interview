@@ -34,7 +34,15 @@ class OpenAILangChainClient(LangChainLLMClient):
     def invoke(self, prompt: str) -> str:
         """Invoke OpenAI model."""
         response = self.client.invoke(prompt)
-        return response.content
+        content = response.content
+        # Remove <think> tags and reasoning from extended thinking models
+        content = self._remove_think_tags(content)
+        return content
+
+    def _remove_think_tags(self, text: str) -> str:
+        """Remove <think>...</think> tags from text."""
+        import re
+        return re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL).strip()
 
 
 class ZhipuLangChainClient(LangChainLLMClient):
@@ -56,7 +64,15 @@ class ZhipuLangChainClient(LangChainLLMClient):
     def invoke(self, prompt: str) -> str:
         """Invoke Zhipu GLM model."""
         response = self.client.invoke(prompt)
-        return response.content
+        content = response.content
+        # Remove <think> tags and reasoning from extended thinking models
+        content = self._remove_think_tags(content)
+        return content
+
+    def _remove_think_tags(self, text: str) -> str:
+        """Remove <think>...</think> tags from text."""
+        import re
+        return re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL).strip()
 
 
 class OllamaLangChainClient(LangChainLLMClient):

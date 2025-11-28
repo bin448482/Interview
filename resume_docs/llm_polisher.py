@@ -106,27 +106,28 @@ class LLMPolisher:
    - 项目名称 | 所属公司/个人 | 起止时间
    - 角色 Role
    - 技术栈 Tech Stack
-   - 项目背景（约1000字，综合以下信息组织）：
+   - 项目背景（严格控制在800-1000字以内，综合以下信息组织）：
      * 项目的核心目标与用户群体
      * 主要挑战与技术难点
      * 采用的架构方案与技术选型
      * 交付的核心产品与功能
    - 主要职责（4~6 条，每条以动词开头）
-   - 成果产出（3~4 条，必须量化）
+   - 成果产出（1~4 条；原文有数据则忠实引用，缺少数据时可基于行业通用区间补写保守指标，例如：Day1留存约20%~30%、Day30留存约5%~12%、DAU/MAU约20%~30%。务必使用"约""保持在"等措辞，严禁超出这些区间或给出明显夸张的用户规模。）
 
 2. 项目背景部分应该：
    - 从用户需求出发，说明为什么要做这个项目
    - 阐述面临的主要技术挑战
    - 介绍采用的解决方案与架构设计
    - 突出交付的核心价值与影响
+   - 字数严格控制在800-1000字以内，不要超过1000字
 
 3. 风格要求：
    - 简洁、专业、重点突出
    - 避免列表式堆砌，用段落形式组织
    - 尽量使用动词开头
-   - 尽量量化结果
+   - 原文缺少数据时，可以引用上述行业区间生成保守指标，并注明这是区间表现；严禁出现夸张数字（例如：超大用户量、远高于行业均值的增长率）。
 
-4. 重要：只输出上述6个部分的内容，不要包含任何其他信息（如Business、Technical、Challenges、Responsibilities、Solution、Deliverables、Impact等原始数据）。
+4. 重要：只输出上述6个部分的内容，不要包含任何其他信息（如Business、Technical、Challenges、Responsibilities、Solution、Deliverables、Impact等原始数据）；可以在成果部分使用前述行业区间，但不要超出这些范围，更不要虚构庞大里程碑、收入或用户规模。
 
 原始项目内容：
 {text}
@@ -142,27 +143,28 @@ Requirements:
    - Project Name | Company/Organization | Duration
    - Role
    - Tech Stack
-   - Project Background (approximately 1000 words, synthesizing the following):
+   - Project Background (strictly limit to 200-400 words, synthesizing the following):
      * Core objectives and target users
      * Key challenges and technical complexities
      * Architecture and technology choices
      * Core deliverables and features
    - Key Responsibilities (4-6 bullet points, each starting with an action verb)
-   - Achievements & Outcomes (3-4 bullet points, must be quantified)
+   - Achievements & Outcomes (1-4 bullet points; cite source data when available. If none exists, you may infer conservative benchmarks such as Day-1 retention of 20-30%, Day-30 retention of 5-12%, or DAU/MAU ratios of 20-30%. Use "around"/"kept at" phrasing and stay strictly within these ranges.)
 
 2. Project Background should:
    - Start with user needs and explain why this project matters
    - Articulate the main technical challenges faced
    - Describe the solutions and architectural design adopted
    - Highlight the core value and impact delivered
+   - Strictly limit word count to 200-400 words, do not exceed 400 words
 
 3. Style requirements:
    - Concise, professional, highlight key points
    - Avoid list-style enumeration; use paragraph format
    - Start each responsibility with an action verb
-   - Quantify results whenever possible
+   - When inferring metrics, rely only on the benchmark ranges above, clearly mark them as approximate, and never exceed those limits with inflated user counts or growth claims.
 
-4. Important: Output ONLY the 6 sections above. Do NOT include any other information such as Business, Technical, Challenges, Responsibilities, Solution, Deliverables, Impact, or any raw data from the source.
+4. Important: Output ONLY the 6 sections above. Do NOT include any other information such as Business, Technical, Challenges, Responsibilities, Solution, Deliverables, Impact, or any raw data from the source. The only acceptable synthetic metrics are those within the stated benchmark bands; do not introduce additional milestones, revenue, user counts, or percentages beyond them.
 
 Original project content:
 {text}
@@ -211,3 +213,4 @@ Please return only the structured project experience content without any prefix 
         from dataclasses import replace
 
         return replace(project)
+

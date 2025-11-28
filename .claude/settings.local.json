@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(python scripts/translate_projects.py:*)",
-      "Bash(.venvScriptspython -c \"\nimport yaml\ntry:\n    with open(''latest_resumes/projects_summary_en.yaml'', ''r'', encoding=''utf-8'') as f:\n        data = yaml.safe_load(f)\n    print(''✓ YAML syntax is valid'')\n    print(f''✓ Loaded {len(data.get(\"\"projects\"\", []))} projects'')\nexcept Exception as e:\n    print(f''✗ YAML error: {e}'')\n\")"
+      "Bash(.venvScriptspython -c \"\nimport yaml\ntry:\n    with open(''latest_resumes/projects_summary_en.yaml'', ''r'', encoding=''utf-8'') as f:\n        data = yaml.safe_load(f)\n    print(''✓ YAML syntax is valid'')\n    print(f''✓ Loaded {len(data.get(\"\"projects\"\", []))} projects'')\nexcept Exception as e:\n    print(f''✗ YAML error: {e}'')\n\")",
+      "Bash(python -m venv:*)",
+      "Bash(.venvScriptspython -m resume_docs.cli --template modern --locale en-US --role data_development --include-contact --model gpt-3.5-turbo --dry-run)",
+      "Bash(\".venv\\Scripts\\python\" -m resume_docs.cli --template modern --locale en-US --role data_development --include-contact --model gpt-3.5-turbo --dry-run)",
+      "Bash(\".venv\\Scripts\\python\" -m resume_docs.cli --template modern --locale en-US --role data_development --include-contact --model gpt-5)"
     ],
     "deny": [],
     "ask": []
