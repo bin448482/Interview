@@ -78,7 +78,7 @@ PY
 - `en-US`: English
 
 **Output location:**
-- DOCX: `docs/output/{locale}/{template}/resume.docx`
+- DOCX: `docs/output/{locale}/{template}/resume-YYYYMMDD-HHMMSS.docx`
 
 ## Multi-Locale Support (English Resume Generation)
 
@@ -97,7 +97,7 @@ The system supports generating resumes in multiple languages via the `--locale` 
 ```
 
 **Output location:**
-- English DOCX: `docs/output/en-US/modern/resume.docx`
+- English DOCX: `docs/output/en-US/modern/resume-YYYYMMDD-HHMMSS.docx`
 
 ### Data Files Structure
 
@@ -196,7 +196,7 @@ ZHIPU_API_KEY=your-api-key-here
 ```
 
 **Verification Steps:**
-1. Check the generated DOCX file: `docs/output/zh-CN/modern/resume.docx`
+1. Check the generated DOCX files (timestamped): `docs/output/zh-CN/modern/resume-*.docx`
 2. Open it in Word/Google Docs
 3. Find the "MySixth 塔罗牌智能应用" project section
 4. Verify that the project overview contains both:
@@ -248,3 +248,38 @@ To add new roles, edit `resume_docs/role_config.py` and add entry to `ROLE_FILTE
 - Reference primary YAML file in body, include validation output snippets
 - PRs must describe intent, list touched files, attach rendered excerpts if content meaning changes
 - Tag stakeholders consuming that data slice
+
+## Generative AI PM Resume Refresh (2025-11-28)
+
+### TODO & Status (source: `.design_docs/generative_ai_pm_resume_design.md`)
+1. **Reframe CN 项目**（MySixth/NGSE/AI增强投递系统）以突出 Generative AI PM 叙事、指标、治理 —— ✅ 已加入北极星指标、PromptOps、商业化与治理字段。
+2. **镜像 EN 项目数据**，保持指标与治理语言完全对齐 —— ✅ 使用人工翻译 + 术语同步完成。
+3. **扩展 work_experience role_responsibilities**，补充 Generative AI 产品经理职责（实验待办、风险审查、Responsible AI）—— ✅。
+4. **刷新 skills_summary / skills_summary_en**，新增 “Generative AI 产品策略与指标” 与 “多代理编排与提示治理” 类别 —— ✅。
+5. **验证 + 记录**：运行 `yamllint latest_resumes/*.yaml`（仍有既有行宽/缩进告警，需结构性改造才能清零）以及 Python safe-load —— ✅。
+
+### Notes for Future Contributors
+- 所有更新限定在 `latest_resumes/*.yaml` + 文档本身，符合 schema_version 1.1。新增的治理 artifact（`prompt_playbook`, `cost_dashboard`, `ai_policy`, `experiment_log` 等）均已与 `.design_docs/role_mapping_guidelines.md` 校对。
+- 角色职责与技能条目已偏向产品指标、PromptOps、商业化语言，便于 downstream 渲染区分 “Generative AI PM” 与 “AI 开发者”。
+- 若继续迭代，优先补充 `.yamllint` 配置或脚本化格式化，避免固定的行宽/缩进告警干扰验证记录。
+
+### Validation Commands (Nov 28, 2025)
+- `source .venv/bin/activate && yamllint latest_resumes/*.yaml` → 仍报历史性的 document-start/line-length/缩进入口；本次更改未新增独立错误。
+- `source .venv/bin/activate && python - <<'PY' ...`（safe-load 脚本）→ `YAML loads ✓`。
+
+## Product Manager 简历生成实验 (2025-11-28)
+
+**TODO**
+1. 在 `resume_docs/role_config.py` 添加 `product_manager` 角色过滤规则，使其优先选择包含商业化/治理职责的项目。
+2. 更新 `resume_docs/ROLE_FILTERS.md` 文档，向协作者说明新的过滤逻辑与适用场景。
+3. 运行 CLI 生成一次 `Generative AI 产品经理` 简历，确认文档可以正确落地到 `docs/output/`。
+
+**Implementation Notes**
+- `resume_docs/role_config.py`: 通过 `responsibility_focus`、`decision_accountability` 与 `role_title` 模式匹配筛出 Generative AI PM 叙事，排除带“测试/运维”标签的条目，仍沿用 `relevance_then_time` 排序。
+- `resume_docs/ROLE_FILTERS.md`: 新增章节解释筛选条件，提醒 reviewer 该角色偏重商业指标与 PromptOps/治理描述。
+
+**Validation / Command Log**
+- `.venv/bin/python -m resume_docs.cli --template modern --locale zh-CN --role product_manager --include-contact --skip-polish`
+  - 输出：`docs/output/zh-CN/modern/resume-20251128-193537.docx`
+- `.venv/bin/python -m resume_docs.cli --template modern --locale zh-CN --role product_manager --include-contact --model gpt-5`
+  - 结果：LLM polishing 调用失败（401 无效令牌，request id 2025112819395536795863232866264）。待刷新 OPENAI_API_KEY 或代理配置后重试。
