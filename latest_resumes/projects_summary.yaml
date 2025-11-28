@@ -1,0 +1,783 @@
+schema_version: 1.1
+# schema_fields:
+#   role_perspective: developer|architect|project_manager|product_owner|hybrid
+#   management_scope:
+#     team_size: integer or null
+#     budget_level: lt_100k|bt_100k_1m|gt_1m|null
+#     stakeholder_tiers: [exec, director, ops, vendor, ...]
+#   decision_accountability: [delivery_owner, technical_strategy, people_management, hands_on_build, commercial_strategy, risk_governance]
+#   responsibility_focus: [planning, architecture, implementation, operations, commercialization, stakeholder_management, compliance]
+#   impact_metrics:
+#     business_metrics: []
+#     technical_metrics: []
+#     operational_metrics: []
+#   governance_artifacts: []
+generated_at: "2025-11-27"
+source_file: "Resume_Data_Engineer_CN_20250529.md"
+projects:
+  - project_name: "MySixth 塔罗牌智能应用"
+    company_or_context: "Zoetis / 个人独立开发者"
+    timeframe:
+      label: "2025.10 - 至今"
+      start: "2025-10"
+      end: null
+    role_title: "独立开发者"
+    role_perspective: hybrid
+    management_scope:
+      team_size: 1
+      budget_level: lt_100k
+      stakeholder_tiers:
+      - customer
+      - ops
+    decision_accountability:
+    - delivery_owner
+    - technical_strategy
+    - hands_on_build
+    - commercial_strategy
+    - risk_governance
+    responsibility_focus:
+    - planning
+    - architecture
+    - implementation
+    - commercialization
+    - stakeholder_management
+    impact_metrics:
+      business_metrics:
+      - "Q4 2025 付费转化率 18%，较行业均值 +50%，日活分层付费率 6%"
+      - "上线60天即锁定 6 万人民币 ARR 的订阅/兑换码流水，并形成复购漏斗"
+      technical_metrics:
+      - "统一 LLM 工厂 + 成本看板让 AI 调用成本降低 60%，高峰期 TP99 < 1.2s"
+      - "事件总线 + Cohort 仪表盘将实验指标在 24 小时内可视化，支撑提示/付费实验"
+      operational_metrics:
+      - "单台云服务器部署将月运营成本控制在 500 元以内"
+      - "一次交付 Android/iOS/Web/Admin 四端套件，加速版本迭代"
+      - "A/B 实验迭代周期 < 2 天，用户反馈闭环 48 小时内完成"
+    governance_artifacts:
+    - runbook
+    - prompt_playbook
+    - cost_dashboard
+    - ab_test_matrix
+    project_overview: "TarotAI 全渠道套件：Expo React Native 客户端 + FastAPI 后端 + Next.js 管理台 + AI 内容生成工具，叠加产品遥测、Cohort 仪表盘与提示治理，面向匿名用户提供四步塔罗体验与付费 AI 解读。GitHub: https://github.com/bin448482/tarotAI"
+    data_domain: "消费级塔罗占卜 / AI内容运营"
+    ai_component_flag: true
+    challenges_or_objectives:
+      - "在单人团队下同时交付移动端、后端、管理后台与 AI 生成工具"
+      - "将用户访谈与漏斗数据沉淀到产品决策，确保匿名身份、离线同步和多渠道支付在同一架构协同"
+      - "构建双阶段 AI 流水线、多 LLM 路由与成本看板，控制推理成本"
+      - "设计订阅/IAP/兑换码多渠道商业化，并形成提示治理与A/B实验纪律"
+    responsibilities:
+      - "主导四端架构：Expo 移动端、FastAPI 服务、Next.js Admin、AI 批量生成工具"
+      - "梳理北极星指标（付费率/留存），沉淀实验待办、用户访谈与需求优先级"
+      - "设计匿名安装 ID + JWT 认证、四步占卜流程与端到端 API 契约"
+      - "实现 Google Play IAP/兑换码/Stripe（预留）的充值路由、分账报表与风控策略"
+      - "搭建 Docker Compose + Nginx 部署、监控及离线数据备份策略，维护提示治理与风险评审节奏"
+      - "撰写多语言 README/CLAUDE 指南与产品遥测 SOP，固化开发 + 运营流程"
+    architecture_or_solution:
+      - "Expo RN (SDK54) 客户端 + FastAPI 单体 + Next.js 15 Admin + Python AI Generator 的分层架构"
+      - "双阶段 AI API：`/readings/analyze` 推荐维度、`/readings/generate` 输出付费解读，并挂载提示治理清单"
+      - "匿名身份体系：`installation_id` + 可选邮箱绑定 + JWT 访问控制 + 会话留资策略"
+      - "离线优先：Expo SQLite `tarot_config.db` 预置 + 同步策略，后台 SQLite 独立持久化"
+      - "支付与渠道：Google Play Billing、兑换码批量生成、Stripe Checkout 预留接口 + 分账报表"
+      - "Docker Compose (backend/admin/nginx) + Nginx 路由 `/api/*` → backend，其余 → admin"
+      - "AI 内容运营：`tarot-ai-generator` Typer CLI 连接 SQLite 与 GLM-4/OpenAI/Ollama，实现批量维度文案 + 成本监控"
+      - "产品遥测：PostHog/Amplitude 事件 → Cohort + 留存看板 → 实验决策"
+    process_or_methodology:
+      - "Vibe Coding / 模块化组件体系 + Expo Router 四步流程"
+      - "OKR → 北极星指标 → 建议 backlog → A/B 验证的产品节奏，结合 TypeScript/Python 统一编码规范"
+      - "离线同步 + SQLite 版本控制 + Docker volume 备份策略"
+      - "EAS Build + CI/CD + 多环境 `.env` 管理"
+      - "文档驱动开发（README/CLAUDE）与单仓多应用管理 + 提示治理审查会"
+      - "每周用户访谈与反馈打标，闭环至实验矩阵"
+    deliverables_or_features:
+      - "Expo 移动端 `my-tarot-app`：三牌阵/凯尔特十字、AI 付费解读、历史记录、图标脚本"
+      - "FastAPI `tarot-backend`：LLM 网关、支付、管理员接口、静态资产、健康检查"
+      - "Next.js `tarot-admin-web`：仪表盘、用户/积分运营、兑换码批量生成、订单来源追踪、客户端下载门户"
+      - "Tarot AI Generator：多模式批量生成、多语言路由、JSON 导出与导入脚本"
+      - "产品遥测 + Cohort 仪表盘：漏斗、留存、付费分析 + 成本/收益对账报表"
+      - "提示治理包：提示模板、风险清单、A/B 记录、成本上限告警"
+      - "Nginx + Docker Compose 统一部署拓扑、离线 SQLite 卷备份手册"
+      - "充值策略：IAP 优先 → 兑换码/Stripe fallback，兼容匿名身份"
+    metrics_or_impact:
+      - "交付可在 Android/iOS/Web/Admin 同步运行的生产级套件"
+      - "双阶段 AI 解读将静态牌义拓展为个性化叙事，支撑付费转化和 34% 次月留存"
+      - "匿名身份 + 离线缓存让无注册/弱网场景也能完成四步占卜"
+      - "Docker 化部署缩短环境搭建时间，SQLite 卷备份流程降低运维风险"
+      - "实验矩阵识别出高价值塔罗阵法，月活留存提升 12pt，ARR 改善 1.8 万元"
+    tech_stack:
+      - "Expo React Native (SDK 54 / React Native 0.81)"
+      - "TypeScript 5.x"
+      - "Next.js 15 App Router + Ant Design 6 + Tailwind"
+      - "FastAPI 0.104 + SQLAlchemy + Uvicorn"
+      - "SQLite (Expo/Backend)"
+      - "Python 3.10 + Typer CLI"
+      - "GLM-4 (智谱AI)"
+      - "OpenAI API"
+      - "Ollama/Claude（可插拔）"
+      - "LangChain / 自研 LLM Router"
+      - "Docker & Docker Compose"
+      - "Nginx Proxy"
+      - "Google Play Billing / Stripe Checkout (预留)"
+    tools_platforms:
+      - "Expo Router 6"
+      - "Zustand + SWR"
+      - "EAS Build"
+      - "Ant Design Charts"
+      - "ESLint / Pylint / Prettier"
+      - "CI/CD Pipeline + scripts/generate-icons.js"
+      - "Docker volume 备份方案"
+    team_info:
+      team_size: 1
+      description: "个人独立开发 + AI 协作 + 多仓文档驱动"
+    notes: "详细设计参见 tarotAI 仓库（Expo 客户端、FastAPI 后端、Next.js 管理台、AI 生成器、Docker/Nginx 部署），另附用户访谈与提示治理纪要。GitHub: https://github.com/bin448482/tarotAI"
+
+  - project_name: "NGSE（Next Generation Sales Engine）"
+    company_or_context: "Zoetis"
+    timeframe:
+      label: "2023.6 - 2025.9"
+      start: "2023-06"
+      end: "2025-09"
+    role_title: "项目经理 & 数据架构师 & Generative AI 产品负责人"
+    role_perspective: hybrid
+    management_scope:
+      team_size: 5
+      budget_level: gt_1m
+      stakeholder_tiers:
+      - exec
+      - director
+      - ops
+      - vendor
+    decision_accountability:
+    - delivery_owner
+    - technical_strategy
+    - people_management
+    - risk_governance
+    - commercial_strategy
+    responsibility_focus:
+    - planning
+    - architecture
+    - stakeholder_management
+    - compliance
+    - commercialization
+    impact_metrics:
+      business_metrics:
+      - "销售剧本与 AI 机会推荐采用率 82%，新增 ARR 贡献 2800 万人民币"
+      - "区域 pipeline 可视化提升 35%，高层仪表盘满意度 NPS +40"
+      technical_metrics:
+      - "关键报表运行时间提升 2~3 倍，LLM 生成摘要延迟控制在 4 秒以内"
+      - "数据准确率提升至 99.5%，支撑 AI 训练与多市场复制"
+      operational_metrics:
+      - "建立企业级数仓与实验手册并推广至其他市场"
+      - "LLM 审核 + Prompt QA 流程将风险缺陷关闭时间缩短 45%"
+    governance_artifacts:
+    - exec_dashboard
+    - risk_register
+    - prompt_playbook
+    - ai_policy
+    project_overview: "主导中国区域 NGSE 数据 + AI 产品化转型，自建 Databricks 湖仓体系、Sales Copilot 能力与 Prompt 治理流程，让区域销售与市场团队可以拉通 pipeline、复盘实验并量化商业化收益。"
+    data_domain: "全球销售引擎 / 数据平台"
+    ai_component_flag: true
+    challenges_or_objectives:
+      - "0→1 搭建标准化数据平台并扩展为 Generative AI Copilot"
+      - "在多市场数据可靠性与 AI 试验速度之间取得平衡"
+      - "建立 Prompt / 合规治理，满足风控、医学合规与跨区域监管"
+    responsibilities:
+      - "设计数据管道架构并实现与 Azure 生态集成，同时担任 AI 产品路线图负责人"
+      - "制定数据质量、监控与性能优化策略，推出北极星指标与实验漏斗"
+      - "构建湖仓一体 + Notebook 模板 + Prompt QA 清单，支撑多市场复制"
+      - "主持 ADF 调度、跨平台数据传输与 AI 成本/收益看板"
+      - "推动高层对齐，主持风险评审、Prompt 审查与商业化复盘会"
+    architecture_or_solution:
+      - "四层数据处理架构：Inbox→Raw→Transform→Governed"
+      - "Databricks Workflows + Delta Lake 保障依赖管理与 ACID"
+      - "自动校验 T-1 数据差异的增量策略 + LLM 质检钩子"
+      - "Spark SQL/PySpark 公共 ETL 模块与方法注册机制"
+      - "参数化 Notebook 与 ADF 联动，实现多市场复用"
+      - "Sales Copilot：LLM 摘要、行动建议、风险提示与聊天助手嵌入 PowerBI"
+    process_or_methodology:
+      - "湖仓一体 + PromptOps 双轨治理"
+      - "模块化、原子化的数据开发规范 + 双色看板跟踪实验"
+      - "自动化数据质量校验、异常告警与提示审查走查"
+      - "双周 OKR/路线图评审 + 实验/风险共识会"
+    deliverables_or_features:
+      - "跨平台数据传输链路（Aliyun OSS→ADLS Gen2）"
+      - "Schema Drift/字段完整性/空值重复监测模块"
+      - "热点宽表的分区、Z-Ordering、缓存与动态聚合"
+      - "Sales Copilot 工作台：机会摘要、下一步建议、Prompt QA 面板"
+      - "Exec Dashboard + ARR/机会漏斗 + Prompt 成本仪表盘"
+    metrics_or_impact:
+      - "关键报表运行时间提升 2~3 倍"
+      - "建立公司级数仓+Prompt 治理规范并在 4 个市场复用"
+      - "AI 推荐命中率 70%，销售人员节省每周 6 小时线索整理时间"
+      - "风险事件零高危升级，合规审计一次通过"
+    tech_stack:
+      - "Databricks"
+      - "Delta Lake"
+      - "Azure Data Factory"
+      - "Azure Storage"
+      - "Spark SQL"
+      - "PySpark"
+      - "Azure Functions"
+      - "Power BI + Fabric"
+      - "Azure OpenAI / GLM API"
+    tools_platforms:
+      - "Databricks Workflows"
+      - "ADF"
+      - "Azure Data Lake Storage Gen2"
+      - "Prompt QA 工具链"
+    team_info:
+      team_size: 5
+      description: "跨市场 PO + 数据工程 + 分析师混编小组"
+    notes: "负责中国市场的路线图与 PromptOps 治理，成果被纳入全球销售数字化参考蓝本。"
+
+  - project_name: "AI增强智能简历投递系统"
+    company_or_context: "个人独立开发者"
+    timeframe:
+      label: 2025.1 - 2025.9
+      start: "2025-01"
+      end: "2025-09"
+    role_title: "独立开发者"
+    role_perspective: developer
+    management_scope:
+      team_size: 1
+      budget_level: lt_100k
+      stakeholder_tiers:
+      - customer
+      - ops
+    decision_accountability:
+    - delivery_owner
+    - technical_strategy
+    - hands_on_build
+    - commercial_strategy
+    - risk_governance
+    responsibility_focus:
+    - planning
+    - architecture
+    - implementation
+    - operations
+    - commercialization
+    impact_metrics:
+      business_metrics:
+      - "一周 70+ 职位完成度让人工投递效率提升 5 倍，AI 推荐满意度 +25%"
+      - "面试邀请转化率 32%，平均候选人搜寻时间减少 4 小时/天"
+      - "为第三方职业社群提供订阅制 API Demo，首月收获 10+ 家付费意向"
+      technical_metrics:
+      - "RAG 处理吞吐 >50 职位/分钟且匹配准确率 91.27%"
+      - "向量检索延迟 <100ms 并保持 <4GB 内存占用"
+      - "决策引擎输出 5 维可解释评分 + 关键特征，支撑可视化汇报"
+      operational_metrics:
+      - "职位提取速度 >100 职位/分钟，系统可用性 >99%"
+      - "多渠道风控（反爬、行为空间模拟）让封禁率控制在 0.5%"
+    governance_artifacts:
+    - runbook
+    - prompt_playbook
+    - risk_register
+    - experiment_log
+    project_overview: "Python + LangChain 驱动的 MyThird 平台，将职位提取、RAG 分析、智能匹配、LangChain Agent、Selenium 自动投递和反爬行为模拟整合成可脚本化的求职自动化套件，并内置候选人旅程仪表盘与提示治理。"
+    data_domain: "求职/招聘自动化 + RAG智能分析"
+    ai_component_flag: true
+    challenges_or_objectives:
+      - "在人工登录前提下，实现智联/前程无忧/Boss 等站点的端到端投递自动化并规避风控"
+      - "构建可扩展的多层架构：CLI/Agent 入口 → 控制层 → 处理层 → 数据层"
+      - "同时提供在线/离线向量模型与多 LLM 路由，保持 >50 职位/分钟的 RAG 吞吐"
+      - "建立可解释的多维度评分、A/B 模板与求职者旅程指标，量化简历/职位匹配结果"
+      - "确保提示与代理不会误投或泄露个人信息，形成风险闭环"
+    responsibilities:
+      - "设计 MasterController + JobScheduler + DecisionEngine + DataBridge 的控制层，负责任务编排、优先级与容错"
+      - "规划候选人旅程指标、实验待办，梳理提示策略与投递模板的产品路线图"
+      - "实现 LangChain RAG 管线、ChromaDB/SQLite 双存储、Redis 缓存与 sentence-transformers 嵌入管理"
+      - "开发 GenericResumeJobMatcher/MultiDimensionalScorer/SmartMatchingEngine 及评分报告、HTML 输出"
+      - "实现 ResumeSubmissionEngine、ButtonRecognition、JobStatusDetector、AntiCrawlerSystem、BehaviorSimulator，覆盖多网站的人工行为模拟"
+      - "编写 rag_cli.py / integration_main.py / batch 工具、YAML 配置体系、离线模型脚本及 pytest/verify_* 测试，沉淀风控/提示治理 SOP"
+    architecture_or_solution:
+      - "用户交互：CLI、LangChain Agent chat、未来 Web 控制台 → 统一 MasterController"
+      - "控制层：MasterController + JobScheduler + DecisionEngine + Monitoring + ErrorHandler"
+      - "处理层：职位提取、RAG 管线、智能匹配、自动投递、分析引擎 (asyncio + Typer CLI)"
+      - "数据层：SQLite（职位/匹配/投递状态）、ChromaDB（语义向量）、Redis 缓存、日志/报告目录"
+      - "AI 栈：LangChain + 智谱 GLM-4-Flash + sentence-transformers (offline 可切 m3e/text2vec) + 可插拔 OpenAI/Claude/Ollama"
+      - "自动化：Selenium WebDriver + BehaviorSimulator + AntiCrawlerSystem（随机延迟、鼠标轨迹、会话保活、用户代理轮换）"
+      - "Pipeline：职位提取 → RAG 向量化 → 匹配评分 → 决策过滤（薪资/竞争度） → 投递执行 → 状态回写/报告"
+      - "产品遥测：埋点 + Superset 仪表盘追踪匹配命中率、投递成功率、封禁风险"
+    process_or_methodology:
+      - "Typer CLI + YAML 配置驱动（rag_cli、integration_main、scripts/setup_local_models.py）"
+      - "异步/并发：asyncio + 优先级调度 + checkpoint/重试 + 干运行模式"
+      - "LangChain Agent 工具化 + STRUCTURED_CHAT 风格提示 + RAG 工具链"
+      - "多文档 CLAUDE.md 架构文档 + 模块细分指南 + 性能/监控清单"
+      - "产品实验节奏：候选人分层访谈 → Prompt/模板 A/B → 投递/回执指标同步到仪表盘"
+      - "pytest、verify_integration.py、test_master_controller.py、run_all_rag_tests.py 全栈测试"
+    deliverables_or_features:
+      - "rag_cli：状态/搜索/管线/匹配/简历处理/聊天 等命令集合"
+      - "LangChain Agent：职位市场问答、薪资分析、趋势洞察"
+      - "MasterController 端到端流水线 + DecisionEngine 决策阈值与薪资过滤 + JobScheduler 并发控制"
+      - "GenericResumeJobMatcher + 多维度评分 + 时间感知匹配 + 个性化推荐与 HTML 报告"
+      - "ResumeSubmissionEngine + JobStatusDetector + ButtonRecognition + AntiCrawlerSystem + BehaviorSimulator"
+      - "离线模型管理脚本（setup_local_models.py / download_models.py）与数据验证工具（check_database_structure.py、verify_database.py）"
+      - "批处理与恢复工具：batch_rematch_jobs.py、pipeline_results/、reports/"
+      - "候选人旅程仪表盘 + Superset/Cohort 看板 + Prompt 治理手册"
+      - "API Demo + 订阅报价文档，验证 MVP 商业化路径"
+    metrics_or_impact:
+      - "职位提取速度 >100 职位/分钟；RAG 处理 >50 职位/分钟；匹配处理 >200 结果/分钟；系统可用性 >99%"
+      - "向量检索延迟 <100ms，内存占用 <4GB/实例"
+      - "多维度评分准确率：技能匹配率 88.5%，技能匹配数 23/26，语义相似度 0.6-0.8，中文匹配准确性 +30%"
+      - "综合匹配准确度 91.27%（五维评分：语义/技能/经验/行业/薪资）"
+      - "时间感知策略让新职位发现率 +40%、推荐满意度 +25%，面试邀请率达到 32%"
+      - "旅程仪表盘缩短意向校准时间 60%，手动 QA 时间下降 3 小时/周"
+    tech_stack:
+      - "Python 3.8+ / AsyncIO / Typer CLI"
+      - "LangChain / STRUCTURED_CHAT Agents"
+      - "智谱 GLM-4-Flash / OpenAI / Claude / Ollama (可插拔)"
+      - "sentence-transformers (text2vec, m3e, MiniLM, mpnet 等)"
+      - "ChromaDB 向量数据库"
+      - "SQLite（jobs.db + resume profiles）"
+      - "Redis 缓存"
+      - "Selenium WebDriver + BehaviorSimulator"
+      - "FastAPI/Flask 辅助服务 (内部工具/API)"
+      - "pytest / unittest 套件"
+      - "YAML 配置 + Pydantic/Dataclasses"
+    tools_platforms:
+      - "rag_cli.py / rag_system 管理台"
+      - "integration_main.py (MasterController 入口)"
+      - "LangChain Agent CLI"
+      - "GenericResumeJobMatcher & SmartMatchingEngine"
+      - "MasterController / JobScheduler / DecisionEngine / DataBridge"
+      - "ResumeSubmissionEngine / AntiCrawlerSystem / BehaviorSimulator"
+      - "ChromaDB + SQLite + Redis + pipeline_results/metrics 监控"
+      - "scripts/setup_local_models.py / download_models.py / verify_database.py"
+    team_info:
+      team_size: 1
+      description: "个人独立开发，覆盖 AI、RAG、自动化与反爬系统"
+    notes: "详见 D:/0-development/projects/MyThird（MyThird.code-workspace + 模块化 CLAUDE 文档架构）。"
+  - project_name: "AI增强图像爬虫系统 (Image Crawler)"
+    company_or_context: "个人独立开发者"
+    timeframe:
+      label: 2024.6 - 2025.9
+      start: "2024-06"
+      end: "2025-09"
+    role_title: "独立开发者"
+    role_perspective: developer
+    management_scope:
+      team_size: 1
+      budget_level: lt_100k
+      stakeholder_tiers: []
+    decision_accountability:
+    - delivery_owner
+    - technical_strategy
+    - hands_on_build
+    responsibility_focus:
+    - architecture
+    - implementation
+    - operations
+    impact_metrics:
+      business_metrics: []
+      technical_metrics:
+      - ResNet验证准确率95.71%，假阴性降至3.85%
+      - YOLO-Pose区域检测准确率>90%，分类准确率>96%
+      operational_metrics:
+      - 图像提取成功率与广告过滤准确率均为100%
+      - Web控制台实时跟踪895+记录/2731张图片且去重零误判
+    governance_artifacts:
+    - runbook
+    - playbook
+    project_overview: "MyFirst (T66Y Image Crawler) 平台：定制T66Y爬虫 + SHA-256 去重 + SQLite 数据湖 + Flask Web控制台 + ResNet/YOLO-Pose 分类与注意力热图，实现采集→治理→预测→运营的闭环。"
+    data_domain: "垂直图像采集 / 内容治理 / 计算机视觉"
+    ai_component_flag: true
+    challenges_or_objectives:
+      - "适配 T66Y 页面非标准 `ess-data`/`data-link` 属性，保证 100% 图像抓取"
+      - "在大批量采集中完成广告过滤（20% 页面内容）与 SHA-256 去重，零误判"
+      - "统一 SQLite + Web 控制台，实时监控 895+ 爬取记录 (245.8 MB) 与 2,731 张图像（含 AI/人工感兴趣标记）"
+      - "用 ResNet/CBAM + YOLO-Pose 区域感知模型，提高中文成人向图像召回，假阴性从 21.54% 降到 3.85%"
+      - "提供批量推理、注意力热图、Fine-tuning/YOLO 指南，支撑持续模型演化"
+    responsibilities:
+      - "设计 YAML 配置、run_t66y_crawler.py/main.py CLI、广告黑名单与日期化存储，确保抓取可靠"
+      - "实现 SHA-256 重复检测、`t66y_crawl_results` schema、内容哈希命名、自动备份与迁移脚本"
+      - "开发 Flask + WebSocket 管理台 (`start_web_app.py`)，修复过滤默认值、实现图像画廊、全选/批量标记、SQL 控制台"
+      - "构建 ResNet18/CBAM/自适应Focal Loss 训练流水线、YOLO-Pose 引导区域感知分类器、批量预测/attention heatmap 工具"
+      - "撰写 fine_tuning_*、CLAUDE.md、yolo_guided_* 文档与 run_tests.py、check_database.py 等测试/校验工具"
+    architecture_or_solution:
+      - "Crawler：config/examples/t66y_image_crawler_fixed.yaml 定义 selector/ad_filtering；run_t66y_crawler.py、collect_interested_images.py、batch_analyze_t66y_pages.py"
+      - "Storage：SQLite + SQLAlchemy + `t66y_storage` + `simple_duplicate_checker`；字段含 content_hash、is_interested、ml_prediction_confidence；`data/images/YYYY-MM-DD/` 目录与哈希命名"
+      - "Web：Flask 蓝图 + `/api/dashboard/stats`、`/api/images`、`/api/query/execute`，图像画廊、实时监控、批量操作、配置编辑"
+      - "ML：`ml/` 目录含 dataset、model_factory、inference、scripts，ResNet & BBoxAttention & YOLO-Pose 模型；自适应Focal Loss、DynamicSampler、多层次随机化、渐进式解冻"
+      - "Pipeline：爬取→广告过滤→SHA-256 去重→SQLite 存储→Web 审核→ResNet/YOLO 推理→兴趣标签/热图→批量导出/再训练"
+    process_or_methodology:
+      - "配置驱动 (YAML)、Typer/Click CLI、content-hash 命名、日志与系统表监控"
+      - "自动化测试：run_tests.py、tests/unit/test_duplicate_detection.py、verify_database.py、evaluate_fine_tuning.py"
+      - "ML 工程：自适应Focal Loss、DynamicSampler、多层次随机化、YOLO-Pose 完整性测试 (8/8 通过)"
+      - "Fine-tuning 流程：SmartColorAugmentation、DynamicSampleBalancer、噪声注入、渐进式解冻、OverfittingMonitor"
+      - "文档驱动：CLAUDE.md、fine_tuning_summary.md、fine_tuning_usage_guide.md、yolo_guided_* 指南记录每次修复"
+    deliverables_or_features:
+      - "T66Y 专用爬虫脚本、广告过滤、内容哈希去重、日期分区、批量页面分析"
+      - "Flask Web 控制台：仪表板、SQL 查询、图像画廊、全选/批操作、实时监控、配置编辑"
+      - "ResNet/CBAM 分类模型、batch_predict_bbox_attention.py、image_classifier_with_visualization.py、attention heatmap 可视化"
+      - "YOLO-Pose 区域感知分类器、train_yolo_guided_classifier.py、yolo_guided_evaluator、动态数据采样器"
+      - "Fine-tuning 文档 + 实施脚本、check_database.py/database_region_analyzer.py/verify_database.py 保障数据质量"
+    metrics_or_impact:
+      - "图像提取成功率 100%，典型页面 15 张图（8 缩略 + 7 高清）；广告过滤准确率 100%，20% 页面内容被剔除"
+      - "Web UI 展示 2,731 张图片（含 615 手动、945 AI 感兴趣）并支持全选批量；内容哈希去重保持 0 漏检"
+      - "ResNet 优化模型验证准确率 95.71%；假阴性 3.85%（较 21.54% 降 82.1%），假阳性 4.46%（降 71.3%），推理 58.7 图/秒"
+      - "YOLO-Pose 区域检测准确率由 1% → >90%（+8,900%）；分类准确率 >96%，假阴性 <3%，完整性测试 8/8 通过"
+      - "SQLite 实时记录 895+ 条爬取数据 (245.8 MB)；Web API / 仪表板、SQL、批处理功能全部通过回归"
+    tech_stack:
+      - "Python 3.8+ / Requests / BeautifulSoup / Typer-CLI"
+      - "Flask + Jinja2 + Bootstrap + WebSocket + SQLAlchemy"
+      - "SQLite + imagehash + pandas"
+      - "PyTorch 2.x + ResNet18/CBAM + 自适应Focal Loss + YOLO-Pose (ultralytics)"
+      - "OpenCV / PIL / matplotlib / seaborn"
+      - "TensorBoard/日志系统 + pytest/unittest"
+    tools_platforms:
+      - "run_t66y_crawler.py / main.py / config/*.yaml"
+      - "start_web_app.py / web/app.py / routes/api"
+      - "collect_interested_images.py / batch_analyze_t66y_pages.py / database_region_analyzer.py / check_database.py"
+      - "image_classifier_with_visualization.py / batch_predict_bbox_attention.py / train_bbox_attention.py"
+      - "ml/scripts/train_optimized_model.py / train_yolo_guided_classifier.py / fine_tune_bbox_attention.py / yolo_guided_evaluator.py"
+      - "attention_heatmap 生成器、YOLO-Pose 模型、logs & outputs 目录"
+    team_info:
+      team_size: 1
+      description: "个人独立开发，覆盖爬虫、Web、数据库与CV模型"
+    notes: "详见 D:/0-development/projects/MyFirst（MyFirst.code-workspace + CLAUDE/YOLO/Fine-tuning 文档）。"
+
+  - project_name: "Remedium (BI)"
+    company_or_context: "PWC"
+    timeframe:
+      label: "2016.10 - 2023.2"
+      start: "2016-10"
+      end: "2023-02"
+    role_title: "技术组长"
+    role_perspective: architect
+    management_scope:
+      team_size: null
+      budget_level: null
+      stakeholder_tiers:
+      - exec
+      - director
+      - ops
+      - regulator
+    decision_accountability:
+    - delivery_owner
+    - technical_strategy
+    - risk_governance
+    responsibility_focus:
+    - architecture
+    - stakeholder_management
+    - compliance
+    impact_metrics:
+      business_metrics:
+      - 用户满意度达到95%并通过所有合规审计
+      technical_metrics:
+      - 数据处理时间减少30%
+      - 数据质量提升到99.9%
+      operational_metrics:
+      - 建立24小时跨国协作节奏
+    governance_artifacts:
+    - training_plan
+    - risk_register
+    project_overview: "为制药行业打造的BI解决方案，涵盖数据管道、报告分析和Web门户。"
+    data_domain: "制药行业 BI"
+    ai_component_flag: false
+    challenges_or_objectives:
+      - "设计可扩展的解决方案架构"
+      - "提升数据处理效率与报告实时性"
+      - "增强业务人员的审查体验"
+    responsibilities:
+      - "领导架构设计并协调跨国团队"
+      - "监督ADF + Databricks 数据管道开发"
+      - "指导报告/分析层实现及门户设计"
+      - "推动跨职能沟通"
+    architecture_or_solution:
+      - "ADF 管道 + Databricks 处理框架"
+      - "Web 门户提升审查效率"
+    process_or_methodology:
+      - "跨团队协作与解决方案评审"
+    deliverables_or_features:
+      - "交易数据报告体系"
+      - "Remedium Web 门户"
+    metrics_or_impact:
+      - "处理时间减少、数据质量提升"
+      - "实时访问能力提高问题解决效率"
+      - "获得利益相关者正面反馈"
+    tech_stack:
+      - "Azure Data Factory"
+      - "Databricks"
+      - "BI 工具"
+      - "Web 技术"
+    tools_platforms:
+      - "Azure 生态"
+    team_info:
+      team_size: null
+      description: "跨国团队协作"
+    notes: null
+
+  - project_name: "SMART"
+    company_or_context: "PWC"
+    timeframe:
+      label: "2016.10 - 2023.2"
+      start: "2016-10"
+      end: "2023-02"
+    role_title: "技术组长"
+    role_perspective: hybrid
+    management_scope:
+      team_size: null
+      budget_level: null
+      stakeholder_tiers:
+      - exec
+      - director
+      - ops
+      - regulator
+    decision_accountability:
+    - delivery_owner
+    - technical_strategy
+    - people_management
+    - risk_governance
+    responsibility_focus:
+    - architecture
+    - operations
+    - compliance
+    impact_metrics:
+      business_metrics:
+      - 核心业务连续18个月无中断
+      technical_metrics:
+      - 实现99.99% SLA并将数据处理效率提升40%
+      operational_metrics:
+      - CI/CD将部署时间从2小时缩短到15分钟
+    governance_artifacts:
+    - risk_register
+    - runbook
+    project_overview: "医疗保险预审核系统的长期演进项目，聚焦OLTP/OLAP数据模型、ETL架构与SLA保障。"
+    data_domain: "医疗保险预审核"
+    ai_component_flag: false
+    challenges_or_objectives:
+      - "治理10+年遗留系统与复杂业务逻辑"
+      - "重构ETL层并提升性能/可靠性"
+      - "满足高SLA与安全合规"
+    responsibilities:
+      - "领导OLTP/OLAP数据模型设计与开发"
+      - "重构ETL架构并整合资源调度/内存计算模块"
+      - "推动测试、性能与风险控制"
+      - "实施CI/CD与DevOps流程"
+      - "维护数仓与安全升级"
+    architecture_or_solution:
+      - "重新设计ETL层与分布式内存引擎"
+      - "CI/CD 驱动的交付管道"
+      - "安全扫描与风险控制机制"
+    process_or_methodology:
+      - "敏捷开发"
+      - "DevOps + 自动化单元测试"
+      - "风险管理与性能测试协作"
+    deliverables_or_features:
+      - "新ETL架构"
+      - "CI/CD 流程"
+      - "安全升级与风险控制包"
+    metrics_or_impact:
+      - "实现99.99% SLA"
+      - "提升数据处理效率与质量保障"
+      - "降低漏洞并改进开发效率"
+    tech_stack:
+      - "OLTP/OLAP"
+      - "ETL"
+      - "CI/CD"
+      - "敏捷开发"
+      - "安全扫描工具"
+    tools_platforms:
+      - "资源调度模块"
+      - "分布式内存引擎"
+    team_info:
+      team_size: null
+      description: null
+    notes: null
+
+  - project_name: "LMS"
+    company_or_context: "HP"
+    timeframe:
+      label: "2014.10 - 2016.10"
+      start: "2014-10"
+      end: "2016-10"
+    role_title: "Leader / Scrum Master"
+    role_perspective: project_manager
+    management_scope:
+      team_size: 20
+      budget_level: null
+      stakeholder_tiers:
+      - director
+      - ops
+      - vendor
+    decision_accountability:
+    - delivery_owner
+    - people_management
+    - risk_governance
+    responsibility_focus:
+    - planning
+    - stakeholder_management
+    - operations
+    impact_metrics:
+      business_metrics:
+      - 支撑HP全球培训与外部订单管理的核心流程
+      technical_metrics:
+      - SABA接口数据同步准确率达到99.8%
+      operational_metrics:
+      - 按期交付率从60%提升到95%
+      - 团队冲突率下降80%
+    governance_artifacts:
+    - roadmap
+    - risk_register
+    - jira_board
+    project_overview: "负责HP培训与订单管理的LMS ODS系统，连接SABA培训系统与HP EDW。"
+    data_domain: "企业学习与培训数据"
+    ai_component_flag: false
+    challenges_or_objectives:
+      - "保障与SABA系统的实时同步"
+      - "提升ODS/ETL处理效率"
+      - "协调多团队并保持敏捷交付"
+    responsibilities:
+      - "设计系统架构与API接口"
+      - "开发Informatica ETL作业"
+      - "担任Scrum Master 组织迭代/审查"
+      - "解决团队冲突并做技术决策"
+    architecture_or_solution:
+      - "SABA API 集成 + 实时同步"
+      - "Informatica 定制计划任务与数据流"
+      - "监测服务快速定位接口问题"
+    process_or_methodology:
+      - "Scrum 管理"
+      - "并行开发与任务优先级控制"
+    deliverables_or_features:
+      - "接口监测服务"
+      - "增量抽取机制"
+      - "重组团队结构（20人→多小组）"
+    metrics_or_impact:
+      - "提升接口稳定性与数据同步效率"
+      - "保障每个Sprint持续交付"
+    tech_stack:
+      - "SABA"
+      - "Informatica"
+      - "ETL"
+      - "Scrum"
+      - "API 开发"
+    tools_platforms:
+      - "HP EDW"
+    team_info:
+      team_size: 20
+      description: "重组为6人左右开发小队，分接口/ETL/ODS/测试"
+    notes: null
+
+  - project_name: "Move To HP Cloud"
+    company_or_context: "HP"
+    timeframe:
+      label: "2012.10 - 2014.10"
+      start: "2012-10"
+      end: "2014-10"
+    role_title: "Senior Developer II"
+    role_perspective: developer
+    management_scope:
+      team_size: null
+      budget_level: null
+      stakeholder_tiers:
+      - ops
+      - vendor
+    decision_accountability:
+    - technical_strategy
+    - hands_on_build
+    responsibility_focus:
+    - architecture
+    - implementation
+    - operations
+    impact_metrics:
+      business_metrics: []
+      technical_metrics:
+      - 多层安全与负载均衡设计确保迁移后系统稳定运行
+      operational_metrics:
+      - 标准化部署脚本缩短环境搭建与迁移时间
+    governance_artifacts:
+    - runbook
+    project_overview: "将HP内部项目迁移至自有云平台，覆盖基础设施搭建、环境升级与SaaS整合。"
+    data_domain: "企业云迁移"
+    ai_component_flag: false
+    challenges_or_objectives:
+      - "构建安全可靠的IaaS基础设施"
+      - "统一开发/测试/生产环境部署"
+      - "整合多种内部SaaS 服务"
+    responsibilities:
+      - "搭建虚拟网络、防火墙、负载均衡与虚拟机"
+      - "执行各环境的安装与升级"
+      - "整合内部SaaS 并支持测试/回归"
+      - "排障并解决迁移过程中的技术问题"
+    architecture_or_solution:
+      - "HP 云 IaaS 资源编排"
+      - "多层负载均衡与安全网关配置"
+    process_or_methodology:
+      - "环境一致性与迁移测试流程"
+    deliverables_or_features:
+      - "标准化的环境部署脚本"
+      - "SaaS 集成方案"
+    metrics_or_impact:
+      - "确保项目顺利迁移并稳定运行"
+    tech_stack:
+      - "HP Cloud IaaS"
+      - "虚拟网络"
+      - "负载均衡"
+      - "SaaS 集成"
+    tools_platforms:
+      - "HP 内部云平台"
+    team_info:
+      team_size: null
+      description: null
+    notes: null
+
+  - project_name: "Customer insight"
+    company_or_context: "HP"
+    timeframe:
+      label: "2010.10 - 2014.10"
+      start: "2010-10"
+      end: "2014-10"
+    role_title: "开发与设计"
+    role_perspective: developer
+    management_scope:
+      team_size: null
+      budget_level: null
+      stakeholder_tiers:
+      - customer
+      - ops
+    decision_accountability:
+    - technical_strategy
+    - hands_on_build
+    - commercial_strategy
+    responsibility_focus:
+    - architecture
+    - implementation
+    - commercialization
+    impact_metrics:
+      business_metrics:
+      - 客户服务器配置效率显著提升
+      technical_metrics:
+      - 多倾向度配置模型支撑个性化推荐
+      operational_metrics: []
+    governance_artifacts: []
+    project_overview: "基于历史服务器配置数据的智能化配置与推荐系统，帮助客户快速生成服务器方案。"
+    data_domain: "企业服务器配置推荐"
+    ai_component_flag: false
+    challenges_or_objectives:
+      - "设计多种客户倾向度模型与配置算法"
+      - "保证统计报表与配置引导的准确性"
+    responsibilities:
+      - "开发配置算法与倾向度模型"
+      - "建立定期数据统计与报表"
+      - "设计UI流程引导用户配置"
+    architecture_or_solution:
+      - "倾向度驱动的配置算法 + 数据统计引擎"
+      - "UI 引导与报表反馈循环"
+    process_or_methodology:
+      - "基于数据驱动的配置策略"
+    deliverables_or_features:
+      - "多倾向度配置集合与可视化报表"
+    metrics_or_impact:
+      - "提高客户配置效率"
+      - "支持多种优化策略并提供决策分析"
+    tech_stack:
+      - "配置算法"
+      - "数据库"
+      - "UI 开发"
+      - "报表系统"
+    tools_platforms:
+      - []
+    team_info:
+      team_size: null
+      description: null
+    notes: null

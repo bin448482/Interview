@@ -6,7 +6,14 @@
       "Bash(python -m venv:*)",
       "Bash(.venvScriptspython -m resume_docs.cli --template modern --locale en-US --role data_development --include-contact --model gpt-3.5-turbo --dry-run)",
       "Bash(\".venv\\Scripts\\python\" -m resume_docs.cli --template modern --locale en-US --role data_development --include-contact --model gpt-3.5-turbo --dry-run)",
-      "Bash(\".venv\\Scripts\\python\" -m resume_docs.cli --template modern --locale en-US --role data_development --include-contact --model gpt-5)"
+      "Bash(\".venv\\Scripts\\python\" -m resume_docs.cli --template modern --locale en-US --role data_development --include-contact --model gpt-5)",
+      "Bash(.venvScriptspython -m resume_docs.cli --template modern --locale zh-CN --role product_manager --include-contact --model gpt-5)",
+      "Bash(dir:*)",
+      "Bash(where python:*)",
+      "Bash(.venv.windowsScriptspython --version)",
+      "Bash(.venv.windowsScriptspython -c \"import resume_docs; print(''✓ resume_docs module found'')\")",
+      "Bash(\"D:\\0-development\\projects\\Interview\\.venv.windows\\Scripts\\python.exe\":*)",
+      "Bash(\"D:\\0-development\\projects\\Interview\\.venv.windows\\Scripts\\python.exe\" -m resume_docs.cli:*)"
     ],
     "deny": [],
     "ask": []

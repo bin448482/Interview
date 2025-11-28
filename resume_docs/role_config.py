@@ -31,4 +31,16 @@ ROLE_FILTERS = {
         "exclude_projects": [],
         "sort_by": "relevance_then_time",
     },
+    "product_manager": {
+        "name": "Generative AI 产品经理",
+        "include_projects": [
+            {"field": "responsibility_focus", "contains": ["commercialization", "stakeholder_management"]},
+            {"field": "decision_accountability", "contains": ["commercial_strategy", "risk_governance"]},
+            {"field": "role_title", "pattern": ".*产品.*|.*Product.*"},
+        ],
+        "exclude_projects": [
+            {"field": "role_title", "pattern": ".*(测试|运维).*"},
+        ],
+        "sort_by": "relevance_then_time",
+    },
 }

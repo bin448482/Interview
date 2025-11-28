@@ -90,7 +90,7 @@ PY
 - `en-US`: English
 
 ### Output location
-- DOCX: `docs/output/{locale}/{template}/resume.docx`
+- DOCX: `docs/output/{locale}/{template}/resume-YYYYMMDD-HHMMSS.docx` (timestamped per run)
 
 ## Multi-Locale Support
 

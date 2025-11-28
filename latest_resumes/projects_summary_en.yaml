@@ -1,0 +1,845 @@
+schema_version: 1.1
+generated_at: '2025-11-28T10:40:46.354834'
+source_file: Resume_Data_Engineer_CN_20250529.md
+projects:
+- project_name: MySixth Tarot Card Intelligent Application
+  company_or_context: Zoetis / Individual Independent Developer
+  timeframe:
+    label: October 2025 - Present
+    start: 2025-10
+    end: null
+  role_title: Independent developer
+  role_perspective: hybrid
+  management_scope:
+    team_size: 1
+    budget_level: lt_100k
+    stakeholder_tiers:
+    - customer
+    - ops
+  decision_accountability:
+  - delivery_owner
+  - technical_strategy
+  - hands_on_build
+  - commercial_strategy
+  - risk_governance
+  responsibility_focus:
+  - planning
+  - architecture
+  - implementation
+  - commercialization
+  - stakeholder_management
+  impact_metrics:
+    business_metrics:
+    - 'Q4 2025 paid conversion 18% (+50% vs. industry benchmark) with 6% DAU pay-through
+      and RMB 60K ARR locked in by day 60.'
+    - 'Cohort telemetry surfaced high-value spreads and boosted repeat purchase funnel
+      completion by 12 percentage points.'
+    technical_metrics:
+    - 'Unified LLM factory + cost dashboard lowered AI call cost by 60% while keeping
+      TP99 inference under 1.2s.'
+    - 'Event bus + cohort dashboards visualize experiment deltas within 24 hours
+      to support prompt/paywall tests.'
+    operational_metrics:
+    - 'Single cloud server deployment keeps monthly operating cost under RMB 500.'
+    - 'Android/iOS/Web/Admin suite ships once with shared release automation to accelerate
+      cadence.'
+    - 'A/B cycle <2 days with feedback loops closed within 48 hours.'
+  governance_artifacts:
+  - runbook
+  - prompt_playbook
+  - cost_dashboard
+  - ab_test_matrix
+  project_overview: 'TarotAI omnichannel kit (Expo React Native app + FastAPI backend
+    + Next.js admin + AI content generator) layered with product telemetry, cohort
+    dashboards, and prompt governance so anonymous users get a four-step tarot journey
+    plus paid AI readings. GitHub: https://github.com/bin448482/tarotAI'
+  data_domain: Consumer-level Tarot Fortune Telling / AI Content Operation
+  ai_component_flag: true
+  challenges_or_objectives:
+  - Deliver mobile, backend, admin, and AI generator assets as a solo builder while
+    still reserving capacity for PM rituals.
+  - Merge user interviews + funnel telemetry into roadmap choices so anonymous identity,
+    offline sync, and multi-channel payments line up in one architecture.
+  - Build a two-phase AI pipeline, multi-LLM routing, and cost guardrails under a
+    unified dashboard.
+  - Design subscription/IAP/redemption monetization and codify prompt governance
+    plus experimentation guardrails.
+  responsibilities:
+  - 'Lead four-surface architecture: Expo mobile, FastAPI services, Next.js admin,
+    AI batch generator.'
+  - 'Define north star metrics (conversion, retention), maintain experiment backlog,
+    user interviews, and prioritization cadences.'
+  - Design anonymous installation ID + JWT authentication, four-step divination flow,
+    and end-to-end API contract.
+  - Implement Google Play IAP/redemption/Stripe (reserved) charging routes, revenue
+    share reports, and risk controls.
+  - Set up Docker Compose + Nginx deployment, monitoring, and offline backups while
+    chairing prompt governance and risk reviews.
+  - Publish multilingual README/CLAUDE guides and telemetry SOPs to institutionalize
+    build + operate processes.
+  architecture_or_solution:
+  - Expo RN (SDK54) client + FastAPI monolith + Next.js 15 admin + Python AI generator
+    layered architecture.
+  - 'Dual-stage AI API: `/readings/analyze` for recommendations, `/readings/generate`
+    for paid narratives, backed by prompt audit trail.'
+  - 'Anonymous identity: `installation_id` + optional email binding + JWT access,
+    plus session enrichment for cohort tagging.'
+  - 'Offline-first: Expo SQLite `tarot_config.db` preload + sync strategy, backend
+    SQLite persistence.'
+  - 'Payments: Google Play Billing, bulk redemption codes, reserved Stripe Checkout
+    with revenue share dashboards.'
+  - Docker Compose (backend/admin/nginx) + Nginx route split.
+  - 'AI content ops: `tarot-ai-generator` Typer CLI linking SQLite + GLM-4/OpenAI/Ollama
+    for batch copy with spend monitors.'
+  - 'Product telemetry: PostHog/Amplitude events feed cohort + retention dashboards
+    and experiment decisions.'
+  process_or_methodology:
+  - Vibe coding / modular components + Expo Router four-step flow.
+  - OKR → north star metrics → hypothesis backlog → A/B validation cadence layered
+    onto TypeScript/Python coding standards.
+  - Offline sync + SQLite versioning + Docker volume backups.
+  - EAS Build + CI/CD + multi-environment `.env` governance.
+  - Doc-driven development (README/CLAUDE) + prompt governance reviews.
+  - Weekly user interviews/feedback tagging feeding the experiment matrix.
+  deliverables_or_features:
+  - 'Expo mobile app `my-tarot-app`: spreads, AI paid readings, history, icon pipeline.'
+  - 'FastAPI `tarot-backend`: LLM gateway, payments, admin APIs, static assets, health
+    checks.'
+  - 'Next.js `tarot-admin-web`: dashboards, user/points ops, bulk code generation,
+    order tracking, client download portal.'
+  - 'Tarot AI Generator: multimode batch generation, multilingual routing, JSON import/export.'
+  - 'Product telemetry + cohort dashboards: funnel/retention/pay analysis with cost/revenue
+    reconciliation.'
+  - 'Prompt governance pack: templates, risk checklist, A/B log, cost ceilings.'
+  - Nginx + Docker Compose deployment topology, offline SQLite backup manual.
+  - "Monetization strategy: IAP first → redemption/Stripe fallback with anonymous identity compatibility."
+  metrics_or_impact:
+  - Production suite running on Android/iOS/Web/Admin.
+  - Two-stage AI narrative lifts conversion and achieves 34% month-2 retention.
+  - Anonymous identity + offline cache enables journeys without registration or
+    strong connectivity.
+  - Dockerized delivery shortens environment setup, SQLite backup lowers ops risk.
+  - Experiment matrix surfaced high-value spreads, improving monthly retention by
+    12 pts and ARR by RMB 18K.
+  tech_stack:
+  - Expo React Native (SDK 54 / React Native 0.81)
+  - TypeScript 5.x
+  - Next.js 15 App Router + Ant Design 6 + Tailwind CSS
+  - FastAPI 0.104 + SQLAlchemy + Uvicorn
+  - SQLite (Expo/Backend)
+  - Python 3.10 + Typer CLI
+  - GLM-4 (ZhiPuAI)
+  - OpenAI API
+  - Ollama/Claude (removable)
+  - LangChain / Self-developed LLM Router
+  - Docker & Docker Compose
+  - Nginx Proxy
+  - Google Play Billing / Stripe Checkout (Reserved)
+  tools_platforms:
+  - Expo Router 6
+  - Status + SWR
+  - EAS Construction
+  - Ant Design Charts
+  - ESLint / Pylint / Prettier
+  - CI/CD Pipeline + generate-icons.js script
+  - Docker volume backup solution
+  team_info:
+    team_size: 1
+    description: Personal independent development + AI collaboration + multi-warehouse
+      document-driven
+  notes: 'See tarotAI repo (Expo app, FastAPI backend, Next.js admin, AI generator,
+    Docker/Nginx) plus user interview and prompt governance notes. GitHub: https://github.com/bin448482/tarotAI'
+- project_name: NGSE (Next Generation Sales Engine)
+  company_or_context: Zoetis
+  timeframe:
+    label: 2023.6 - 2025.9
+    start: 2023-06
+    end: 2025-09
+  role_title: Project Manager & Data Architect & Generative AI Product Lead
+  role_perspective: hybrid
+  management_scope:
+    team_size: 5
+    budget_level: gt_1m
+    stakeholder_tiers:
+    - exec
+    - director
+    - ops
+    - vendor
+  decision_accountability:
+  - delivery_owner
+  - technical_strategy
+  - people_management
+  - risk_governance
+  - commercial_strategy
+  responsibility_focus:
+  - planning
+  - architecture
+  - stakeholder_management
+  - compliance
+  - commercialization
+  impact_metrics:
+    business_metrics:
+    - Sales playbooks + AI opportunity recommendations reached 82% adoption and delivered RMB 28M ARR uplift.
+    - Regional pipeline visibility improved 35% with exec dashboard NPS +40.
+    technical_metrics:
+    - Key report runtime improved 2-3x while LLM summaries stay under 4 seconds of latency.
+    - Data accuracy hit 99.5% to power AI training and multi-market reuse.
+    operational_metrics:
+    - Enterprise lakehouse + experiment handbook scaled to additional markets.
+    - LLM review + prompt QA flow cut risk defect closure time by 45%.
+  governance_artifacts:
+  - exec_dashboard
+  - risk_register
+  - prompt_playbook
+  - ai_policy
+  project_overview: Led China-region NGSE data + AI product transformation, building a Databricks lakehouse, sales copilot capability, and prompt governance so sales/marketing teams can align pipeline insight, run experiments, and quantify monetization.
+  data_domain: Global Sales Engine / Data Platform
+  ai_component_flag: true
+  challenges_or_objectives:
+  - Build a standardized data platform and extend it into a generative AI copilot.
+  - Balance multi-market data reliability with rapid AI experimentation.
+  - Establish prompt/compliance governance that satisfies risk, medical, and regional regulators.
+  responsibilities:
+  - Design data pipelines integrated with the Azure ecosystem while owning the AI product roadmap.
+  - Define data quality, monitoring, performance strategies, and north star metrics/experiment funnels.
+  - Build lakehouse + notebook templates + prompt QA checklists for market reuse.
+  - Run ADF scheduling, cross-platform data transfer, and AI cost/revenue dashboards.
+  - Align executives, chair risk reviews, prompt audits, and monetization retrospectives.
+  architecture_or_solution:
+  - Four-layer data architecture: Inbox→Raw→Transform→Governed.
+  - Databricks Workflows + Delta Lake for dependency + ACID management.
+  - Incremental strategy validating T-1 deltas with LLM quality hooks.
+  - Spark SQL/PySpark shared ETL modules + method registry.
+  - Parameterized notebooks linked with ADF for multi-market reuse.
+  - Sales Copilot: LLM summaries, next-best-actions, risk alerts, and chat embedded in Power BI.
+  process_or_methodology:
+  - Lakehouse + PromptOps dual governance.
+  - Modularized/atomized data development standards + dual-track boards tracking experiments.
+  - Automated data quality, anomaly alerts, and prompt reviews.
+  - Biweekly OKR/roadmap reviews plus experiment/risk alignment forums.
+  deliverables_or_features:
+  - Cross-platform data transmission link (Aliyun OSS→ADLS Gen2).
+  - Schema drift/field integrity/null duplication monitoring.
+  - Hot wide table partitioning, Z-ordering, caching, dynamic aggregation.
+  - Sales Copilot workspace: opportunity summaries, next-step recommendations, prompt QA panel.
+  - Exec dashboards + ARR/opportunity funnel + prompt cost board.
+  metrics_or_impact:
+  - Report runtime improved 2-3x.
+  - Company lakehouse + prompt governance templates replicated across four markets.
+  - AI recommendation hit rate 70%, saving sellers six hours per week on lead prep.
+  - Zero high-severity risk escalations; compliance audits passed on first attempt.
+  tech_stack:
+  - Databricks
+  - Delta Lake
+  - Azure Data Factory
+  - Azure Storage
+  - Spark SQL
+  - PySpark
+  - Azure Functions
+  - Power BI + Fabric
+  - Azure OpenAI / GLM API
+  tools_platforms:
+  - Databricks Workflows
+  - ADF
+  - Azure Data Lake Storage Gen2
+  - Prompt QA toolkit
+  team_info:
+    team_size: 5
+    description: Cross-market squad mixing PO, data engineers, analysts.
+  notes: Owned China market roadmap + PromptOps governance adopted as a global reference.
+- project_name: AI-enhanced intelligent resume submission system
+  company_or_context: Individual independent developer
+  timeframe:
+    label: 2025.1 - 2025.9
+    start: 2025-01
+    end: 2025-09
+  role_title: Independent developer
+  role_perspective: developer
+  management_scope:
+    team_size: 1
+    budget_level: lt_100k
+    stakeholder_tiers:
+    - customer
+    - ops
+  decision_accountability:
+  - delivery_owner
+  - technical_strategy
+  - hands_on_build
+  - commercial_strategy
+  - risk_governance
+  responsibility_focus:
+  - planning
+  - architecture
+  - implementation
+  - operations
+  - commercialization
+  impact_metrics:
+    business_metrics:
+    - Weekly completion of 70+ applications multiplies manual throughput 5x while AI recommendations lift satisfaction by 25%.
+    - Interview invitation conversion reached 32%, cutting daily sourcing time by four hours.
+    - Subscription API demo for career communities captured 10+ paying intents in the first month.
+    technical_metrics:
+    - RAG throughput >50 jobs/min with 91.27% matching accuracy.
+    - Vector retrieval latency <100ms with <4GB memory footprint.
+    - Decision engine outputs five-dimensional explainable scores and key factors for visualization.
+    operational_metrics:
+    - Job extraction speed >100 jobs/min, system availability >99%.
+    - Multi-channel risk controls (anti-crawl, behavior simulation) keep ban rate under 0.5%.
+  governance_artifacts:
+  - runbook
+  - prompt_playbook
+  - risk_register
+  - experiment_log
+  project_overview: Python + LangChain powered MyThird platform that unifies job scraping, RAG analysis, intelligent matching, LangChain Agent, Selenium automation, and anti-scraping behavior simulation into a scriptable job-hunt suite with journey dashboards and prompt governance.
+  data_domain: Job automation + RAG intelligent analysis
+  ai_component_flag: true
+  challenges_or_objectives:
+  - Achieve end-to-end automation on sites like Zhaopin/51job/BOSS under manual login while dodging risk control.
+  - Build a multi-layer architecture (CLI/Agent → Control → Processing → Data).
+  - Offer online/offline vector models and multi-LLM routing while sustaining >50 jobs/min throughput.
+  - Create explainable multi-dimensional scoring, A/B templates, and journey metrics to quantify resume-job fit.
+  - Prevent prompts/agents from mis-submitting or leaking PII via closed-loop guardrails.
+  responsibilities:
+  - Design MasterController + JobScheduler + DecisionEngine + DataBridge control layer for orchestration, prioritization, and resilience.
+  - Plan candidate journey metrics and experiment backlog, owning prompt strategy and template roadmap.
+  - Implement LangChain RAG pipeline, ChromaDB/SQLite dual stores, Redis cache, sentence-transformer embeddings.
+  - Build GenericResumeJobMatcher/MultiDimensionalScorer/SmartMatchingEngine with scoring reports/HTML output.
+  - Deliver ResumeSubmissionEngine, ButtonRecognition, JobStatusDetector, AntiCrawlerSystem, BehaviorSimulator for multi-site behavior simulation.
+  - Author rag_cli.py/integration_main.py/batch tools, YAML configs, offline model scripts, pytest/verify_* tests, and codify risk/prompt SOPs.
+  architecture_or_solution:
+  - User interaction: CLI, LangChain Agent chat, future web console → unified MasterController.
+  - Control: MasterController + JobScheduler + DecisionEngine + Monitoring + ErrorHandler.
+  - Processing: job extraction, RAG pipeline, intelligent matching, auto submission, analytics (asyncio + Typer CLI).
+  - Data: SQLite (jobs/match/submission state), ChromaDB (vectors), Redis cache, logs/reports.
+  - AI stack: LangChain + Zhipu GLM-4-Flash + sentence-transformers (supports m3e/text2vec offline) + pluggable OpenAI/Claude/Ollama.
+  - Automation: Selenium WebDriver + BehaviorSimulator + AntiCrawlerSystem (random delay, mouse path, session keepalive, UA rotation).
+  - Pipeline: extraction → vectorization → scoring → decision filters (salary/competition) → submission execution → status writeback/report.
+  - Product telemetry: instrumentation + Superset dashboards tracking match hit rate, submission success, ban risk.
+  process_or_methodology:
+  - Typer CLI + YAML configuration (rag_cli, integration_main, scripts/setup_local_models.py).
+  - Async/concurrency: asyncio + priority scheduling + checkpoints/retry + dry-run mode.
+  - LangChain Agent tooling + STRUCTURED_CHAT prompts + RAG toolkit.
+  - Multi-document CLAUDE.md architecture packages + module guides + performance/monitoring checklist.
+  - Product experiment cadence: segmented user interviews → prompt/template A/B tests → submission/response metrics synced to dashboards.
+  - pytest, verify_integration.py, test_master_controller.py, run_all_rag_tests.py full-stack tests.
+  deliverables_or_features:
+  - rag_cli command suite (status/search/pipeline/matching/resume/chat).
+  - LangChain Agent for labor market Q&A, salary insights, trend analysis.
+  - MasterController E2E pipeline + DecisionEngine thresholds/salary filters + JobScheduler concurrency control.
+  - GenericResumeJobMatcher + multi-dimensional scoring + time-aware matching + personalized HTML reports.
+  - ResumeSubmissionEngine + JobStatusDetector + ButtonRecognition + AntiCrawlerSystem + BehaviorSimulator.
+  - Offline model scripts (setup_local_models.py/download_models.py) + data validation tools (check_database_structure.py, verify_database.py).
+  - Batch/recovery utilities: batch_rematch_jobs.py, pipeline_results/, reports/.
+  - Candidate journey dashboards + Superset/cohort boards + prompt governance handbook.
+  - API demo + subscription pricing brief to validate MVP monetization track.
+  metrics_or_impact:
+  - Job extraction >100/min, RAG processing >50/min, matching >200 results/min, system availability >99%.
+  - Vector retrieval latency <100ms, memory <4GB per instance.
+  - Multi-dimensional scoring accuracy: skill match 88.5%, 23/26 skill hits, semantic similarity 0.6-0.8, Chinese matching accuracy +30%.
+  - Overall matching accuracy 91.27% (semantic/skill/experience/industry/salary dimensions).
+  - Time-aware strategy lifts new job discovery +40%, satisfaction +25%, interview rate to 32%.
+  - Journey dashboards cut intent calibration time 60% and reduce manual QA by three hours weekly.
+  tech_stack:
+  - Python 3.8+ / AsyncIO / Typer CLI
+  - LangChain / STRUCTURED_CHAT Agents
+  - Zhipu GLM-4-Flash / OpenAI / Claude / Ollama (pluggable)
+  - sentence-transformers (text2vec, m3e, MiniLM, mpnet, etc.)
+  - ChromaDB vector DB
+  - SQLite (jobs.db + resume profiles)
+  - Redis cache
+  - Selenium WebDriver + BehaviorSimulator
+  - FastAPI/Flask auxiliary service (internal tool/API)
+  - pytest / unittest suites
+  - YAML config + Pydantic/Dataclasses
+  tools_platforms:
+  - rag_cli.py / rag_system console
+  - integration_main.py (MasterController entry)
+  - LangChain Agent CLI
+  - GenericResumeJobMatcher & SmartMatchingEngine
+  - MasterController / JobScheduler / DecisionEngine / DataBridge
+  - ResumeSubmissionEngine / AntiCrawlerSystem / BehaviorSimulator
+  - ChromaDB + SQLite + Redis + pipeline_results/metrics monitoring
+  - scripts/setup_local_models.py / download_models.py / verify_database.py
+  team_info:
+    team_size: 1
+    description: Solo builder covering AI, RAG, automation, anti-crawling systems.
+  notes: See D:/0-development/projects/MyThird (MyThird.code-workspace + modular CLAUDE documentation).
+- project_name: AI-enhanced Image Crawler System
+  company_or_context: Individual independent developer
+  timeframe:
+    label: 2024.6 - 2025.9
+    start: 2024-06
+    end: 2025-09
+  role_title: Independent developer
+  role_perspective: developer
+  management_scope:
+    team_size: 1
+    budget_level: lt_100k
+    stakeholder_tiers: []
+  decision_accountability:
+  - delivery_owner
+  - technical_strategy
+  - hands_on_build
+  responsibility_focus:
+  - architecture
+  - implementation
+  - operations
+  impact_metrics:
+    business_metrics: []
+    technical_metrics:
+    - ResNet validation accuracy 95.71%, false negative rate down to 3.85%.
+    - 'YOLO-Pose detection accuracy >90%, classification accuracy >96%'
+    operational_metrics:
+    - Image extraction success rate and ad filtering accuracy both reach 100%.
+    - Web console tracks 895+ records/2,731 images in real-time, with zero duplicates
+      and misjudgments.
+  governance_artifacts:
+  - runbook
+  - playbook
+  project_overview: 'MyFirst (T66Y Image Crawler) Platform: Custom T66Y crawler +
+    SHA-256 deduplication + SQLite data lake + Flask web console + ResNet/YOLO-Pose
+    classification and attention heatmaps, achieving the closed-loop of collection
+    → governance → prediction → operation.'
+  data_domain: Vertical image acquisition / content governance / computer vision
+  ai_component_flag: true
+  challenges_or_objectives:
+  - Adapts to non-standard `ess-data`/`data-link` attributes on T66Y page, ensuring
+    100% image capture
+  - Advertising filtering (20% page content) and SHA-256 deduplication completed in
+    bulk collection, zero false positives
+  - Unified SQLite + Web console, real-time monitoring of 895+ crawling records (245.8
+    MB) and 2,731 images (including AI/Manual interest tags)
+  - Using ResNet/CBAM + YOLO-Pose regional perception model, improve Chinese adult
+    image recall, false negatives reduced from 21.54% to 3.85%.
+  - Provide batch reasoning, attention heatmaps, Fine-tuning/YOLO guidelines, and
+    support for continuous model evolution.
+  responsibilities:
+  - Design YAML configuration, run_t66y_crawler.py/main.py CLI, ad blacklist, and
+    date-based storage to ensure reliable crawling.
+  - Implement SHA-256 duplicate detection, `t66y_crawl_results` schema, content hash
+    naming, automatic backup and migration scripts
+  - Developed Flask + WebSocket admin panel (`start_web_app.py`), fixed default filter
+    values, implemented image gallery, select all/batch marking, and SQL console.
+  - Build ResNet18/CBAM/adaptive Focal Loss training pipeline, YOLO-Pose guided region-aware
+    classifier, batch prediction/attention heatmap tool
+  - Write fine_tuning_*, CLAUDE.md, yolo_guided_* documents and test/validation tools
+    such as run_tests.py, check_database.py.
+  architecture_or_solution:
+  - 'Crawler: config/examples/t66y_image_crawler_fixed.yaml defines selector/ad_filtering;
+    run_t66y_crawler.py, collect_interested_images.py, batch_analyze_t66y_pages.py'
+  - 'Storage: SQLite + SQLAlchemy + `t66y_storage` + `simple_duplicate_checker`; fields
+    include content_hash, is_interested, ml_prediction_confidence; `data/images/YYYY-MM-DD/`
+    directory with hash naming'
+  - 'Web: Flask blueprint + `/api/dashboard/stats`, `/api/images`, `/api/query/execute`,
+    image gallery, real-time monitoring, batch operations, configuration editing'
+  - ML directory contains dataset, model_factory, inference, scripts, ResNet & BBoxAttention
+    & YOLO-Pose models; Adaptive Focal Loss, DynamicSampler, multi-level randomization,
+    progressive unfreezing
+  - 'Pipeline: Scrape → Ad filter → SHA-256 deduplication → SQLite storage → Web review
+    → ResNet/YOLO inference → Interest tags/heatmaps → Batch export/retraining'
+  process_or_methodology:
+  - Configuration driver (YAML), Typer/Click CLI, content-hash naming, log and system
+    table monitoring
+  - 'Automated testing: run_tests.py, tests/unit/test_duplicate_detection.py, verify_database.py,
+    evaluate_fine_tuning.py'
+  - 'ML Engineering: Adaptive Focal Loss, DynamicSampler, Multi-level Randomization,
+    YOLO-Pose完整性测试 (8/8 Passed)'
+  - 'Fine-tuning Process: SmartColorAugmentation, DynamicSampleBalancer, Noise Injection,
+    Gradual Unfreezing, OverfittingMonitor'
+  - 'Document-driven: CLAUDE.md, fine_tuning_summary.md, fine_tuning_usage_guide.md,
+    yolo_guided_* guidelines record each repair.'
+  deliverables_or_features:
+  - T66Y dedicated crawler script, ad filtering, content hash deduplication, date
+    partitioning, batch page analysis
+  - 'Flask Web Console: Dashboard, SQL Query, Image Gallery, Select/Batch Operations,
+    Real-time Monitoring, Configuration Editing'
+  - ResNet/CBAM classification model, batch_predict_bbox_attention.py, image_classifier_with_visualization.py,
+    attention heatmap visualization
+  - YOLO-Pose regional perception classifier, train_yolo_guided_classifier.py, yolo_guided_evaluator,
+    dynamic data sampler
+  - Fine-tuning document + Implementation scripts, check_database.py/database_region_analyzer.py/verify_database.py
+    to ensure data quality
+  metrics_or_impact:
+  - Image extraction success rate 100%, typical page with 15 images (8 thumbnails
+    + 7 high-definition); ad filtering accuracy 100%, 20% page content removed.
+  - Displayed 2,731 images (including 615 manually selected and 945 AI-interested)
+    on the web UI and supports batch selection; content hash deduplication maintains
+    0 false positives.
+  - 'ResNet optimized model validation accuracy: 95.71%; False negatives 3.85% (down
+    82.1% from 21.54%), false positives 4.46% (down 71.3%), inference 58.7 images/s'
+  - 'YOLO-Pose region detection accuracy increased from 1% to >90% (+8,900%); classification
+    accuracy >96%, false negatives <3%, integrity test passed 8/8.'
+  - SQLite records 895+ crawling data (245.8 MB) in real-time; all Web API/dashboards,
+    SQL, and batch functions pass regression tests
+  tech_stack:
+  - Python 3.8+ / Requests / BeautifulSoup / Typer-CLI
+  - Flask + Jinja2 + Bootstrap + WebSocket + SQLAlchemy
+  - SQLite, imagehash, pandas
+  - PyTorch 2.x + ResNet18/CBAM + Adaptive Focal Loss + YOLO-Pose (ultralytics)
+  - OpenCV / PIL / matplotlib / seaborn
+  - TensorBoard/Logging System + pytest/Unit Test
+  tools_platforms:
+  - "run_t66y_crawler.py / main.py / config/*.yaml\n translates to:\nrun_t66y_crawler.py\
+    \ / main.py / config/*.yaml"
+  - start_web_app.py / web/app.py / routes/api
+  - collect_interested_images.py / batch_analyze_t66y_pages.py / database_region_analyzer.py
+    / check_database.py
+  - image_classifier_with_visualization.py / batch_predict_bbox_attention.py / train_bbox_attention.py
+  - ml/scripts/train_optimized_model.py / train_yolo_guided_classifier.py / fine_tune_bbox_attention.py
+    / yolo_guided_evaluator.py
+  - Attention_heatmap generator, YOLO-Pose model, logs & outputs directory
+  team_info:
+    team_size: 1
+    description: Individual independent development, covering crawler, Web, database,
+      and CV models.
+  notes: See details in D:/0-development/projects/MyFirst (MyFirst.code-workspace
+    + CLAUDE/YOLO/Fine-tuning documents).
+- project_name: Remedium (BI)
+  company_or_context: Portable Water Craft
+  timeframe:
+    label: 2016.10 - 2023.02
+    start: 2016-10
+    end: 2023-02
+  role_title: Technical Team Leader
+  role_perspective: architect
+  management_scope:
+    team_size: null
+    budget_level: null
+    stakeholder_tiers:
+    - exec
+    - director
+    - ops
+    - regulator
+  decision_accountability:
+  - delivery_owner
+  - technical_strategy
+  - risk_governance
+  responsibility_focus:
+  - architecture
+  - stakeholder_management
+  - compliance
+  impact_metrics:
+    business_metrics:
+    - User satisfaction reached 95% and passed all compliance audits.
+    technical_metrics:
+    - Data processing time reduced by 30%.
+    - Data quality improved to 99.9%
+    operational_metrics:
+    - Establish a 24-hour cross-border collaboration rhythm.
+  governance_artifacts:
+  - training_plan
+  - risk_register
+  project_overview: A BI solution tailored for the pharmaceutical industry, covering
+    data pipeline, report analysis, and web portal.
+  data_domain: Pharmaceutical Industry BI
+  ai_component_flag: false
+  challenges_or_objectives:
+  - Design scalable solution architecture
+  - Enhance data processing efficiency and reporting timeliness.
+  - Enhance business personnel's review experience.
+  responsibilities:
+  - Design and coordinate cross-border teams.
+  - Supervise ADF + Databricks data pipeline development
+  - Guidance Report/Implementation of Analysis Layer and Portal Design
+  - Promote cross-functional communication
+  architecture_or_solution:
+  - ADF Pipeline + Databricks Processing Framework
+  - Web portal improves review efficiency
+  process_or_methodology:
+  - Cross-team collaboration and solution review
+  deliverables_or_features:
+  - Trading data reporting system
+  - Remedium Web Portal
+  metrics_or_impact:
+  - Processing time reduced, data quality improved.
+  - Enhanced real-time access to improve problem-solving efficiency.
+  - Gained positive feedback from stakeholders.
+  tech_stack:
+  - Azure Data Factory
+  - Databricks
+  - BI Tools
+  - Web technology
+  tools_platforms:
+  - Azure Ecosystem
+  team_info:
+    team_size: null
+    description: Cross-border team collaboration
+  notes: null
+- project_name: SMART
+  company_or_context: Personal Watercraft
+  timeframe:
+    label: 2016.10 - 2023.2
+    start: 2016-10
+    end: 2023-02
+  role_title: Technical Team Leader
+  role_perspective: hybrid
+  management_scope:
+    team_size: null
+    budget_level: null
+    stakeholder_tiers:
+    - exec
+    - director
+    - ops
+    - regulator
+  decision_accountability:
+  - delivery_owner
+  - technical_strategy
+  - people_management
+  - risk_governance
+  responsibility_focus:
+  - architecture
+  - operations
+  - compliance
+  impact_metrics:
+    business_metrics:
+    - Core business uninterrupted for 18 consecutive months.
+    technical_metrics:
+    - Achieve 99.99% SLA and improve data processing efficiency by 40%.
+    operational_metrics:
+    - CI/CD reduces deployment time from 2 hours to 15 minutes.
+  governance_artifacts:
+  - risk_register
+  - runbook
+  project_overview: Long-term evolution project of the medical insurance pre-approval
+    system, focusing on OLTP/OLAP data models, ETL architecture, and SLA guarantees.
+  data_domain: Medical insurance pre-approval
+  ai_component_flag: false
+  challenges_or_objectives:
+  - Governance of 10+ years of legacy systems and complex business logic
+  - Refactor ETL layer and enhance performance/reliability
+  - Meet high SLA and security compliance requirements
+  responsibilities:
+  - Leadership in OLTP/OLAP data model design and development
+  - Reconstruct the ETL architecture and integrate resource scheduling/memory computing
+    modules.
+  - Promote testing, performance, and risk control
+  - Implement CI/CD and DevOps processes
+  - Maintain data warehouse and upgrade security
+  architecture_or_solution:
+  - Redesign the ETL layer and distributed memory engine
+  - CI/CD-driven delivery pipeline
+  - Security scanning and risk control mechanism
+  process_or_methodology:
+  - Agile development
+  - DevOps + Automated Unit Testing
+  - Risk management and performance testing collaboration
+  deliverables_or_features:
+  - New ETL architecture
+  - CI/CD Pipeline
+  - Security Upgrade and Risk Control Package
+  metrics_or_impact:
+  - Achieve 99.99% SLA
+  - Enhance data processing efficiency and ensure quality.
+  - Reduce vulnerabilities and improve development efficiency.
+  tech_stack:
+  - Online Transaction Processing / Online Analytical Processing
+  - ETL
+  - 'CI/CD: Continuous Integration/Continuous Deployment'
+  - Agile development
+  - Security scanning tool
+  tools_platforms:
+  - Resource scheduling module
+  - Distributed Memory Engine
+  team_info:
+    team_size: null
+    description: null
+  notes: null
+- project_name: Learning Management System
+  company_or_context: HP
+  timeframe:
+    label: October 2014 - October 2016
+    start: 2014-10
+    end: 2016-10
+  role_title: Leader / Scrum Master
+  role_perspective: project_manager
+  management_scope:
+    team_size: 20
+    budget_level: null
+    stakeholder_tiers:
+    - director
+    - ops
+    - vendor
+  decision_accountability:
+  - delivery_owner
+  - people_management
+  - risk_governance
+  responsibility_focus:
+  - planning
+  - stakeholder_management
+  - operations
+  impact_metrics:
+    business_metrics:
+    - Core processes supporting HP's global training and external order management
+    technical_metrics:
+    - SABA interface data synchronization accuracy reaches 99.8%.
+    operational_metrics:
+    - Delivery rate increased from 60% to 95%.
+    - Team conflict rate down 80%.
+  governance_artifacts:
+  - roadmap
+  - risk_register
+  - jira_board
+  project_overview: LMS ODS system responsible for HP training and order management,
+    connecting SABA training system with HP EDW.
+  data_domain: Enterprise Learning and Training Data
+  ai_component_flag: false
+  challenges_or_objectives:
+  - Ensure real-time synchronization with the SABA system.
+  - Improve ODS/ETL processing efficiency
+  - Coordinate multiple teams and maintain agile delivery
+  responsibilities:
+  - Design system architecture and API interfaces
+  - Develop Informatica ETL jobs
+  - Act as a Scrum Master to organize iterations/reviews
+  - Resolve team conflicts and make technical decisions.
+  architecture_or_solution:
+  - SABA API integration + real-time synchronization
+  - Informatica Customized Plan Tasks and Data Flows
+  - Monitor service quickly locates interface issues
+  process_or_methodology:
+  - Scrum management
+  - Parallel development and task priority control
+  deliverables_or_features:
+  - Interface monitoring service
+  - Incremental extraction mechanism
+  - Reorganize team structure (20 people → multiple groups)
+  metrics_or_impact:
+  - Enhance interface stability and data synchronization efficiency.
+  - Ensure continuous delivery for each Sprint
+  tech_stack:
+  - SABA
+  - Informatica
+  - ETL (Extract, Transform, Load)
+  - Scrum
+  - API Development
+  tools_platforms:
+  - HP Enterprise Data Warehouse
+  team_info:
+    team_size: 20
+    description: Reorganized into a 6-person development team, divided into interface/ETL/ODS/testing.
+  notes: null
+- project_name: Move to HP Cloud
+  company_or_context: HP
+  timeframe:
+    label: October 2012 - October 2014
+    start: 2012-10
+    end: 2014-10
+  role_title: Senior Developer II
+  role_perspective: developer
+  management_scope:
+    team_size: null
+    budget_level: null
+    stakeholder_tiers:
+    - ops
+    - vendor
+  decision_accountability:
+  - technical_strategy
+  - hands_on_build
+  responsibility_focus:
+  - architecture
+  - implementation
+  - operations
+  impact_metrics:
+    business_metrics: []
+    technical_metrics:
+    - Multi-layered security and load balancing design ensure stable operation after
+      migration.
+    operational_metrics:
+    - Standardized deployment scripts shorten the time for environment setup and migration.
+  governance_artifacts:
+  - runbook
+  project_overview: Migrate HP internal projects to the in-house cloud platform, covering
+    infrastructure setup, environment upgrade, and SaaS integration.
+  data_domain: Enterprise cloud migration
+  ai_component_flag: false
+  challenges_or_objectives:
+  - Establish a secure and reliable IaaS infrastructure.
+  - Unified development/test/production environment deployment
+  - Integrate multiple internal SaaS services
+  responsibilities:
+  - Establish virtual networks, firewalls, load balancing, and virtual machines.
+  - Perform installation and upgrade in each environment.
+  - Integrate internal SaaS and support testing/regression
+  - Resolve obstacles and technical issues during the migration process.
+  architecture_or_solution:
+  - HP Cloud IaaS Resource Orchestration
+  - Multi-layer Load Balancing and Security Gateway Configuration
+  process_or_methodology:
+  - Environmental consistency and migration test process
+  deliverables_or_features:
+  - Standardized environment deployment script
+  - SaaS Integration Solution
+  metrics_or_impact:
+  - Ensure the smooth transition and stable operation of the project.
+  tech_stack:
+  - HP Cloud Infrastructure as a Service
+  - Virtual network
+  - Load balancing
+  - SaaS integration
+  tools_platforms:
+  - HP Internal Cloud Platform
+  team_info:
+    team_size: null
+    description: null
+  notes: null
+- project_name: Customer insights
+  company_or_context: HP
+  timeframe:
+    label: 2010.10 - 2014.10
+    start: 2010-10
+    end: 2014-10
+  role_title: Development and design
+  role_perspective: developer
+  management_scope:
+    team_size: null
+    budget_level: null
+    stakeholder_tiers:
+    - customer
+    - ops
+  decision_accountability:
+  - technical_strategy
+  - hands_on_build
+  - commercial_strategy
+  responsibility_focus:
+  - architecture
+  - implementation
+  - commercialization
+  impact_metrics:
+    business_metrics:
+    - Customer-server configuration efficiency significantly improved.
+    technical_metrics:
+    - Multi-tendency configuration model supports personalized recommendation
+    operational_metrics: []
+  governance_artifacts: []
+  project_overview: Intelligent configuration and recommendation system based on historical
+    server configuration data, to help customers quickly generate server solutions.
+  data_domain: Enterprise server configuration recommendations
+  ai_component_flag: false
+  challenges_or_objectives:
+  - Design various customer preference models and configuration algorithms.
+  - Ensure the accuracy of statistical reports and configuration guidance.
+  responsibilities:
+  - Develop configuration algorithms and propensity models
+  - Establish regular data statistics and reporting.
+  - Design UI flow to guide users in configuration
+  architecture_or_solution:
+  - Trend-driven configuration algorithm + Data statistics engine
+  - UI guidance and report feedback loop
+  process_or_methodology:
+  - Data-driven configuration strategy
+  deliverables_or_features:
+  - Multi-tendency configuration set and visualization report
+  metrics_or_impact:
+  - Enhance customer configuration efficiency
+  - Support multiple optimization strategies and provide decision analysis
+  tech_stack:
+  - Configuration algorithm
+  - Database
+  - UI Development
+  - Report system
+  tools_platforms:
+  - []
+  team_info:
+    team_size: null
+    description: null
+  notes: null

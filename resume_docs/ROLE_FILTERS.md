@@ -43,6 +43,20 @@
 
 ---
 
+## Generative AI 产品经理 (product_manager)
+
+**包含项目规则：**
+- `responsibility_focus` 包含 "commercialization" 或 "stakeholder_management"
+- 或 `decision_accountability` 包含 "commercial_strategy"/"risk_governance"
+- 或 `role_title` 文本包含 “产品”/"Product"
+
+**排除项目规则：**
+- `role_title` 包含 “测试” 或 “运维”
+
+**排序方式：** 按相关度 + 时间排序（新项目优先）
+
+---
+
 ## 过滤规则类型
 
 - `exact`: 精确匹配字符串

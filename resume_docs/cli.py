@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from datetime import datetime
 from pathlib import Path
 from typing import List
 
@@ -74,7 +75,9 @@ def main(argv: List[str] | None = None) -> int:
     output_root = cfg.output_dir_path / cfg.locale / cfg.template
 
     # DOCX generation
-    docx_path = output_root / "resume.docx"
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    docx_filename = f"resume-{timestamp}.docx"
+    docx_path = output_root / docx_filename
     try:
         docx_renderer.render_docx(resume_data, docx_path, cfg.template, cfg.locale, cfg.include_contact)
         print(f"DOCX saved to {docx_path}")

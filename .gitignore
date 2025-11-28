@@ -6,4 +6,6 @@ artifacts/
 __pycache__/
 .env
 /docs
-/latest_resumes
+# /latest_resumes
+latest_resumes/personal_info_summary.yaml
+latest_resumes/personal_info_summary_en.yaml
