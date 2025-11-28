@@ -38,16 +38,25 @@ docs/output/{locale}/{template}/
 
 ## 职位过滤
 
-支持基于职位的内容过滤。详见 `ROLE_FILTERS.md`。
+支持基于职位的字段级内容过滤。每个角色根据其视角看到不同的 Project 字段子集。
 
-**可用职位：**
-- `data_development` - 数据开发
-- `full_stack` - 全栈开发
-- `ai_development` - AI 应用开发
+**过滤机制：**
+- `role_config.py` 中每个角色定义 `field_visibility` 字典，指定哪些字段对该角色可见
+- `role_filter.py` 在渲染前应用字段过滤，隐藏字段设为 None 或空列表
+- 项目列表保持不变，只有字段级别的可见性改变
+
+**可用职位及其字段焦点：**
+- `data_development` - 数据平台视角：governance_artifacts、decision_accountability、impact_metrics、tech_stack
+- `full_stack` - 全栈工程视角：responsibility_focus、architecture_or_solution、tech_stack、process_or_methodology
+- `ai_development` - AI 工程视角：ai_component_flag、architecture_or_solution、tech_stack、governance_artifacts
+- `product_manager` - 产品经理视角：decision_accountability、responsibility_focus、impact_metrics、governance_artifacts
+- `ai_product_designer` - 产品设计视角：impact_metrics、deliverables_or_features、metrics_or_impact
+- `ai_engineer` - AI 工程师视角：ai_component_flag、architecture_or_solution、tech_stack、governance_artifacts
 
 **使用示例：**
 ```bash
 python3 -m resume_docs.cli --role data_development --template modern --locale zh-CN
+python3 -m resume_docs.cli --role product_manager --template modern --locale zh-CN
 ```
 
 ## 常用命令
@@ -92,8 +101,11 @@ yamllint latest_resumes/*.yaml
 ## 关键设计
 
 - **单一数据源：** `latest_resumes/*.yaml` 是唯一真实来源
-- **职位过滤：** 按职位动态过滤项目和工作经历
-- **LLM 润色：** 可选使用 LLM 润色项目描述，支持多语言
+- **字段级过滤：** 按职位动态过滤 Project 字段，保持项目列表不变
+  - 每个角色在 `role_config.py` 中定义 `field_visibility` 字典
+  - `role_filter.py` 在渲染前应用过滤，隐藏字段设为 None 或空列表
+  - Renderer 和 Polisher 自动适应可见字段
+- **LLM 润色：** 可选使用 LLM 润色项目描述，支持多语言和角色视角
 - **模板驱动：** DOCX 基于模板生成
 - **环境变量：** API 密钥通过环境变量管理，不提交到仓库
 - **语言感知：** 根据 locale 参数自动选择润色语言

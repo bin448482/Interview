@@ -1,7 +1,7 @@
 """LLM-based content polishing for resume projects."""
 from __future__ import annotations
 
-from typing import List
+from typing import Dict, List, Optional
 
 from .langchain_clients import get_llm_client
 from .models import Project, ImpactMetrics
@@ -11,7 +11,11 @@ class LLMPolisher:
     """Polishes project descriptions using LLM."""
 
     def polish_projects(
-        self, projects: List[Project], model_name: str, locale: str
+        self,
+        projects: List[Project],
+        model_name: str,
+        locale: str,
+        persona: Optional[Dict] = None,
     ) -> List[Project]:
         """Polish project descriptions using LLM.
 
@@ -31,14 +35,18 @@ class LLMPolisher:
 
         for project in projects:
             polished_project = self._polish_single_project(
-                project, client, locale
+                project, client, locale, persona
             )
             polished_projects.append(polished_project)
 
         return polished_projects
 
     def _polish_single_project(
-        self, project: Project, client, locale: str
+        self,
+        project: Project,
+        client,
+        locale: str,
+        persona: Optional[Dict] = None,
     ) -> Project:
         """Polish a single project's description.
 
@@ -54,8 +62,9 @@ class LLMPolisher:
             return project
 
         language = self._get_language_from_locale(locale)
+        persona_hint = self._get_persona_hint(persona, language)
         prompt = self._build_polish_prompt(
-            project.project_overview, language
+            project.project_overview, language, persona_hint
         )
 
         try:
@@ -86,16 +95,26 @@ class LLMPolisher:
 
         return polished_project
 
-    def _build_polish_prompt(self, text: str, language: str) -> str:
+    def _build_polish_prompt(
+        self, text: str, language: str, persona_hint: Optional[str] = None
+    ) -> str:
         """Build a prompt for polishing project description.
 
         Args:
             text: Original project description
             language: Target language
+            persona_hint: Optional perspective guidance for the LLM
 
         Returns:
             Prompt for LLM
         """
+        persona_line = ""
+        if persona_hint:
+            if language == "Chinese":
+                persona_line = f"\n角色视角提示（必须体现在措辞、指标与优先级中）：{persona_hint}\n"
+            else:
+                persona_line = f"\nPerspective cue (must shape tone, metrics, and emphasis): {persona_hint}\n"
+
         if language == "Chinese":
             return f"""你是一名资深技术招聘官与简历优化专家，擅长根据候选人提供的项目内容，重写为结构清晰、量化明确、对招聘方友好的项目经验。
 
@@ -128,6 +147,7 @@ class LLMPolisher:
    - 原文缺少数据时，可以引用上述行业区间生成保守指标，并注明这是区间表现；严禁出现夸张数字（例如：超大用户量、远高于行业均值的增长率）。
 
 4. 重要：只输出上述6个部分的内容，不要包含任何其他信息（如Business、Technical、Challenges、Responsibilities、Solution、Deliverables、Impact等原始数据）；可以在成果部分使用前述行业区间，但不要超出这些范围，更不要虚构庞大里程碑、收入或用户规模。
+{persona_line if persona_line else ''}
 
 原始项目内容：
 {text}
@@ -165,6 +185,7 @@ Requirements:
    - When inferring metrics, rely only on the benchmark ranges above, clearly mark them as approximate, and never exceed those limits with inflated user counts or growth claims.
 
 4. Important: Output ONLY the 6 sections above. Do NOT include any other information such as Business, Technical, Challenges, Responsibilities, Solution, Deliverables, Impact, or any raw data from the source. The only acceptable synthetic metrics are those within the stated benchmark bands; do not introduce additional milestones, revenue, user counts, or percentages beyond them.
+{persona_line if persona_line else ''}
 
 Original project content:
 {text}
@@ -186,6 +207,18 @@ Please return only the structured project experience content without any prefix 
             return "English"
         else:
             return "English"
+
+    def _get_persona_hint(
+        self, persona: Optional[Dict], language: str
+    ) -> Optional[str]:
+        """Derive persona hint text based on selected role and language."""
+
+        if not persona:
+            return None
+
+        instructions = persona.get("instructions", {})
+        lang_key = "zh" if language == "Chinese" else "en"
+        return instructions.get(lang_key) or instructions.get("default")
 
     def _extract_github_link(self, text: str) -> str:
         """Extract GitHub link from text.
@@ -213,4 +246,3 @@ Please return only the structured project experience content without any prefix 
         from dataclasses import replace
 
         return replace(project)
-
