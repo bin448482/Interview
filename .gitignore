@@ -1,0 +1,9 @@
+.backup/
+.design_docs/
+.venv/
+docs/output/
+artifacts/
+__pycache__/
+.env
+/docs
+/latest_resumes
