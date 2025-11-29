@@ -5,6 +5,7 @@ from typing import Dict, List, Optional
 
 from .langchain_clients import get_llm_client
 from .models import Project, ImpactMetrics
+from .prompt_loader import PromptLoader
 
 
 class LLMPolisher:
@@ -16,6 +17,7 @@ class LLMPolisher:
         model_name: str,
         locale: str,
         persona: Optional[Dict] = None,
+        role: Optional[str] = None,
     ) -> List[Project]:
         """Polish project descriptions using LLM.
 
@@ -23,6 +25,8 @@ class LLMPolisher:
             projects: List of projects to polish
             model_name: Name of the LLM model to use
             locale: Locale for language-aware polishing (e.g., 'zh-CN', 'en-US')
+            persona: Optional persona configuration
+            role: Optional role name for role-aware prompt generation
 
         Returns:
             List of projects with polished descriptions
@@ -35,7 +39,7 @@ class LLMPolisher:
 
         for project in projects:
             polished_project = self._polish_single_project(
-                project, client, locale, persona
+                project, client, locale, persona, role
             )
             polished_projects.append(polished_project)
 
@@ -47,6 +51,7 @@ class LLMPolisher:
         client,
         locale: str,
         persona: Optional[Dict] = None,
+        role: Optional[str] = None,
     ) -> Project:
         """Polish a single project's description.
 
@@ -54,6 +59,8 @@ class LLMPolisher:
             project: Project to polish
             client: LLM client to use
             locale: Locale for language-aware polishing
+            persona: Optional persona configuration
+            role: Optional role name for role-aware prompt
 
         Returns:
             Project with polished description
@@ -63,9 +70,17 @@ class LLMPolisher:
 
         language = self._get_language_from_locale(locale)
         persona_hint = self._get_persona_hint(persona, language)
-        prompt = self._build_polish_prompt(
-            project.project_overview, language, persona_hint
-        )
+
+        # 使用 role-aware prompt 如果提供了 role，否则使用旧的 prompt
+        if role:
+            prompt_loader = PromptLoader()
+            prompt = prompt_loader.build_role_aware_prompt(
+                project.project_overview, language, role, persona_hint
+            )
+        else:
+            prompt = self._build_polish_prompt(
+                project.project_overview, language, persona_hint
+            )
 
         try:
             polished_text = client.invoke(prompt)

@@ -4,7 +4,12 @@
       "Bash(python -m yamllint:*)",
       "Bash(python -m py_compile:*)",
       "Bash(python -m resume_docs.cli:*)",
-      "Bash(python test_role_filter.py:*)"
+      "Bash(python test_role_filter.py:*)",
+      "Bash(python:*)",
+      "Bash(.venv\\Scripts\\python:*)",
+      "Bash(pip install:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

@@ -20,6 +20,66 @@ PY
 ## Coding Style & Naming Conventions
 Use two-space indentation, double quotes around mixed-language strings, and `snake_case` keys (see `schema_version`, `role_perspective`). Keep narrative order for lists—projects stay chronologically relevant rather than alphabetized—and group metadata keys before narrative text. URLs or repo references belong in clearly prefixed fields such as `git_like` and must stay quoted.
 
+## Design Docs Directory
+
+All design documents should be placed in the `.design_docs/` directory.
+
+**Document Types:**
+- `*_design.md` - Feature design documents
+- `*_plan.md` - Implementation plan documents
+- `*_guidelines.md` - Guidelines and standards documents
+
+**Current Design Docs:**
+- `.design_docs/merry-painting-sonnet.md` - Persona-Aware LLM Prompting implementation plan
+- `.design_docs/role_mapping_guidelines.md` - Role mapping standards
+
+## YAML Configuration Files
+
+All YAML configuration files should be placed in the `latest_resumes/` directory.
+
+**Configuration File Types:**
+- `*_config.yaml` - System configuration files
+- `*_summary.yaml` - Data summary files
+
+**Current Configuration Files:**
+- `latest_resumes/prompt_config.yaml` - Role-aware prompt configuration
+
+## Scripts & Automation
+
+All helper scripts should be placed in the `scripts/` directory.
+
+**Script Naming Convention:**
+- Use `snake_case` naming
+- Prefix indicates script type:
+  - `test_*.py` - Test scripts
+  - `generate_*.py` - Generation scripts
+  - `validate_*.py` - Validation scripts
+  - `migrate_*.py` - Migration scripts
+
+**Script Structure:**
+```python
+"""Script description
+
+Functionality: ...
+Usage: python scripts/xxx.py
+Output: ...
+Dependencies: ...
+"""
+
+# Imports
+# Constants
+# Main function
+
+if __name__ == "__main__":
+    main()
+```
+
+**Current Scripts:**
+- `scripts/generate_prompts.py` - Generate prompts for different roles
+- `scripts/test_role_prompts.py` - Test prompt generation (venv version)
+
+See `scripts/README.md` for details.
+
 ## Testing Guidelines
 Treat `yamllint` plus the loader script as the minimum pre-commit bar and re-run them after resolving merge conflicts. If you add automation scripts later, co-locate pytest files under `tests/` and wire them into CI before relying on the output. Reviewers should reject any project entry that omits `decision_accountability`, metric blocks, or `management_scope` because downstream agents require them for filtering.
 

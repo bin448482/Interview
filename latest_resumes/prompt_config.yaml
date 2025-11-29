@@ -1,0 +1,183 @@
+# 角色感知的 LLM Prompt 配置
+# 定义不同角色的 prompt 结构、指标指导和输出格式
+
+base_templates:
+  zh:
+    system_role: "资深技术招聘官与简历优化专家"
+    task_intro: "生成可直接放入简历的项目经验"
+    requirements_intro: "要求："
+    structure_label: "按照以下结构输出："
+    background_constraint: "严格控制在800-1000字以内"
+    responsibilities_label: "主要职责"
+    achievements_label: "成果产出"
+    style_intro: "风格要求："
+    important_note: "重要："
+    metrics_guidance: "原文有数据则忠实引用，缺少数据时可基于行业通用区间补写保守指标，例如：Day1留存约20%~30%、Day30留存约5%~12%、DAU/MAU约20%~30%。务必使用\"约\"\"保持在\"等措辞，严禁超出这些区间或给出明显夸张的用户规模。"
+  en:
+    system_role: "Senior technical recruiter and resume optimization expert"
+    task_intro: "Generate project experience section"
+    requirements_intro: "Requirements:"
+    structure_label: "Structure your output as follows:"
+    background_constraint: "strictly limit to 200-400 words"
+    responsibilities_label: "Key Responsibilities"
+    achievements_label: "Achievements & Outcomes"
+    style_intro: "Style requirements:"
+    important_note: "Important:"
+    metrics_guidance: "cite source data when available. If none exists, you may infer conservative benchmarks such as Day-1 retention of 20-30%, Day-30 retention of 5-12%, or DAU/MAU ratios of 20-30%. Use \"around\"/\"kept at\" phrasing and stay strictly within these ranges."
+
+roles:
+  data_development:
+    label: "数据平台负责人视角"
+    output_structure:
+      zh:
+        - "项目名称 | 所属公司/个人 | 起止时间"
+        - "角色 Role"
+        - "技术栈 Tech Stack"
+        - "数据背景"
+        - "主要职责"
+        - "数据成果"
+      en:
+        - "Project Name | Company/Organization | Duration"
+        - "Role"
+        - "Tech Stack"
+        - "Data Background"
+        - "Key Responsibilities"
+        - "Data Achievements"
+    task_focus:
+      zh: "数据可靠性、治理指标、性能优化与跨区域复制价值"
+      en: "Data reliability, governance KPIs, performance tuning, and multi-region rollout value"
+    background_guidance:
+      zh: "从数据需求出发，说明为什么要做这个项目；阐述面临的主要数据挑战；介绍采用的数据架构与治理方案；突出交付的数据价值与影响"
+      en: "Start with data needs and explain why this project matters; articulate the main data challenges; describe the data architecture and governance solutions adopted; highlight the data value and impact delivered"
+    metrics_categories: ["business_metrics", "operational_metrics", "technical_metrics"]
+    tone: "data-driven, governance-focused, reliability-emphasized"
+
+  full_stack:
+    label: "全栈产品工程视角"
+    output_structure:
+      zh:
+        - "项目名称 | 所属公司/个人 | 起止时间"
+        - "角色 Role"
+        - "技术栈 Tech Stack"
+        - "工程背景"
+        - "主要职责"
+        - "工程成果"
+      en:
+        - "Project Name | Company/Organization | Duration"
+        - "Role"
+        - "Tech Stack"
+        - "Engineering Background"
+        - "Key Responsibilities"
+        - "Engineering Achievements"
+    task_focus:
+      zh: "端到端交付、前后端协同、上线速度与可维护性"
+      en: "end-to-end delivery, frontend-backend trade-offs, release velocity, and maintainability"
+    background_guidance:
+      zh: "从用户需求出发，说明为什么要做这个项目；阐述面临的主要工程挑战；介绍采用的架构方案与技术选型；突出交付的核心价值与影响"
+      en: "Start with user needs and explain why this project matters; articulate the main engineering challenges; describe the architecture and technology choices adopted; highlight the core value and impact delivered"
+    metrics_categories: ["operational_metrics", "technical_metrics"]
+    tone: "technical, delivery-focused, pragmatic"
+
+  ai_development:
+    label: "AI 应用工程视角"
+    output_structure:
+      zh:
+        - "项目名称 | 所属公司/个人 | 起止时间"
+        - "角色 Role"
+        - "技术栈 Tech Stack"
+        - "技术背景"
+        - "主要职责"
+        - "技术成果"
+      en:
+        - "Project Name | Company/Organization | Duration"
+        - "Role"
+        - "Tech Stack"
+        - "Technical Background"
+        - "Key Responsibilities"
+        - "Technical Achievements"
+    task_focus:
+      zh: "建模、推理性能、PromptOps 与成本治理等实现细节"
+      en: "model design, inference performance, prompt operations, and cost governance details"
+    background_guidance:
+      zh: "从 AI 需求出发，说明为什么要做这个项目；阐述面临的主要技术挑战；介绍采用的架构方案与技术选型；突出交付的核心价值与影响"
+      en: "Start with AI requirements and explain why this project matters; articulate the main technical challenges; describe the architecture and technology choices adopted; highlight the core value and impact delivered"
+    metrics_categories: ["technical_metrics"]
+    tone: "technical, detailed, scalability-focused"
+
+  product_manager:
+    label: "AI 产品设计/策略视角"
+    output_structure:
+      zh:
+        - "项目名称 | 所属公司/个人 | 起止时间"
+        - "角色 Role"
+        - "商业背景"
+        - "用户问题"
+        - "解决方案"
+        - "商业成果"
+      en:
+        - "Project Name | Company/Organization | Duration"
+        - "Role"
+        - "Business Background"
+        - "User Problem"
+        - "Solution"
+        - "Business Outcomes"
+    task_focus:
+      zh: "用户洞察、商业化假设、干系人对齐与实验节奏"
+      en: "user insights, monetization hypotheses, stakeholder alignment, and experiment cadence"
+    background_guidance:
+      zh: "从用户需求出发，说明为什么要做这个项目；阐述面临的主要商业挑战；介绍采用的商业化方案与产品策略；突出交付的商业价值与影响"
+      en: "Start with user needs and explain why this project matters; articulate the main business challenges; describe the monetization strategy and product approach adopted; highlight the business value and impact delivered"
+    metrics_categories: ["business_metrics", "operational_metrics"]
+    tone: "strategic, user-centric, metrics-driven"
+
+  ai_product_designer:
+    label: "AI 产品体验视角"
+    output_structure:
+      zh:
+        - "项目名称 | 所属公司/个人 | 起止时间"
+        - "角色 Role"
+        - "体验背景"
+        - "用户旅程"
+        - "设计方案"
+        - "体验成果"
+      en:
+        - "Project Name | Company/Organization | Duration"
+        - "Role"
+        - "Experience Background"
+        - "User Journey"
+        - "Design Solution"
+        - "Experience Outcomes"
+    task_focus:
+      zh: "用户旅程、体验策略、变现模型、设计系统"
+      en: "user journeys, experience strategy, monetization models, and design systems"
+    background_guidance:
+      zh: "从用户体验出发，说明为什么要做这个项目；阐述面临的主要体验挑战；介绍采用的设计方案与体验策略；突出交付的体验价值与影响"
+      en: "Start with user experience and explain why this project matters; articulate the main experience challenges; describe the design approach and experience strategy adopted; highlight the experience value and impact delivered"
+    metrics_categories: ["operational_metrics"]
+    tone: "user-centric, design-focused, experience-driven"
+
+  ai_engineer:
+    label: "AI 开发工程视角"
+    output_structure:
+      zh:
+        - "项目名称 | 所属公司/个人 | 起止时间"
+        - "角色 Role"
+        - "技术栈 Tech Stack"
+        - "架构背景"
+        - "主要职责"
+        - "架构成果"
+      en:
+        - "Project Name | Company/Organization | Duration"
+        - "Role"
+        - "Tech Stack"
+        - "Architecture Background"
+        - "Key Responsibilities"
+        - "Architecture Achievements"
+    task_focus:
+      zh: "架构演进、模型/推理优化、灰度与监控手段、可扩展性与稳定性"
+      en: "architecture evolution, model/inference optimizations, rollout safety, and observability"
+    background_guidance:
+      zh: "从架构需求出发，说明为什么要做这个项目；阐述面临的主要架构挑战；介绍采用的架构方案与优化策略；突出交付的架构价值与影响"
+      en: "Start with architecture requirements and explain why this project matters; articulate the main architecture challenges; describe the architecture approach and optimization strategy adopted; highlight the architecture value and impact delivered"
+    metrics_categories: ["technical_metrics"]
+    tone: "technical, architecture-focused, scalability-emphasized"

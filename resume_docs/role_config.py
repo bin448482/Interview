@@ -163,7 +163,6 @@ ROLE_FILTERS = {
             "tech_stack": False,
             "tools_platforms": False,
             "process_or_methodology": False,
-            "challenges_or_objectives": True,
             "ai_component_flag": False,
             "data_domain": False,
         },

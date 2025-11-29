@@ -73,7 +73,7 @@ def main(argv: List[str] | None = None) -> int:
         polisher = LLMPolisher()
         try:
             resume_data.projects = polisher.polish_projects(
-                resume_data.projects, args.model, cfg.locale, persona
+                resume_data.projects, args.model, cfg.locale, persona, args.role
             )
             print(f"Projects polished using {args.model}")
         except ValueError as e:

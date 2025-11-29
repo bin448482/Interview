@@ -17,7 +17,8 @@ See `resume_docs/claude.md` for detailed module documentation and data flow diag
 **Quick Reference:**
 - `loader.py`: Loads and validates YAML files
 - `models.py`: Data model definitions
-- `role_config.py` & `role_filter.py`: Role-based filtering logic
+- `role_config.py` & `role_filter.py`: Role-based filtering logic (project-level & field-level)
+- `prompt_loader.py`: Loads YAML config and builds role-aware prompts
 - `llm_polisher.py`: LLM-based content polishing using LangChain
 - `langchain_clients.py`: LangChain LLM clients (OpenAI, Zhipu, Ollama)
 - `docx_renderer.py`: DOCX generation
@@ -231,16 +232,162 @@ print('✓ GitHub link extraction test passed')
   3. Extracting GitHub URL using regex pattern: `https://github\.com/[\w\-]+/[\w\-]+`
   4. Appending preserved link to polished content if needed
 
-## Role-Based Filtering
+## Role-Based Filtering & Persona-Aware Prompting
 
-See `resume_docs/ROLE_FILTERS.md` for current role definitions and filtering rules.
+### Project-Level & Field-Level Filtering
 
-**Available roles:**
+The system now supports **two-level filtering**:
+
+1. **Project-Level Filtering** (activated in Phase 1):
+   - Uses `include_projects` and `exclude_projects` rules from `role_config.py`
+   - Supports pattern matching (regex), contains, exact, and value matching
+   - Calculates relevance scores based on matching rules
+   - Sorts by relevance score + time (descending)
+
+2. **Field-Level Filtering**:
+   - Uses `field_visibility` configuration to hide/show specific fields
+   - Applied after project-level filtering
+
+**Example:** For `product_manager` role:
+- Only projects matching commercialization/stakeholder management are included
+- Technical fields like `tech_stack`, `architecture_or_solution` are hidden
+
+### Persona-Aware Prompt System
+
+The system now generates **role-specific prompt structures** instead of using a single unified structure.
+
+**Configuration:** `.design_docs/prompt_config.yaml`
+- Defines base templates (Chinese & English)
+- For each role: output_structure, task_focus, background_guidance, metrics_categories
+
+**Implementation:** `resume_docs/prompt_loader.py`
+- Loads YAML configuration
+- Builds role-aware prompts with role-specific 6-part structures
+
+**Role-Specific 6-Part Output Structures:**
+
+| 角色 | 结构 |
+|------|------|
+| **product_manager** | 项目名称 \| 角色 \| **商业背景** \| **用户问题** \| **解决方案** \| **商业成果** |
+| **ai_development** | 项目名称 \| 角色 \| **技术背景** \| **技术挑战** \| **架构方案** \| **技术成果** |
+| **data_development** | 项目名称 \| 角色 \| **数据背景** \| **数据问题** \| **数据方案** \| **数据成果** |
+| **full_stack** | 项目名称 \| 角色 \| **工程背景** \| **工程挑战** \| **架构方案** \| **工程成果** |
+| **ai_product_designer** | 项目名称 \| 角色 \| **体验背景** \| **用户旅程** \| **设计方案** \| **体验成果** |
+| **ai_engineer** | 项目名称 \| 角色 \| **架构背景** \| **架构挑战** \| **架构方案** \| **架构成果** |
+
+### Available Roles
+
 - `data_development`: Data platform, lakehouse, AI data engineering
 - `full_stack`: Full-stack development (frontend + backend)
 - `ai_development`: AI/ML application development
+- `product_manager`: Generative AI product strategy & commercialization
+- `ai_product_designer`: AI product experience & design systems
+- `ai_engineer`: AI engineering & architecture
 
-To add new roles, edit `resume_docs/role_config.py` and add entry to `ROLE_FILTERS` dict with `include_projects`, `exclude_projects`, and `sort_by` keys.
+### Adding New Roles
+
+To add a new role:
+
+1. **Add role configuration in `resume_docs/role_config.py`:**
+   ```python
+   "new_role": {
+       "name": "Role Display Name",
+       "include_projects": [...],  # Filtering rules
+       "exclude_projects": [...],
+       "sort_by": "relevance_then_time",
+       "persona": {
+           "label": "Role perspective label",
+           "instructions": {
+               "zh": "Chinese persona guidance",
+               "en": "English persona guidance"
+           }
+       },
+       "field_visibility": {...}  # Field visibility config
+   }
+   ```
+
+2. **Add role configuration in `.design_docs/prompt_config.yaml`:**
+   ```yaml
+   roles:
+     new_role:
+       label: "Role perspective label"
+       output_structure:
+         zh: [...]  # 6-part structure in Chinese
+         en: [...]  # 6-part structure in English
+       task_focus:
+         zh: "..."
+         en: "..."
+       background_guidance:
+         zh: "..."
+         en: "..."
+       metrics_categories: [...]
+       tone: "..."
+   ```
+
+3. **Test the new role:**
+   ```bash
+   .venv\Scripts\python -m resume_docs.cli --role new_role --template modern --locale zh-CN --skip-polish
+   ```
+
+## Design Docs 目录规范
+
+所有设计文档都应放在 `.design_docs/` 目录下。
+
+**文档类型：**
+- `*_design.md` - 功能设计文档
+- `*_plan.md` - 实现计划文档
+- `*_guidelines.md` - 规范指南文档
+
+**当前设计文档：**
+- `.design_docs/merry-painting-sonnet.md` - Persona-Aware LLM Prompting 实施计划
+- `.design_docs/role_mapping_guidelines.md` - 角色映射规范
+
+## YAML 配置文件规范
+
+所有 YAML 配置文件都应放在 `latest_resumes/` 目录下。
+
+**配置文件类型：**
+- `*_config.yaml` - 系统配置文件
+- `*_summary.yaml` - 数据摘要文件
+
+**当前配置文件：**
+- `latest_resumes/prompt_config.yaml` - 角色感知 prompt 配置
+
+## Scripts 目录规范
+
+所有辅助脚本都应放在 `scripts/` 目录下。
+
+**脚本命名规范：**
+- 使用 `snake_case` 命名
+- 前缀表示脚本类型：
+  - `test_*.py` - 测试脚本
+  - `generate_*.py` - 生成脚本
+  - `validate_*.py` - 验证脚本
+  - `migrate_*.py` - 迁移脚本
+
+**脚本结构：**
+```python
+"""脚本功能说明
+
+功能：...
+使用：python scripts/xxx.py
+输出：...
+依赖：...
+"""
+
+# 导入
+# 常量定义
+# 主函数
+
+if __name__ == "__main__":
+    main()
+```
+
+**当前脚本：**
+- `scripts/generate_prompts.py` - 生成不同角色的 prompt
+- `scripts/test_role_prompts.py` - 测试 prompt 生成（虚拟环境版）
+
+详见 `scripts/README.md`
 
 ## Git Workflow
 
