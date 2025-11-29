@@ -47,11 +47,19 @@ def main(argv: List[str] | None = None) -> int:
 
     resume_data = loader.load_resume_data(locale=args.locale)
 
-    # Role filtering (required)
+    # Role selection (required even though filtering is disabled)
     if not args.role:
         available_roles = ", ".join(ROLE_FILTERS.keys())
         print(f"Error: --role is required. Available roles: {available_roles}")
         return 1
+
+    role_profile = ROLE_FILTERS.get(args.role)
+    if not role_profile:
+        available_roles = ", ".join(ROLE_FILTERS.keys())
+        print(f"Error: Unknown role '{args.role}'. Available roles: {available_roles}")
+        return 1
+
+    persona = role_profile.get("persona")
 
     role_filter = RoleFilter()
     resume_data = role_filter.filter_resume(resume_data, args.role)
@@ -65,7 +73,7 @@ def main(argv: List[str] | None = None) -> int:
         polisher = LLMPolisher()
         try:
             resume_data.projects = polisher.polish_projects(
-                resume_data.projects, args.model, cfg.locale
+                resume_data.projects, args.model, cfg.locale, persona, args.role
             )
             print(f"Projects polished using {args.model}")
         except ValueError as e:

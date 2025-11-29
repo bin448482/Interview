@@ -1,5 +1,5 @@
 .backup/
-.design_docs/
+# .design_docs/
 .venv/
 docs/output/
 artifacts/

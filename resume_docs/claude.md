@@ -38,16 +38,25 @@ docs/output/{locale}/{template}/
 
 ## 职位过滤
 
-支持基于职位的内容过滤。详见 `ROLE_FILTERS.md`。
+支持基于职位的字段级内容过滤。每个角色根据其视角看到不同的 Project 字段子集。
 
-**可用职位：**
-- `data_development` - 数据开发
-- `full_stack` - 全栈开发
-- `ai_development` - AI 应用开发
+**过滤机制：**
+- `role_config.py` 中每个角色定义 `field_visibility` 字典，指定哪些字段对该角色可见
+- `role_filter.py` 在渲染前应用字段过滤，隐藏字段设为 None 或空列表
+- 项目列表保持不变，只有字段级别的可见性改变
+
+**可用职位及其字段焦点：**
+- `data_development` - 数据平台视角：governance_artifacts、decision_accountability、impact_metrics、tech_stack
+- `full_stack` - 全栈工程视角：responsibility_focus、architecture_or_solution、tech_stack、process_or_methodology
+- `ai_development` - AI 工程视角：ai_component_flag、architecture_or_solution、tech_stack、governance_artifacts
+- `product_manager` - 产品经理视角：decision_accountability、responsibility_focus、impact_metrics、governance_artifacts
+- `ai_product_designer` - 产品设计视角：impact_metrics、deliverables_or_features、metrics_or_impact
+- `ai_engineer` - AI 工程师视角：ai_component_flag、architecture_or_solution、tech_stack、governance_artifacts
 
 **使用示例：**
 ```bash
 python3 -m resume_docs.cli --role data_development --template modern --locale zh-CN
+python3 -m resume_docs.cli --role product_manager --template modern --locale zh-CN
 ```
 
 ## 常用命令
@@ -92,8 +101,89 @@ yamllint latest_resumes/*.yaml
 ## 关键设计
 
 - **单一数据源：** `latest_resumes/*.yaml` 是唯一真实来源
-- **职位过滤：** 按职位动态过滤项目和工作经历
-- **LLM 润色：** 可选使用 LLM 润色项目描述，支持多语言
+- **字段级过滤：** 按职位动态过滤 Project 字段，保持项目列表不变
+  - 每个角色在 `role_config.py` 中定义 `field_visibility` 字典
+  - `role_filter.py` 在渲染前应用过滤，隐藏字段设为 None 或空列表
+  - Renderer 和 Polisher 自动适应可见字段
+- **LLM 润色：** 可选使用 LLM 润色项目描述，支持多语言和角色视角
 - **模板驱动：** DOCX 基于模板生成
 - **环境变量：** API 密钥通过环境变量管理，不提交到仓库
 - **语言感知：** 根据 locale 参数自动选择润色语言
+
+## 角色感知 Prompt 系统
+
+### 新增模块
+
+| 模块 | 功能 |
+|------|------|
+| `prompt_loader.py` | 加载 `.design_docs/prompt_config.yaml` 并构建角色感知的 prompt |
+
+### 项目级过滤
+
+`role_filter.py` 现在支持两级过滤：
+
+1. **项目级过滤**：根据 `include_projects` 和 `exclude_projects` 规则过滤项目
+   - 支持 pattern（正则）、contains、exact、value 匹配
+   - 计算相关性分数并按相关性 + 时间排序
+
+2. **字段级过滤**：根据 `field_visibility` 隐藏/显示字段
+
+### 角色特定的 6 部分结构
+
+不同角色生成不同的 prompt 结构：
+
+| 角色 | 结构 |
+|------|------|
+| **product_manager** | 项目名称 \| 角色 \| **商业背景** \| **用户问题** \| **解决方案** \| **商业成果** |
+| **ai_development** | 项目名称 \| 角色 \| **技术背景** \| **技术挑战** \| **架构方案** \| **技术成果** |
+| **data_development** | 项目名称 \| 角色 \| **数据背景** \| **数据问题** \| **数据方案** \| **数据成果** |
+| **full_stack** | 项目名称 \| 角色 \| **工程背景** \| **工程挑战** \| **架构方案** \| **工程成果** |
+| **ai_product_designer** | 项目名称 \| 角色 \| **体验背景** \| **用户旅程** \| **设计方案** \| **体验成果** |
+| **ai_engineer** | 项目名称 \| 角色 \| **架构背景** \| **架构挑战** \| **架构方案** \| **架构成果** |
+
+### 测试脚本：生成不同角色的 Prompt
+
+**脚本位置：** `scripts/generate_prompts.py`
+
+**功能：** 为所有 6 个角色生成 prompt，输出到 `artifacts/role_prompts_review.txt` 用于 review
+
+**使用方式：**
+```bash
+python scripts/generate_prompts.py
+```
+
+**输出：**
+- 生成 6 个角色的完整 prompt
+- 保存到 `artifacts/role_prompts_review.txt`
+- 每个 prompt 包含：
+  - 系统角色定义
+  - 6 部分结构要求
+  - 任务焦点和背景指导
+  - 指标范围指导
+  - 原始项目内容
+
+**示例输出片段：**
+```
+================================================================================
+角色: product_manager
+================================================================================
+
+【中文 Prompt】
+你是一名资深技术招聘官与简历优化专家...
+
+要求：
+1. 按照以下结构输出：
+   - 项目名称 | 所属公司/个人 | 起止时间
+   - 角色 Role
+   - 商业背景
+   - 用户问题
+   - 解决方案
+   - 商业成果
+...
+```
+
+**Review 清单：**
+- [ ] 每个角色的 6 部分结构是否正确
+- [ ] 任务焦点是否体现了角色特点
+- [ ] 背景指导是否清晰
+- [ ] 指标范围指导是否合理
