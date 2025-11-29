@@ -10,6 +10,16 @@ Resume Docs Generator is a data-driven pipeline that transforms YAML resume data
 
 All data flows from `latest_resumes/*.yaml` (the single source of truth) through a normalized view model to renderers. Role-aware filters decide which projects/fields stay visible for a target role before the LLM polisher and DOCX renderer run.
 
+## Why This Project
+
+The starting point for this project was a long-standing pain point: the same person and experience can look very different depending on who is reading the resume and what they care about. Different companies, roles, and reviewers focus on different signals, so one static resume rarely tells the right story for everyone.
+
+To address this, I treat the resume as structured, reusable data instead of a single PDF. With AI and a carefully structured YAML representation, I normalize and standardize my experience into a consistent data model. From there, AI can generate different “views” of the same underlying information—tuned to different roles and perspectives—so each reader gets a version of my story that matches what they actually need.
+
+这个项目的起点来自我长期以来的一个痛点：同一个人、同一段经历，在不同的读者眼里、基于不同的关注点，会呈现出完全不同的样子。不同的公司、不同的岗位、不同的阅简人，会关注不同的信号，所以一份固定不变的简历，很难同时向所有人讲清正确的故事。
+
+为了解决这个问题，我尝试把简历当成「结构化、可复用的数据」，而不是一份静态的 PDF。借助 AI，再配合经过精心设计的 YAML 结构，我把自己的经历规范化、标准化到一个一致的数据模型里。基于这套数据，AI 就可以从不同角色、不同视角出发，生成不同的「视图」，让每个阅读者都能看到最贴合他们需求的那一版我的故事。
+
 ## Quickstart 快速开始
 1. 创建并激活虚拟环境
    ```bash
