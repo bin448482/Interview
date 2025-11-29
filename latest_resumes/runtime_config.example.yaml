@@ -1,0 +1,14 @@
+# Copy this file to runtime_config.yaml and fill in provider credentials.
+openai:
+  api_key: "sk-your-openai-key"
+  base_url: "https://api.example.com/v1"
+  temperature: 0.3
+zhipu:
+  api_key: "zhipu-key"
+ollama:
+  host: "http://localhost:11434"
+  model: "llama3"
+# Optional arbitrary environment-style overrides
+env:
+  MODEL_NAME: "gpt-5"
+  TEMPERATURE: 0.1

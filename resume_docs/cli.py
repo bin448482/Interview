@@ -7,17 +7,16 @@ from datetime import datetime
 from pathlib import Path
 from typing import List
 
-from dotenv import load_dotenv
-
 from . import config as config_module
 from . import constants
 from . import docx_renderer, loader
 from .llm_polisher import LLMPolisher
+from .runtime_config import load_runtime_config
 from .role_filter import RoleFilter
 from .role_config import ROLE_FILTERS
 
-# Load environment variables from .env file
-load_dotenv()
+# Load runtime config (overrides conflicting environment values)
+load_runtime_config()
 
 
 def build_parser() -> argparse.ArgumentParser:

@@ -115,6 +115,16 @@ output_dir: docs/output
 
 CLI 参数 > `config.yaml` > 默认值。
 
+## Runtime Configuration
+
+为避免 `.env` 被外部环境覆盖，所有 LLM/API 凭证统一写入 `latest_resumes/runtime_config.yaml`：
+
+1. 在 `latest_resumes/` 中复制 `runtime_config.example.yaml` 为 `runtime_config.yaml`（该文件已写入 `.gitignore`，不会被提交）。
+2. 根据需要填写 `openai.api_key`、`openai.base_url`、`zhipu.api_key`、`ollama.host` 等字段；`env` 区块可映射其他环境变量（如 `MODEL_NAME`）。
+3. CLI 与脚本会在启动时自动调用 `load_runtime_config()`，并用 YAML 中的值覆盖进程内的相关环境变量，确保调用链始终使用同一组凭证。
+
+> 若 `runtime_config.yaml` 缺失，则保持现有环境变量不变，可用于 CI 或容器化场景。
+
 ## Common Commands
 
 ### Generate DOCX without LLM polishing

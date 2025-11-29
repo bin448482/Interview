@@ -5,6 +5,7 @@ docs/output/
 artifacts/
 __pycache__/
 .env
+latest_resumes/runtime_config.yaml
 /docs
 # /latest_resumes
 latest_resumes/personal_info_summary.yaml
