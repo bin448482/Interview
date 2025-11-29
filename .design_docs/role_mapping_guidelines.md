@@ -35,3 +35,26 @@
 `exec_dashboard`, `roadmap`, `risk_register`, `RACI`, `jira_board`, `runbook`, `playbook`, `SOP`, `training_plan`。仅列出确实交付或维护的治理产出。
 
 > 建议在填充 `projects_summary.yaml` 时先确定 `role_perspective`，然后根据上表逐项补足字段，确保后续 LLM 提取时可以按角色过滤。
+
+## 项目级 LLM 角色字段
+
+为支持“项目级角色视角”的 LLM 改写，每个项目可以选择性配置：
+
+- `llm_primary_role`：项目最推荐的 LLM 改写视角。
+  - 取值必须是 `ROLE_FILTERS` 的 key 之一（如 `data_development`, `ai_development`, `full_stack`, `product_manager`, `ai_product_designer`, `ai_engineer`）。
+  - Tarot / AI 应用类项目通常使用 `ai_development` 或 `full_stack`。
+  - 数据平台 / 湖仓类项目（如 NGSE、Remedium）通常使用 `data_development`。
+- `llm_secondary_roles`：可接受的备选视角列表。
+  - 同样必须来自 `ROLE_FILTERS` 的 key 集；
+  - 当 CLI 的整体 `--role` 落在该列表内时，会优先采用整体视角进行改写。
+
+语义说明：
+
+- 这两个字段只影响 LLM 改写时选用的角色 prompt；
+- 不影响 `RoleFilter` 的项目过滤/排序规则；
+- 不影响字段可见性（仍由 `ROLE_FILTERS[role]['field_visibility']` 控制）。
+
+迁移建议：
+
+- 旧项目可以暂不填写 `llm_primary_role` / `llm_secondary_roles`，系统会自动退回整体角色或基础 polish prompt；
+- 为关键项目补齐这两个字段，可以显著减少“强行带错角色视角”导致的技术栈幻觉。

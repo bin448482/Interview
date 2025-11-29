@@ -10,6 +10,9 @@ projects:
     end: null
   role_title: Independent developer
   role_perspective: hybrid
+  llm_primary_role: full_stack
+  llm_secondary_roles:
+  - product_manager
   management_scope:
     team_size: 1
     budget_level: lt_100k
@@ -30,10 +33,8 @@ projects:
   - stakeholder_management
   impact_metrics:
     business_metrics:
-    - 'Q4 2025 paid conversion 18% (+50% vs. industry benchmark) with 6% DAU pay-through
-      and RMB 60K ARR locked in by day 60.'
-    - 'Cohort telemetry surfaced high-value spreads and boosted repeat purchase funnel
-      completion by 12 percentage points.'
+    - 'Q4 2025 paid conversion 18%, about 50% above industry benchmark, with 6% tiered daily active payer rate.'
+    - 'Locked in RMB 60K ARR from subscriptions and redemption codes within 60 days of launch and established a repeat purchase funnel.'
     technical_metrics:
     - 'Unified LLM factory + cost dashboard lowered AI call cost by 60% while keeping
       TP99 inference under 1.2s.'
@@ -137,16 +138,15 @@ projects:
   - Google Play Billing / Stripe Checkout (Reserved)
   tools_platforms:
   - Expo Router 6
-  - Status + SWR
-  - EAS Construction
+  - Zustand + SWR
+  - EAS Build
   - Ant Design Charts
   - ESLint / Pylint / Prettier
   - CI/CD Pipeline + generate-icons.js script
   - Docker volume backup solution
   team_info:
     team_size: 1
-    description: Personal independent development + AI collaboration + multi-warehouse
-      document-driven
+    description: Personal independent development + AI collaboration + multi-repo, documentation-driven
   notes: 'See tarotAI repo (Expo app, FastAPI backend, Next.js admin, AI generator,
     Docker/Nginx) plus user interview and prompt governance notes. GitHub: https://github.com/bin448482/tarotAI'
 - project_name: NGSE (Next Generation Sales Engine)

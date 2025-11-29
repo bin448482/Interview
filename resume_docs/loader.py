@@ -7,6 +7,7 @@ from typing import Any, Dict, Iterable, List
 import yaml
 
 from . import constants, models
+from .role_config import ROLE_FILTERS
 
 PERSONAL_INFO_FILE = "personal_info_summary.yaml"
 SKILLS_FILE = "skills_summary.yaml"
@@ -75,6 +76,8 @@ def _parse_projects(data: Dict[str, Any]) -> List[models.Project]:
             timeframe=timeframe,
             role_title=raw.get("role_title"),
             role_perspective=raw.get("role_perspective"),
+            llm_primary_role=raw.get("llm_primary_role") or None,
+            llm_secondary_roles=list(raw.get("llm_secondary_roles", []) or []),
             management_scope=management_scope,
             decision_accountability=list(raw.get("decision_accountability", []) or []),
             responsibility_focus=list(raw.get("responsibility_focus", []) or []),
@@ -115,6 +118,7 @@ def _parse_work(data: Dict[str, Any]) -> models.WorkSummary:
 
 
 def _validate_project_enums(raw: Dict[str, Any]) -> None:
+    # Validate role_perspective against allowed enum values
     role = raw.get("role_perspective")
     if role and role not in constants.ROLE_PERSPECTIVE_ALLOWED:
         raise ValueError(f"Invalid role_perspective '{role}' in project {raw.get('project_name')}")
@@ -128,3 +132,14 @@ def _validate_project_enums(raw: Dict[str, Any]) -> None:
     for tag in raw.get("responsibility_focus", []) or []:
         if tag not in constants.RESPONSIBILITY_FOCUS_ALLOWED:
             raise ValueError(f"Invalid responsibility_focus '{tag}' in project {raw.get('project_name')}")
+
+    # Validate project-level LLM role hints against defined ROLE_FILTERS
+    allowed_roles = set(ROLE_FILTERS.keys())
+
+    primary = raw.get("llm_primary_role")
+    if primary and primary not in allowed_roles:
+        raise ValueError(f"Invalid llm_primary_role '{primary}' in project {raw.get('project_name')}")
+
+    for role_name in raw.get("llm_secondary_roles", []) or []:
+        if role_name and role_name not in allowed_roles:
+            raise ValueError(f"Invalid llm_secondary_role '{role_name}' in project {raw.get('project_name')}")

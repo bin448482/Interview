@@ -13,6 +13,7 @@ base_templates:
     style_intro: "风格要求："
     important_note: "重要："
     metrics_guidance: "原文有数据则忠实引用，缺少数据时可基于行业通用区间补写保守指标，例如：Day1留存约20%~30%、Day30留存约5%~12%、DAU/MAU约20%~30%。务必使用\"约\"\"保持在\"等措辞，严禁超出这些区间或给出明显夸张的用户规模。"
+    hallucination_guard: "严禁引入原文中未出现的技术栈名称、具体产品名或数据基础设施；可以在原有技术之上做抽象概括（例如事件总线架构、实时处理链路），但不得虚构新的云服务、数据库或监控产品名称。"
   en:
     system_role: "Senior technical recruiter and resume optimization expert"
     task_intro: "Generate project experience section"
@@ -24,6 +25,7 @@ base_templates:
     style_intro: "Style requirements:"
     important_note: "Important:"
     metrics_guidance: "cite source data when available. If none exists, you may infer conservative benchmarks such as Day-1 retention of 20-30%, Day-30 retention of 5-12%, or DAU/MAU ratios of 20-30%. Use \"around\"/\"kept at\" phrasing and stay strictly within these ranges."
+    hallucination_guard: "You MUST NOT introduce any technology brands, databases, cloud services, or data infrastructure names that do not appear in the original text. You may describe them in abstract terms (e.g., 'event bus', 'real-time processing pipeline'), but do not fabricate concrete product names."
 
 roles:
   data_development:
@@ -51,6 +53,9 @@ roles:
       en: "Start with data needs and explain why this project matters; articulate the main data challenges; describe the data architecture and governance solutions adopted; highlight the data value and impact delivered"
     metrics_categories: ["business_metrics", "operational_metrics", "technical_metrics"]
     tone: "data-driven, governance-focused, reliability-emphasized"
+    hallucination_guard:
+      zh: "特别注意：不得凭空补写未在原文提及的技术栈（如 Kafka、Iceberg、ClickHouse 等），也不得虚构新的系统级挑战或架构方案（例如事件驱动遥测、湖仓视图、多区域复制、容灾演练等）；只能在已有描述之上做抽象总结（如“事件驱动埋点体系”“准实时指标链路”），不要发明新的问题背景或治理闭环。"
+      en: "Do not invent lakehouse stacks (e.g. Kafka, Iceberg, ClickHouse) that are not explicitly present in the source text, and do not fabricate new system-level challenges or architectures (e.g. event-driven telemetry, lakehouse views, multi-region replication, disaster recovery drills). You may only abstract from what is already described, and must not introduce new problem contexts or governance loops."
 
   full_stack:
     label: "全栈产品工程视角"
@@ -75,6 +80,9 @@ roles:
     background_guidance:
       zh: "从用户需求出发，说明为什么要做这个项目；阐述面临的主要工程挑战；介绍采用的架构方案与技术选型；突出交付的核心价值与影响"
       en: "Start with user needs and explain why this project matters; articulate the main engineering challenges; describe the architecture and technology choices adopted; highlight the core value and impact delivered"
+    hallucination_guard:
+      zh: "严禁引入原文中未出现的技术栈名称、具体产品名或数据基础设施；不得凭空补写新的系统级挑战或架构（例如跨区域复制、湖仓视图、事件驱动遥测等）；可以在原有技术之上做抽象概括（例如事件总线架构、实时处理链路），但不得虚构新的云服务、数据库、监控产品或上线体系。"
+      en: "You MUST NOT introduce any technology brands, databases, cloud services, or data infrastructure names that do not appear in the original text, nor invent new system-level challenges or architectures (e.g., multi-region replication, lakehouse views, event-driven telemetry). You may describe existing elements in abstract terms (e.g., 'event bus', 'real-time processing pipeline'), but must not fabricate new products, platforms, or rollout systems."
     metrics_categories: ["operational_metrics", "technical_metrics"]
     tone: "technical, delivery-focused, pragmatic"
 
@@ -98,6 +106,9 @@ roles:
     task_focus:
       zh: "建模、推理性能、PromptOps 与成本治理等实现细节"
       en: "model design, inference performance, prompt operations, and cost governance details"
+    hallucination_guard:
+      zh: "严禁引入原文中未出现的技术栈名称、具体产品名或数据基础设施；不得凭空补写新的系统级挑战或架构（例如跨区域复制、湖仓视图、事件驱动遥测、多区域容灾等）；可以在原有技术之上做抽象概括（例如事件总线架构、实时处理链路、PromptOps 流水线），但不得虚构新的云服务、数据库、监控产品或推理平台。"
+      en: "You MUST NOT introduce any technology brands, databases, cloud services, or data infrastructure names that do not appear in the original text, nor invent new system-level challenges or architectures (e.g., multi-region replication, lakehouse views, event-driven telemetry, regional DR topologies). You may describe existing elements in abstract terms (e.g., 'event bus', 'real-time processing pipeline', 'prompt operations pipeline'), but must not fabricate new cloud services, databases, monitoring products, or inference platforms."
     background_guidance:
       zh: "从 AI 需求出发，说明为什么要做这个项目；阐述面临的主要技术挑战；介绍采用的架构方案与技术选型；突出交付的核心价值与影响"
       en: "Start with AI requirements and explain why this project matters; articulate the main technical challenges; describe the architecture and technology choices adopted; highlight the core value and impact delivered"
@@ -176,6 +187,9 @@ roles:
     task_focus:
       zh: "架构演进、模型/推理优化、灰度与监控手段、可扩展性与稳定性"
       en: "architecture evolution, model/inference optimizations, rollout safety, and observability"
+    hallucination_guard:
+      zh: "严禁引入原文中未出现的技术栈名称、具体产品名或数据基础设施；不得凭空补写新的系统级挑战或架构（例如跨区域复制、湖仓视图、事件驱动遥测、多区域容灾等）；可以在原有技术之上做抽象概括（例如事件总线架构、实时处理链路、灰度与监控体系），但不得虚构新的云服务、数据库、监控产品或调度平台。"
+      en: "You MUST NOT introduce any technology brands, databases, cloud services, or data infrastructure names that do not appear in the original text, nor invent new system-level challenges or architectures (e.g., multi-region replication, lakehouse views, event-driven telemetry, cross-region DR). You may describe existing elements in abstract terms (e.g., 'event bus', 'real-time processing pipeline', 'rollout and monitoring system'), but must not fabricate new cloud services, databases, monitoring products, or orchestration platforms."
     background_guidance:
       zh: "从架构需求出发，说明为什么要做这个项目；阐述面临的主要架构挑战；介绍采用的架构方案与优化策略；突出交付的架构价值与影响"
       en: "Start with architecture requirements and explain why this project matters; articulate the main architecture challenges; describe the architecture approach and optimization strategy adopted; highlight the architecture value and impact delivered"

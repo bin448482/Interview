@@ -23,6 +23,9 @@ projects:
       end: null
     role_title: "独立开发者"
     role_perspective: hybrid
+    llm_primary_role: full_stack
+    llm_secondary_roles:
+    - product_manager
     management_scope:
       team_size: 1
       budget_level: lt_100k
@@ -138,6 +141,12 @@ projects:
       end: "2025-09"
     role_title: "项目经理 & 数据架构师 & Generative AI 产品负责人"
     role_perspective: hybrid
+    llm_primary_role: data_development
+    llm_secondary_roles:
+    - ai_development
+    - product_manager
+    - ai_product_designer
+    - ai_engineer
     management_scope:
       team_size: 5
       budget_level: gt_1m
@@ -250,6 +259,9 @@ projects:
       end: "2023-02"
     role_title: "高级技术顾问（解决方案架构）"
     role_perspective: architect
+    llm_primary_role: data_development
+    llm_secondary_roles:
+    - full_stack
     management_scope:
       team_size: null
       budget_level: null
