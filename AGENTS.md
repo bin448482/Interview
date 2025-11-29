@@ -16,6 +16,7 @@ for path in pathlib.Path('latest_resumes').glob('*.yaml'):
 print('YAML loads ✓')
 PY
 ```
+- Runtime secrets (OpenAI/Zhipu/Ollama endpoints、Token 等) 统一放在 `latest_resumes/runtime_config.yaml`，不要依赖 `.env`。复制 `latest_resumes/runtime_config.example.yaml` 并填写后，本地 CLI/脚本会自动加载；该文件已经加入 `.gitignore`，请勿提交。
 
 ## Coding Style & Naming Conventions
 Use two-space indentation, double quotes around mixed-language strings, and `snake_case` keys (see `schema_version`, `role_perspective`). Keep narrative order for lists—projects stay chronologically relevant rather than alphabetized—and group metadata keys before narrative text. URLs or repo references belong in clearly prefixed fields such as `git_like` and must stay quoted.

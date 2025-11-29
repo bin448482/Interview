@@ -7,11 +7,12 @@ from datetime import datetime
 from pathlib import Path
 
 import yaml
-from dotenv import load_dotenv
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-load_dotenv()
+from resume_docs.runtime_config import load_runtime_config
+
+load_runtime_config()
 
 from resume_docs import loader, constants
 from resume_docs.langchain_clients import get_llm_client

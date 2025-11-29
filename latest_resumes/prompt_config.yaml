@@ -7,7 +7,7 @@ base_templates:
     task_intro: "生成可直接放入简历的项目经验"
     requirements_intro: "要求："
     structure_label: "按照以下结构输出："
-    background_constraint: "严格控制在800-1000字以内"
+    background_constraint: "严格控制在400字以内"
     responsibilities_label: "主要职责"
     achievements_label: "成果产出"
     style_intro: "风格要求："
