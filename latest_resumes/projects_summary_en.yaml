@@ -192,68 +192,81 @@ projects:
   - risk_register
   - prompt_playbook
   - ai_policy
-  project_overview: Led China-region NGSE data + AI product transformation, building a Databricks lakehouse, sales copilot capability, and prompt governance so sales/marketing teams can align pipeline insight, run experiments, and quantify monetization.
+  project_overview: "Delivered a compliant AI engine + lakehouse foundation for Zoetis' global NGSE program in China, solving cross-border data restrictions, model definition gaps, and recommendation design so local sellers can reuse global playbooks and quantify monetization."
   data_domain: Global Sales Engine / Data Platform
   ai_component_flag: true
   challenges_or_objectives:
-  - Build a standardized data platform and extend it into a generative AI copilot.
-  - Balance multi-market data reliability with rapid AI experimentation.
-  - Establish prompt/compliance governance that satisfies risk, medical, and regional regulators.
+  - "Construct an auditable local NGSE data + AI stack under China's cross-border data regulations."
+  - "Map Zoetis global canonical models to domestic distributor/sales schemas with aligned fields, granularity, and KPIs."
+  - "Validate whether China sales/inventory data is fit for AI training, prompt engineering, and recommendation quality."
+  - "Design explainable, compliant recommendation algorithms and prompt governance that keep sales playbooks reusable."
   responsibilities:
-  - Design data pipelines integrated with the Azure ecosystem while owning the AI product roadmap.
-  - Define data quality, monitoring, performance strategies, and north star metrics/experiment funnels.
-  - Build lakehouse + notebook templates + prompt QA checklists for market reuse.
-  - Run ADF scheduling, cross-platform data transfer, and AI cost/revenue dashboards.
-  - Align executives, chair risk reviews, prompt audits, and monetization retrospectives.
+  - "Built the Inbox→Raw→Transform→Governed four-layer lakehouse handling CSV/JSON/Parquet/Avro, replay, and audit to host China mirror datasets."
+  - "Decomposed ingestion/cleansing/join/aggregation pipelines in Databricks Workflows with global_temp/temp/intermediate tables and Delta time-travel for debugging."
+  - "Manually registered Delta catalogs + SQL Server mappings to unify metadata/permissions and enforce T-1 full + incremental variance checks."
+  - "Authored/tuned Spark SQL & PySpark reusable ETL (encryption, masking, path parsing, dynamic params) plus parameterized notebook templates with Widgets for rapid market rollout."
+  - "Integrated ADF, Azure Functions, Databricks REST API, and Aliyun OSS→ADLS Gen2 transfer for cross-platform orchestration, auto email/Teams validation notices, and business-triggered jobs."
+  - "Owned Sales Copilot recommendation design + prompt QA rituals, running exec/risk/commercial retros."
+  - "Led domestic data acquisition, field mapping, batch validation, and creation of training/test/validation datasets for recommendation model regression."
   architecture_or_solution:
-  - Four-layer data architecture: Inbox→Raw→Transform→Governed.
-  - Databricks Workflows + Delta Lake for dependency + ACID management.
-  - Incremental strategy validating T-1 deltas with LLM quality hooks.
-  - Spark SQL/PySpark shared ETL modules + method registry.
-  - Parameterized notebooks linked with ADF for multi-market reuse.
-  - Sales Copilot: LLM summaries, next-best-actions, risk alerts, and chat embedded in Power BI.
+  - "Four-layer architecture: Inbox (multi-format ingress) → Raw (standardization/naming) → Transform (cleansing/joins/aggregation) → Governed (lineage/quality/security-ready publication)."
+  - "Databricks Workflows modules per ingestion/cleansing/join/aggregation stage with global_temp/temp/intermediate table strategy."
+  - "Delta Lake versioning + ACID enabling batch rewind, full/incremental switching, and automatic T-1 variance checks on sales/product flow wide tables."
+  - "Metadata + method management via manual Delta catalog registration, SQL Server mappings, method registry, and Hive SQL auto-loader."
+  - "Parameterized notebook templates with Widgets + shared ETL components (encryption/masking/path parsing/dynamic params) codifying company lakehouse standards."
+  - "Azure Function ↔ Databricks loop sending validation emails/Teams alerts and letting business uploads trigger jobs."
+  - "ADF owning Linked Services/Integration Runtime, Aliyun OSS→ADLS Gen2 transfers, and scheduled Databricks notebooks."
+  - "Lakehouse + Auto Loader + dual consumption (AI training + Power BI/Fabric real-time queries) with unified wide tables."
+  - "Sales Copilot recommendation service delivering LLM summaries, next actions, risk prompts, and chat embedded in Power BI/CRM."
   process_or_methodology:
-  - Lakehouse + PromptOps dual governance.
-  - Modularized/atomized data development standards + dual-track boards tracking experiments.
-  - Automated data quality, anomaly alerts, and prompt reviews.
-  - Biweekly OKR/roadmap reviews plus experiment/risk alignment forums.
+  - "Lakehouse + PromptOps + data export compliance tri-track governance with authorization/masking policies."
+  - "Modular/atomic notebook, ETL, and method registry standards (DNA architecture) enabling pluggable dimensions/facts."
+  - "Automated data quality (schema drift, field completeness, null/duplicate) with Azure Function alert loops."
+  - "Biweekly OKR/roadmap, recommendation algorithm retros, and risk reviews for exec/ops alignment."
   deliverables_or_features:
-  - Cross-platform data transmission link (Aliyun OSS→ADLS Gen2).
-  - Schema drift/field integrity/null duplication monitoring.
-  - Hot wide table partitioning, Z-ordering, caching, dynamic aggregation.
-  - Sales Copilot workspace: opportunity summaries, next-step recommendations, prompt QA panel.
-  - Exec dashboards + ARR/opportunity funnel + prompt cost board.
+  - "Databricks pipeline blueprint covering ingestion/cleansing/join/aggregation modules and global_temp/temp/intermediate table governance."
+  - "Metadata catalog (Delta→SQL Server mapping) + method registry with reusable encryption/masking/path parsing/dynamic parameter modules."
+  - "Schema drift, field completeness, null/duplicate monitoring plus custom validation rule library."
+  - "Azure Function-driven validation email/Teams alerts + Databricks job trigger loop."
+  - "Aliyun OSS→ADLS Gen2 transfer pipeline alongside Databricks REST API deployment automation."
+  - "Sales Copilot recommendation engine + dual-channel consumption (AI training + Power BI real-time)."
+  - "Training/test/validation dataset packs with validation scripts for model regression and regulatory sampling."
   metrics_or_impact:
-  - Report runtime improved 2-3x.
-  - Company lakehouse + prompt governance templates replicated across four markets.
-  - AI recommendation hit rate 70%, saving sellers six hours per week on lead prep.
-  - Zero high-severity risk escalations; compliance audits passed on first attempt.
+  - "Inventory/sales reports ran 2-3x faster, meeting AI training + BI SLA targets."
+  - "T-1 variance checks across sales/product flow tables kept accuracy at 99.5%."
+  - "AI recommendation hit rate 70%, saving sellers six hours weekly on lead prep."
+  - "Lakehouse + prompt governance replicated in four markets with zero high-severity risk escalations and first-pass compliance approvals."
   tech_stack:
   - Databricks
   - Delta Lake
   - Azure Data Factory
-  - Azure Storage
+  - Azure Data Lake Storage Gen2
+  - Aliyun OSS
   - Spark SQL
   - PySpark
   - Azure Functions
   - Power BI + Fabric
   - Azure OpenAI / GLM API
+  - SQL Server
   tools_platforms:
   - Databricks Workflows
   - ADF
   - Azure Data Lake Storage Gen2
+  - Azure Function Apps
+  - Aliyun OSS
   - Prompt QA toolkit
+  - Databricks REST API
   team_info:
     team_size: 5
     description: Cross-market squad mixing PO, data engineers, analysts.
   notes: Owned China market roadmap + PromptOps governance adopted as a global reference.
 - project_name: Remedium (BI)
-  company_or_context: Portable Water Craft
+  company_or_context: PwC
   timeframe:
     label: 2016.10 - 2023.02
     start: 2016-10
     end: 2023-02
-  role_title: Technical Team Leader
+  role_title: Senior Technical Consultant (Solutions Architect)
   role_perspective: architect
   management_scope:
     team_size: null
@@ -273,48 +286,60 @@ projects:
   - compliance
   impact_metrics:
     business_metrics:
-    - User satisfaction reached 95% and passed all compliance audits.
+    - Passed every regulator audit on the first attempt and shortened approval wait time via transparent reporting.
     technical_metrics:
-    - Data processing time reduced by 30%.
-    - Data quality improved to 99.9%
+    - ADF + Databricks parallel ingestion kept SAP/TPPT batch windows within SLA.
+    - Layered data model + quality gates sustained 99%+ master data accuracy.
     operational_metrics:
-    - Establish a 24-hour cross-border collaboration rhythm.
+    - Established a 24-hour EU/CN follow-the-sun rhythm with structured post-incident reviews.
   governance_artifacts:
   - training_plan
   - risk_register
-  project_overview: A BI solution tailored for the pharmaceutical industry, covering
-    data pipeline, report analysis, and web portal.
+  project_overview: Remedium is a pharma-focused BI platform that unifies multi-country MDM data, builds auditable ADF + Databricks pipelines and data models, and exposes transparent workflows/reporting through a web portal.
   data_domain: Pharmaceutical Industry BI
   ai_component_flag: false
   challenges_or_objectives:
-  - Design scalable solution architecture
-  - Enhance data processing efficiency and reporting timeliness.
-  - Enhance business personnel's review experience.
+  - Consolidate SAP, TPPT, and research feeds into a scalable cross-region MDM backbone.
+  - Remove big-file ingestion bottlenecks and harden the ADF + Databricks ETL layer.
+  - Provide auditors and business teams with self-serve transparency via a portal.
   responsibilities:
-  - Design and coordinate cross-border teams.
-  - Supervise ADF + Databricks data pipeline development
-  - Guidance Report/Implementation of Analysis Layer and Portal Design
-  - Promote cross-functional communication
+  - Co-lead requirement grooming, solution reviews, and delivery roadmap with onshore teams.
+  - Own ADF + Databricks ETL standardization across SAP/TPPT/research sources plus monitoring.
+  - Design multithreaded/sharded ingestion patterns and internal tooling to boost performance and developer efficiency.
+  - Deliver reusable data models and business process templates per client architecture.
+  - Plan and ship the Remedium web portal so stakeholders can track workflows and generate transparent reports.
   architecture_or_solution:
-  - ADF Pipeline + Databricks Processing Framework
-  - Web portal improves review efficiency
+  - Layered data model: core MDM backbone with client-specific extension domains.
+  - ADF pipelines + Databricks jobs powering parallel ingestion and compute.
+  - Configurable ETL toolbox with source adapters, data quality checks, and performance telemetry.
+  - Remedium web portal + reporting APIs aligned to audit workflows.
   process_or_methodology:
-  - Cross-team collaboration and solution review
+  - Requirement → architecture → model review workshops with weekly onshore syncs.
+  - Data standardization and process template governance for cross-region consistency.
+  - Performance regression drills and ingestion dry-runs coupled with post-mortems.
   deliverables_or_features:
-  - Trading data reporting system
-  - Remedium Web Portal
+  - Cross-region MDM ETL packages and source adapters (SAP, TPPT, research data).
+  - ADF/Databricks batch jobs plus internal productivity tooling.
+  - Client-specific data model blueprints and standardized business process packs.
+  - Remedium web portal with transparent workflow tracking and audit report generation.
   metrics_or_impact:
-  - Processing time reduced, data quality improved.
-  - Enhanced real-time access to improve problem-solving efficiency.
-  - Gained positive feedback from stakeholders.
+  - Met multi-region MDM batch SLAs on ADF/Databricks even with large files.
+  - Standardized models accelerated new-client onboarding and alignment.
+  - Portal transparency cut manual escalations and sped auditor-business collaboration.
   tech_stack:
   - Azure Data Factory
   - Databricks
-  - BI Tools
-  - Web technology
+  - Microsoft SQL Server
+  - SAP / TPPT data sources
+  - MDM platform
+  - .NET / web portal stack
   tools_platforms:
-  - Azure Ecosystem
+  - ADF Pipeline & Monitor
+  - Databricks Workflows
+  - SQL Server Agent
+  - IIS / internal web portal
+  - Performance monitoring & logging toolkit
   team_info:
     team_size: null
-    description: Cross-border team collaboration
-  notes: null
+    description: Built jointly with European onshore and local delivery teams.
+  notes: Owned Remedium architecture/ETL/portal delivery for pharma compliance transparency.

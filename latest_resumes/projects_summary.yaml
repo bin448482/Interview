@@ -173,57 +173,70 @@ projects:
     - risk_register
     - prompt_playbook
     - ai_policy
-    project_overview: "主导中国区域 NGSE 数据 + AI 产品化转型，自建 Databricks 湖仓体系、Sales Copilot 能力与 Prompt 治理流程，让区域销售与市场团队可以拉通 pipeline、复盘实验并量化商业化收益。"
+    project_overview: "为 Zoetis 全球 NGSE（Next Generation Sales Engine）在中国落地提供合规的 AI 引擎与湖仓底座，解决数据出入境限制、模型口径差异与推荐算法设计难题，让本地销售团队可复用全球剧本并量化商业化收益。"
     data_domain: "全球销售引擎 / 数据平台"
     ai_component_flag: true
     challenges_or_objectives:
-      - "0→1 搭建标准化数据平台并扩展为 Generative AI Copilot"
-      - "在多市场数据可靠性与 AI 试验速度之间取得平衡"
-      - "建立 Prompt / 合规治理，满足风控、医学合规与跨区域监管"
+      - "在中国数据进出口法规下，为全球 NGSE 构建可审计的本地数据管线与 AI 引擎"
+      - "对齐 Zoetis 全球标准模型与国内经销/销售业务模型的字段、粒度与指标定义"
+      - "验证国内销售/库存数据对 AI 训练、提示工程与推荐算法的适配性与质量"
+      - "设计兼顾合规、可解释性的推荐算法与 Prompt 治理策略，支撑销售剧本复用"
     responsibilities:
-      - "设计数据管道架构并实现与 Azure 生态集成，同时担任 AI 产品路线图负责人"
-      - "制定数据质量、监控与性能优化策略，推出北极星指标与实验漏斗"
-      - "构建湖仓一体 + Notebook 模板 + Prompt QA 清单，支撑多市场复制"
-      - "主持 ADF 调度、跨平台数据传输与 AI 成本/收益看板"
-      - "推动高层对齐，主持风险评审、Prompt 审查与商业化复盘会"
+      - "搭建 Inbox→Raw→Transform→Governed 四层湖仓架构，覆盖 CSV/JSON/Parquet/Avro 多格式落地、重放与审计，沉淀中国区镜像数据资产"
+      - "拆解 ingestion/cleansing/join/aggregation 流程，利用 Databricks Workflows + global_temp/temp/intermediate 表和 Delta 版本回溯强化依赖管理与调试"
+      - "手工注册 Delta 目录与 SQL Server 映射目录，统一元数据/权限策略，并落地 T-1 全量+增量差异校验机制"
+      - "编写并调优 Spark SQL/PySpark 公共 ETL、加密/脱敏/路径解析/动态参数模块，结合参数化 Notebook（Widgets）加速多市场复制"
+      - "整合 ADF、Azure Function、Databricks REST API 与 Aliyun OSS→ADLS Gen2 传输链路，实现跨平台调度、自动邮件/Teams 校验通知与业务触发作业"
+      - "定义 Sales Copilot 推荐算法与 Prompt QA 流程，主持高层、风险与商业化复盘"
+      - "组织国内市场数据采集、字段映射与批量校验，构建训练/测试/验证数据集供推荐算法与 AI 模型复盘"
     architecture_or_solution:
-      - "四层数据处理架构：Inbox→Raw→Transform→Governed"
-      - "Databricks Workflows + Delta Lake 保障依赖管理与 ACID"
-      - "自动校验 T-1 数据差异的增量策略 + LLM 质检钩子"
-      - "Spark SQL/PySpark 公共 ETL 模块与方法注册机制"
-      - "参数化 Notebook 与 ADF 联动，实现多市场复用"
-      - "Sales Copilot：LLM 摘要、行动建议、风险提示与聊天助手嵌入 PowerBI"
+      - "四层数据处理架构：Inbox（多格式接入）→Raw（标准化/命名规范）→Transform（清洗/关联/聚合）→Governed（治理/血缘/权限/发布）"
+      - "Databricks Workflows 拆分 ingestion/cleansing/join/aggregation 模块，配套 global_temp/temp/intermediate 宽表调试层"
+      - "Delta Lake 版本与事务管理支撑批处理回溯、全量/增量切换与覆盖销售/产品流向宽表的 T-1 差异自动校验"
+      - "元数据与方法管理：人工注册 Delta 目录 + SQL Server 映射、方法注册机制、Hive SQL 脚本自动加载"
+      - "参数化 Notebook 模板 + Widgets + 公共 ETL（加密、脱敏、路径解析、动态参数）形成公司级数仓规范"
+      - "Azure Function ↔ Databricks 调用环路：校验结果邮件/Teams 告警与业务触发作业"
+      - "ADF 管理 Linked Services/Integration Runtime，负责 Aliyun OSS→ADLS Gen2 传输与 Databricks Notebook 定时调度"
+      - "湖仓一体 + Auto Loader + 双通道消费架构，统一宽表供 AI 训练并满足 Power BI/Fabric 实时查询"
+      - "Sales Copilot 推荐算法：LLM 摘要、下一步建议、风险提示、聊天助手嵌入 Power BI/CRM"
     process_or_methodology:
-      - "湖仓一体 + PromptOps 双轨治理"
-      - "模块化、原子化的数据开发规范 + 双色看板跟踪实验"
-      - "自动化数据质量校验、异常告警与提示审查走查"
-      - "双周 OKR/路线图评审 + 实验/风险共识会"
+      - "湖仓一体 + PromptOps + 数据出入境合规三轨治理，输出授权与脱敏策略"
+      - "模块化、原子化 Notebook/ETL/方法注册规范和 DNA 架构，支撑可插拔维度与事实表"
+      - "自动化数据质量校验（Schema Drift、字段完整性、空值/重复）+ Azure Function 告警闭环"
+      - "双周 OKR/路线图、推荐算法复盘与风险评审会，保障 exec/ops 共识"
     deliverables_or_features:
-      - "跨平台数据传输链路（Aliyun OSS→ADLS Gen2）"
-      - "Schema Drift/字段完整性/空值重复监测模块"
-      - "热点宽表的分区、Z-Ordering、缓存与动态聚合"
-      - "Sales Copilot 工作台：机会摘要、下一步建议、Prompt QA 面板"
-      - "Exec Dashboard + ARR/机会漏斗 + Prompt 成本仪表盘"
+      - "Databricks 管道蓝图：ingestion/cleansing/join/aggregation 模块与 global_temp/temp/intermediate 表管理"
+      - "元数据目录（Delta→SQL Server 映射）与方法注册脚本，含加密/脱敏/路径解析/动态参数模块"
+      - "Schema Drift、字段完整性、空值/重复监测与自定义校验规则库"
+      - "Azure Function 驱动的校验邮件/Teams 告警与 Databricks 作业触发闭环"
+      - "Aliyun OSS→ADLS Gen2 跨平台传输流水线与 Databricks REST API 自动部署流程"
+      - "Sales Copilot 推荐算法与双通道消费（AI 训练 + Power BI 实时查询）"
+      - "训练/测试/验证数据集资产包与数据验证脚本，支撑模型回归与监管抽检"
     metrics_or_impact:
-      - "关键报表运行时间提升 2~3 倍"
-      - "建立公司级数仓+Prompt 治理规范并在 4 个市场复用"
-      - "AI 推荐命中率 70%，销售人员节省每周 6 小时线索整理时间"
-      - "风险事件零高危升级，合规审计一次通过"
+      - "关键报表（库存/销售）运行时间提升 2~3 倍，满足 AI 训练与 BI 查询 SLA"
+      - "T-1 差异校验覆盖销售流向、产品流向等大表，数据准确率保持 99.5%"
+      - "AI 推荐命中率 70%，销售人员每周节省 6 小时线索整理时间"
+      - "建立公司级数仓 + Prompt 治理规范并在 4 个市场复用，风险事件零高危升级"
     tech_stack:
       - "Databricks"
       - "Delta Lake"
       - "Azure Data Factory"
-      - "Azure Storage"
+      - "Azure Data Lake Storage Gen2"
+      - "Aliyun OSS"
       - "Spark SQL"
       - "PySpark"
       - "Azure Functions"
       - "Power BI + Fabric"
       - "Azure OpenAI / GLM API"
+      - "SQL Server"
     tools_platforms:
       - "Databricks Workflows"
       - "ADF"
       - "Azure Data Lake Storage Gen2"
+      - "Azure Function Apps"
+      - "Aliyun OSS"
       - "Prompt QA 工具链"
+      - "Databricks REST API"
     team_info:
       team_size: 5
       description: "跨市场 PO + 数据工程 + 分析师混编小组"
@@ -235,7 +248,7 @@ projects:
       label: "2016.10 - 2023.2"
       start: "2016-10"
       end: "2023-02"
-    role_title: "技术组长"
+    role_title: "高级技术顾问（解决方案架构）"
     role_perspective: architect
     management_scope:
       team_size: null
@@ -255,48 +268,60 @@ projects:
     - compliance
     impact_metrics:
       business_metrics:
-      - 用户满意度达到95%并通过所有合规审计
+      - "客户监管审计全部一次通过，透明化报告缩短审批等待"
       technical_metrics:
-      - 数据处理时间减少30%
-      - 数据质量提升到99.9%
+      - "并行导入方案将 SAP/TPPT 批量处理窗口压缩到 SLA 以内"
+      - "多层数据模型 + 质量校验让主数据准确率维持 99%+"
       operational_metrics:
-      - 建立24小时跨国协作节奏
+      - "搭建 24 小时中欧 onshore 协作节奏并沉淀问题复盘机制"
     governance_artifacts:
     - training_plan
     - risk_register
-    project_overview: "为制药行业打造的BI解决方案，涵盖数据管道、报告分析和Web门户。"
+    project_overview: "针对制药行业的 Remedium BI 平台，汇聚各国/各地区 MDM 数据，构建可追溯的 ETL + 数据模型骨干，并以 Web 门户向客户和审计方提供透明流程与报告。"
     data_domain: "制药行业 BI"
     ai_component_flag: false
     challenges_or_objectives:
-      - "设计可扩展的解决方案架构"
-      - "提升数据处理效率与报告实时性"
-      - "增强业务人员的审查体验"
+      - "统一 SAP、TPPT 及调研来源的跨区域 MDM 数据，形成可扩展架构"
+      - "解决多大文件导入的性能瓶颈并稳定 ADF + Databricks ETL 层"
+      - "为业务与审计团队提供流程透明、可自助取数的门户"
     responsibilities:
-      - "领导架构设计并协调跨国团队"
-      - "监督ADF + Databricks 数据管道开发"
-      - "指导报告/分析层实现及门户设计"
-      - "推动跨职能沟通"
+      - "联合 onshore 团队完成需求澄清、解决方案评审与交付路线图"
+      - "主导 ADF + Databricks 的 ETL 层设计，覆盖 SAP、TPPT 及研究渠道的标准化导入与监控"
+      - "设计多线程/分片的数据接入策略，构建可配置导入工具与性能监控以支撑大文件批处理"
+      - "依据客户业务架构交付可复用的数据模型与流程模板"
+      - "规划并落地 Remedium Web 门户，支撑透明流程与客户报告"
     architecture_or_solution:
-      - "ADF 管道 + Databricks 处理框架"
-      - "Web 门户提升审查效率"
+      - "分层数据模型：核心 MDM 骨干 + 客户特定扩展域"
+      - "ADF Pipeline + Databricks 批处理框架支撑多线程/分片导入与计算"
+      - "可配置 ETL 工具箱：源适配器、数据质量校验、性能监控脚本"
+      - "Remedium Web Portal + 报告 API，贯通审计流程"
     process_or_methodology:
-      - "跨团队协作与解决方案评审"
+      - "需求→架构→模型评审工作坊，与 onshore 团队周度同步"
+      - "数据标准化与流程模板治理，确保跨地区一致"
+      - "性能回归与导入演练，结合问题复盘机制"
     deliverables_or_features:
-      - "交易数据报告体系"
-      - "Remedium Web 门户"
+      - "跨区域 MDM ETL 包与源适配器（SAP、TPPT、调研数据）"
+      - "ADF/Databricks 批处理作业与开发效率工具"
+      - "客户级数据模型蓝图 + 标准化业务流程包"
+      - "Remedium Web 门户：透明流程追踪、审计报告生成"
     metrics_or_impact:
-      - "处理时间减少、数据质量提升"
-      - "实时访问能力提高问题解决效率"
-      - "获得利益相关者正面反馈"
+      - "稳定处理多地区 MDM 大文件并在 ADF/Databricks 上满足客户批处理 SLA"
+      - "标准化数据模型缩短新客户上线周期并增强一致性"
+      - "Web 门户让业务与审计团队实时共享透明流程，减少人工对接"
     tech_stack:
       - "Azure Data Factory"
       - "Databricks"
-      - "BI 工具"
-      - "Web 技术"
+      - "Microsoft SQL Server"
+      - "SAP / TPPT 数据源"
+      - "MDM 平台"
+      - ".NET / Web Portal 技术栈"
     tools_platforms:
-      - "Azure 生态"
+      - "ADF Pipeline & Monitor"
+      - "Databricks Workflows"
+      - "SQL Server Agent"
+      - "IIS / 内部 Web 门户"
+      - "性能监控与日志工具"
     team_info:
       team_size: null
-      description: "跨国团队协作"
-    notes: null
-
+      description: "与欧洲 onshore 团队及本地交付团队共建"
+    notes: "负责 Remedium 架构、ETL 与门户落地，聚焦制药合规场景的透明数据服务。"
