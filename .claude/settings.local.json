@@ -9,7 +9,12 @@
       "Bash(.venv\\Scripts\\python:*)",
       "Bash(pip install:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(.venvScriptspython -m resume_docs.cli --template modern --locale zh-CN --role product_manager --include-contact --model gpt-5)",
+      "Bash(source:*)",
+      "Bash(cmd /c \".venv\\Scripts\\activate.bat && python -m resume_docs.cli --template modern --locale zh-CN --role product_manager --include-contact --model gpt-5\")",
+      "Bash(\"D:\\0-development\\projects\\Interview\\.venv\\Scripts\\python.exe\" -m resume_docs.cli:*)",
+      "Bash(\"D:\\0-development\\projects\\Interview\\.venv\\Scripts\\python.exe\" -m pip install:*)"
     ],
     "deny": [],
     "ask": []
