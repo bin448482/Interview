@@ -4,7 +4,8 @@ from __future__ import annotations
 from typing import Dict, List, Optional
 
 from .langchain_clients import get_llm_client
-from .models import Project, ImpactMetrics
+from .llm_role_resolver import resolve_polish_role
+from .models import ImpactMetrics, Project
 from .prompt_loader import PromptLoader
 
 
@@ -67,17 +68,25 @@ class LLMPolisher:
         """
         if not project.project_overview:
             return project
-
         language = self._get_language_from_locale(locale)
         persona_hint = self._get_persona_hint(persona, language)
 
-        # 使用 role-aware prompt 如果提供了 role，否则使用旧的 prompt
-        if role:
+        # Use project-level effective role when available to reduce hallucinations
+        effective_role = resolve_polish_role(role, project) if role else None
+
+        # If the effective role for this project differs from the global CLI role,
+        # drop the persona hint to avoid mixing, e.g. "AI 应用工程"结构 + "数据平台负责人"语气，
+        # which has been shown to encourage made-up data platform narratives.
+        if effective_role and role and effective_role != role:
+            persona_hint = None
+
+        if effective_role:
             prompt_loader = PromptLoader()
             prompt = prompt_loader.build_role_aware_prompt(
-                project.project_overview, language, role, persona_hint
+                project.project_overview, language, effective_role, persona_hint
             )
         else:
+            # No suitable role hint: fall back to a base polishing prompt
             prompt = self._build_polish_prompt(
                 project.project_overview, language, persona_hint
             )

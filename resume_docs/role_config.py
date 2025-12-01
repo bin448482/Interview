@@ -124,6 +124,52 @@ ROLE_FILTERS = {
             "data_domain": False,
         },
     },
+    "project_manager": {
+        "name": "项目经理 / Project Manager",
+        "include_projects": [
+            {"field": "responsibility_focus", "contains": ["planning", "stakeholder_management", "compliance"]},
+            {"field": "decision_accountability", "contains": ["delivery_owner", "risk_governance"]},
+            {"field": "role_title", "pattern": ".*(项目经理|Project Manager).*"},
+        ],
+        "exclude_projects": [
+            {"field": "role_title", "pattern": ".*(测试|运维).*"},
+        ],
+        "sort_by": "relevance_then_time",
+        "persona": {
+            "label": "项目交付与技术决策视角",
+            "instructions": {
+                "zh": "以项目交付负责人/技术项目经理的身份撰写，强调范围/进度/成本控制、跨团队协作、风险与变更治理，以及对关键技术决策的评估与把关。",
+                "en": "Write as a project delivery owner or technical project manager, emphasizing scope/schedule/budget control, cross-team delivery, risk and change governance, and evaluation of major technical decisions.",
+            },
+        },
+        "field_visibility": {
+            # 强制展示项目管理/治理相关字段
+            "management_scope": True,
+            "decision_accountability": True,
+            "governance_artifacts": True,
+            "impact_metrics": True,
+            "role_perspective": True,
+            "project_overview": True,
+            "challenges_or_objectives": True,
+            "responsibilities": True,
+            "timeframe": True,
+            "company_or_context": True,
+            "role_title": True,
+            # 保留精简的技术上下文，支撑决策与风险表述
+            "architecture_or_solution": True,
+            "tech_stack": True,
+            "tools_platforms": True,
+            # 对项目经理视角噪声较大的实现细节可以隐藏
+            "deliverables_or_features": True,
+            "metrics_or_impact": True,
+            "team_info": True,
+            "notes": True,
+            "process_or_methodology": False,
+            "ai_component_flag": False,
+            "responsibility_focus": False,
+            "data_domain": False,
+        },
+    },
     "product_manager": {
         "name": "Generative AI 产品经理",
         "include_projects": [

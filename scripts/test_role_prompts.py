@@ -8,6 +8,7 @@ TEST_PROJECT = """TarotAI 全渠道套件：Expo React Native 客户端 + FastAP
 
 # 所有角色
 ROLES = [
+    "project_manager",
     "product_manager",
     "ai_development",
     "data_development",

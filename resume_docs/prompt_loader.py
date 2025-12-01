@@ -48,6 +48,17 @@ class PromptLoader:
         # 构建结构说明
         structure_items = "\n   ".join(f"- {item}" for item in output_structure)
 
+        # 拼接防幻觉约束：全局 guard + 角色级 guard（如有）
+        base_guard = base.get("hallucination_guard", "")
+        role_guard_cfg = role_config.get("hallucination_guard", {})
+        if isinstance(role_guard_cfg, dict):
+            role_guard = role_guard_cfg.get(lang_key, "")
+        else:
+            role_guard = role_guard_cfg or ""
+        hallucination_guard = "\n".join(
+            part for part in (base_guard, role_guard) if part
+        )
+
         # 构建 persona 提示行
         persona_line = ""
         if persona_hint:
@@ -81,6 +92,7 @@ class PromptLoader:
 4. {base['important_note']}只输出上述结构中的内容，不要包含任何其他信息；可以在成果部分使用行业区间，但不要超出这些范围。
 
 {base['metrics_guidance']}
+{hallucination_guard}
 
 任务焦点：{task_focus}
 
@@ -114,6 +126,7 @@ Based on the following project content, generate a project experience section th
 4. {base['important_note']} Output ONLY the structure above. Do NOT include any other information. The only acceptable synthetic metrics are those within the stated benchmark bands.
 
 {base['metrics_guidance']}
+{hallucination_guard}
 
 Task focus: {task_focus}
 

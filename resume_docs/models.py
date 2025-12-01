@@ -75,6 +75,8 @@ class Project:
     timeframe: Timeframe = field(default_factory=Timeframe)
     role_title: Optional[str] = None
     role_perspective: Optional[str] = None
+    llm_primary_role: Optional[str] = None
+    llm_secondary_roles: List[str] = field(default_factory=list)
     management_scope: ManagementScope = field(default_factory=ManagementScope)
     decision_accountability: List[str] = field(default_factory=list)
     responsibility_focus: List[str] = field(default_factory=list)

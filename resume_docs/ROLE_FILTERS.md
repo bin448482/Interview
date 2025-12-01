@@ -43,6 +43,23 @@
 
 ---
 
+## 项目经理 (project_manager)
+
+**包含项目规则：**
+- `responsibility_focus` 包含 "planning"、"stakeholder_management" 或 "compliance"
+- 或 `decision_accountability` 包含 "delivery_owner"/"risk_governance"
+- 或 `role_title` 文本包含 “项目经理”/"Project Manager"
+
+**排除项目规则：**
+- `role_title` 包含 “测试” 或 “运维”
+
+**适用场景：**
+- 项目/项目群交付负责人、技术项目经理（TPM）、Program Manager 等以项目治理和技术决策评估为主的角色
+
+**排序方式：** 按相关度 + 时间排序（新项目优先）
+
+---
+
 ## Generative AI 产品经理 (product_manager)
 
 **包含项目规则：**
