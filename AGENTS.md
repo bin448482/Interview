@@ -21,6 +21,33 @@ PY
 ## Coding Style & Naming Conventions
 Use two-space indentation, double quotes around mixed-language strings, and `snake_case` keys (see `schema_version`, `role_perspective`). Keep narrative order for lists—projects stay chronologically relevant rather than alphabetized—and group metadata keys before narrative text. URLs or repo references belong in clearly prefixed fields such as `git_like` and must stay quoted.
 
+### Project-level role fields (do not remove)
+
+For every project entry in `latest_resumes/projects_summary*.yaml`, the following
+fields are part of the stable schema contract:
+
+- `role_perspective`:
+  - Allowed values: `developer`, `architect`, `project_manager`, `product_owner`, `hybrid`.
+  - Describes the main perspective for this project (implementation, architecture,
+    delivery/governance, or product). Use `hybrid` only when responsibilities truly
+    cannot be separated and explain nuance in `notes`.
+- `llm_primary_role`:
+  - Optional; when present, must be one of the `ROLE_FILTERS` keys
+    (e.g. `data_development`, `ai_development`, `full_stack`, `product_manager`,
+    `project_manager`, `ai_product_designer`, `ai_engineer`).
+  - Used only by `llm_polisher` to choose the default role-aware prompt.
+- `llm_secondary_roles`:
+  - Optional list of additional `ROLE_FILTERS` keys that are also acceptable
+    polishing perspectives for this project.
+  - If the CLI `--role` is in this list, the polisher prefers that global role;
+    otherwise it falls back to `llm_primary_role`.
+
+These rules apply uniformly for all contributors and tools:
+- Do not delete these fields from YAML once introduced; if a project does not need
+  them, leave them empty/null instead of removing the keys.
+- Do not remove this section from the docs; downstream agents rely on this contract
+  when interpreting and editing projects.
+
 ## Design Docs Directory
 
 All design documents should be placed in the `.design_docs/` directory.

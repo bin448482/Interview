@@ -140,7 +140,7 @@ projects:
       start: "2023-06"
       end: "2025-09"
     role_title: "项目经理 & 数据架构师 & Generative AI 产品负责人"
-    role_perspective: hybrid
+    role_perspective: project_manager
     llm_primary_role: data_development
     llm_secondary_roles:
     - ai_development

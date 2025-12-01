@@ -1,7 +1,7 @@
 experiences:
   - company: "Zoetis"
     duration: "2023.6 – 2025.9"
-    title: "Project Manager & Data Architect & AI Application Developer"
+    title: "Project Manager & Data Architect & Generative AI Product Lead"
   - company: "PWC"
     duration: "2016.11 – 2023.2"
     title: "Technical Lead & Solutions Architect & Full-Stack Developer"
@@ -25,9 +25,10 @@ role_responsibilities:
     responsibilities:
       - "Develop detailed project plans and milestones, track scope, schedule, and cost to ensure delivery meets contract objectives."
       - "Coordinate internal resources and external vendors, promote cross-departmental collaboration and information synchronization."
-      - "Continuously monitor KPIs/SLAs and report status to stakeholders, escalate dependencies and blockers promptly."
-      - "Execute risk management and change control, develop mitigation measures in advance to reduce deviations."
-      - "Maintain comprehensive project documentation (plans, requirements, acceptance, etc.) to support audits and knowledge accumulation."
+      - "Continuously monitor KPIs/SLAs and report status to stakeholders, escalate dependencies and blockers promptly to keep business and delivery goals aligned."
+      - "Execute risk management and change control, develop mitigation measures in advance to reduce deviations, and maintain risk registers and decision logs."
+      - "In data platform or AI projects, partner with architects/tech leads to assess the feasibility, cost, and risk of technical options and implementation paths."
+      - "Maintain comprehensive project documentation (plans, requirements, acceptance, decisions, etc.) to support audits and knowledge accumulation."
   - role: "Product Manager"
     responsibilities:
       - "Define product vision and north star metrics, translate customer insights into clear strategy and roadmap."

@@ -156,7 +156,13 @@ projects:
     start: 2023-06
     end: 2025-09
   role_title: Project Manager & Data Architect & Generative AI Product Lead
-  role_perspective: hybrid
+  role_perspective: project_manager
+  llm_primary_role: data_development
+  llm_secondary_roles:
+  - ai_development
+  - product_manager
+  - ai_product_designer
+  - ai_engineer
   management_scope:
     team_size: 5
     budget_level: gt_1m
@@ -268,6 +274,9 @@ projects:
     end: 2023-02
   role_title: Senior Technical Consultant (Solutions Architect)
   role_perspective: architect
+  llm_primary_role: data_development
+  llm_secondary_roles:
+  - full_stack
   management_scope:
     team_size: null
     budget_level: null

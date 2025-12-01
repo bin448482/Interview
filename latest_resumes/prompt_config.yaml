@@ -7,7 +7,7 @@ base_templates:
     task_intro: "生成可直接放入简历的项目经验"
     requirements_intro: "要求："
     structure_label: "按照以下结构输出："
-    background_constraint: "严格控制在400字以内"
+    background_constraint: "严格控制在600字以内"
     responsibilities_label: "主要职责"
     achievements_label: "成果产出"
     style_intro: "风格要求："
@@ -114,6 +114,32 @@ roles:
       en: "Start with AI requirements and explain why this project matters; articulate the main technical challenges; describe the architecture and technology choices adopted; highlight the core value and impact delivered"
     metrics_categories: ["technical_metrics"]
     tone: "technical, detailed, scalability-focused"
+
+  project_manager:
+    label: "项目交付/技术决策视角"
+    output_structure:
+      zh:
+        - "项目名称 | 所属公司/个人 | 起止时间"
+        - "角色 Role"
+        - "项目背景 & 范围"
+        - "关键干系人与依赖"
+        - "关键决策 & 风险/问题管理"
+        - "交付成果 & 指标"
+      en:
+        - "Project Name | Company/Organization | Duration"
+        - "Role"
+        - "Project Context & Scope"
+        - "Stakeholders & Dependencies"
+        - "Key Decisions, Risks & Issues"
+        - "Delivery Outcomes & Metrics"
+    task_focus:
+      zh: "范围管理、跨团队交付、风险治理与对关键技术决策的评估"
+      en: "scope management, cross-team delivery, risk governance, and evaluation of major technical decisions"
+    background_guidance:
+      zh: "从业务/技术背景出发，说明项目目标与范围；交代关键干系人与依赖关系；描述你如何评估技术方案、制定计划、跟踪风险与变更；最后用交付里程碑与指标收束故事。"
+      en: "Start from the business and technical context, state the project goals and scope, outline key stakeholders and dependencies, describe how you evaluated technical options, planned and tracked risks and changes, and close with delivery milestones and metrics."
+    metrics_categories: ["operational_metrics", "business_metrics", "technical_metrics"]
+    tone: "delivery-focused, governance-oriented, decision-evaluating"
 
   product_manager:
     label: "AI 产品设计/策略视角"

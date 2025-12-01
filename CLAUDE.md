@@ -29,6 +29,32 @@ See `resume_docs/claude.md` for detailed module documentation and data flow diag
 - Fields like `role_perspective`, `decision_accountability`, `responsibility_focus`, `impact_metrics` must match this contract
 - Reviewers reject entries missing `decision_accountability`, metric blocks, or `management_scope`
 
+### Project-level role fields (do not remove)
+
+These project-level fields in `latest_resumes/projects_summary*.yaml` are part of the
+stable contract and must be preserved:
+
+- `role_perspective`:
+  - Enum: `developer`, `architect`, `project_manager`, `product_owner`, `hybrid`.
+  - Describes the primary perspective of the experience (implementation, architecture,
+    delivery/governance, or product ownership). Use `hybrid` only when responsibilities
+    are genuinely mixed and clarify in `notes`.
+- `llm_primary_role`:
+  - Optional string; when set, must be one of the `ROLE_FILTERS` keys
+    (e.g. `data_development`, `ai_development`, `full_stack`, `product_manager`,
+    `project_manager`, `ai_product_designer`, `ai_engineer`).
+  - Tells `llm_polisher` which role-aware prompt to use for this project by default.
+- `llm_secondary_roles`:
+  - Optional list of additional `ROLE_FILTERS` keys that are also acceptable for this
+    project in polishing.
+  - If CLI `--role` is in this list, the polisher prefers that global role; otherwise
+    it falls back to `llm_primary_role`.
+
+These fields:
+- Do not alter `RoleFilter` include/exclude logic or field visibility.
+- Only affect prompt selection in `llm_polisher` to reduce hallucinations.
+- Must not be removed from YAML or from this documentation section.
+
 ## Common Commands
 
 **Setup:**
@@ -73,6 +99,8 @@ PY
 - `data_development`: Data platform, lakehouse, AI data engineering
 - `full_stack`: Full-stack development (frontend + backend)
 - `ai_development`: AI/ML application development
+- `product_manager`: Generative AI product strategy and design
+- `project_manager`: Project delivery, governance, and technical decision evaluation
 
 **Available locales:**
 - `zh-CN`: Chinese (default)

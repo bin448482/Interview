@@ -68,6 +68,30 @@ docs/output/{locale}/{template}/
 - `.design_docs/role_mapping_guidelines.md` defines all enums used in `projects_summary.yaml`
 - Fields like `role_perspective`, `decision_accountability`, `responsibility_focus`, `impact_metrics`, `management_scope` must match this contract
 
+### Project-level role fields (do not remove)
+
+These fields live on each entry in `latest_resumes/projects_summary*.yaml` and must follow these rules:
+
+- `role_perspective`:
+  - Allowed values: `developer`, `architect`, `project_manager`, `product_owner`, `hybrid`.
+  - Describes the main hat you wore on this project (coding vs architecture vs delivery vs product).
+  - Pick a single dominant perspective; use `hybrid` only when responsibilities truly cannot be split and explain nuance in `notes`.
+- `llm_primary_role`:
+  - Optional; when present, must be one of the `ROLE_FILTERS` keys
+    (e.g. `data_development`, `ai_development`, `full_stack`, `product_manager`,
+    `project_manager`, `ai_product_designer`, `ai_engineer`).
+  - Controls which role prompt the LLM uses to rewrite this project by default.
+- `llm_secondary_roles`:
+  - Optional list of additional `ROLE_FILTERS` keys.
+  - When CLI `--role` is in this list, the polisher prefers the global role prompt;
+    otherwise it falls back to `llm_primary_role` when choosing the prompt.
+
+Notes:
+- These fields do not change the core schema or filtering logic; they only guide
+  prompt selection in `llm_polisher`.
+- Do not delete these fields from YAML or remove this section from the docs; design
+  docs and downstream agents rely on this contract.
+
 ## Tech Stack
 
 - Language: Python 3.12

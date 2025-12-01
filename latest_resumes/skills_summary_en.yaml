@@ -1,4 +1,27 @@
 skills:
+  - category: "Generative AI Product Strategy & Metrics"
+    items:
+      - "Define north star metrics, funnel/retention dashboards, and cohort instrumentation"
+      - "Maintain experiment backlog, prompt versions, and user interview cadence to guide roadmap decisions"
+      - "Build prompt cost/revenue boards, ARR attribution, and monetization hypothesis tests"
+      - "Chair AI risk reviews and responsible AI checklists to satisfy compliance/audit requirements"
+  - category: "Multi-agent Orchestration & Prompt Governance"
+    items:
+      - "LangChain multi-agent/tool/memory orchestration with hybrid online/offline routing"
+      - "Prompt playbook versioning, A/B experiment logging, and output QA workflows"
+      - "Cost/latency guardrails: LLM factory, caching, fallback strategies, anomaly alerts"
+      - "Partner with legal/security/operations on prompt policies, risk registers, and review cadence"
+  - category: "AI/ML Application Development"
+    items:
+      - "LLM Integration: OpenAI, Zhipu AI"
+      - "Prompt Engineering: Prompt design and output quality control"
+      - "AI System Design: service architecture, state management, cost control"
+      - "Intelligent Applications: AI-driven experience optimization and personalization"
+  - category: "System Architecture & Engineering Practices"
+    items:
+      - "Design Patterns: factory pattern, modular architecture, configuration-driven"
+      - "Quality Assurance: unit/integration/performance testing, error handling"
+      - "Project Management: version control, documentation management, code standards, technical debt governance"
   - category: "Programming Languages & Frameworks"
     items:
       - "Proficient in C#"
@@ -45,11 +68,6 @@ skills:
     items:
       - "Relational database modeling, data lineage, metadata management"
       - "Vector Database: ChromaDB management, document vectorization, similarity search, batch vector operations, performance optimization"
-  - category: "System Architecture & Engineering Practices"
-    items:
-      - "Design Patterns: factory pattern, modular architecture, configuration-driven"
-      - "Quality Assurance: unit/integration/performance testing, error handling"
-      - "Project Management: version control, documentation management, code standards, technical debt governance"
   - category: "RAG & Intelligent Q&A Technology"
     items:
       - "RAG Architecture: retrieval augmentation, dual database, semantic search, intelligent documents"
@@ -62,24 +80,6 @@ skills:
       - "Backend: FastAPI, SQLAlchemy, API design, authentication and authorization"
       - "Database Design: SQLite, data modeling, performance optimization, dual database architecture"
       - "DevOps: Docker, Nginx, cloud deployment, CI/CD"
-  - category: "AI/ML Application Development"
-    items:
-      - "LLM Integration: OpenAI, Zhipu AI"
-      - "Prompt Engineering: Prompt design and output quality control"
-      - "AI System Design: service architecture, state management, cost control"
-      - "Intelligent Applications: AI-driven experience optimization and personalization"
-  - category: "Generative AI Product Strategy & Metrics"
-    items:
-      - "Define north star metrics, funnel/retention dashboards, and cohort instrumentation"
-      - "Maintain experiment backlog, prompt versions, and user interview cadence to guide roadmap decisions"
-      - "Build prompt cost/revenue boards, ARR attribution, and monetization hypothesis tests"
-      - "Chair AI risk reviews and responsible AI checklists to satisfy compliance/audit requirements"
-  - category: "Multi-agent Orchestration & Prompt Governance"
-    items:
-      - "LangChain multi-agent/tool/memory orchestration with hybrid online/offline routing"
-      - "Prompt playbook versioning, A/B experiment logging, and output QA workflows"
-      - "Cost/latency guardrails: LLM factory, caching, fallback strategies, anomaly alerts"
-      - "Partner with legal/security/operations on prompt policies, risk registers, and review cadence"
   - category: "Independent Development Capability"
     items:
       - "Full-stack Project Management: requirements to deployment"
