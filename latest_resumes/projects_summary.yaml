@@ -15,7 +15,7 @@ schema_version: 1.1
 generated_at: "2025-11-27"
 source_file: "Resume_Data_Engineer_CN_20250529.md"
 projects:
-  - project_name: "MySixth 塔罗牌智能应用"
+  - project_name: "塔罗牌智能应用"
     company_or_context: "Zoetis / 个人独立开发者"
     timeframe:
       label: "2025.10 - 至今"
@@ -133,7 +133,7 @@ projects:
       description: "个人独立开发 + AI 协作 + 多仓文档驱动"
     notes: "详细设计参见 tarotAI 仓库（Expo 客户端、FastAPI 后端、Next.js 管理台、AI 生成器、Docker/Nginx 部署），另附用户访谈与提示治理纪要。GitHub: https://github.com/bin448482/tarotAI"
 
-  - project_name: "MyFirst 垂直站点图像爬虫与 AI 视觉筛选系统"
+  - project_name: "垂直站点图像爬虫与 AI 视觉筛选系统"
     company_or_context: "个人独立开发者 / 自研图像数据管道"
     timeframe:
       label: "2025.8"
@@ -182,7 +182,7 @@ projects:
       - "通过颜色增强、样本平衡与噪声注入缓解小样本场景下的严重过拟合。"
     responsibilities:
       - "重构垂直站点专用爬虫与 YAML 配置，支持 ess-data/data-link 图像属性解析与广告 URL 黑名单过滤。"
-      - "设计 SQLite 表结构与重复检测逻辑，统一 t66y_crawl_results 存储并与 Web 界面联动。"
+      - "设计 SQLite 表结构与重复检测逻辑，统一抓取结果存储并与 Web 界面联动。"
       - "实现 ResNet50+CBAM 图像分类管线、边界框注意力模块与 YOLO-Pose 区域感知流程。"
       - "编写 Fine-tuning 相关脚本（训练/评估/可视化），集成颜色增强、样本平衡、噪声注入与多级 Fallback 逻辑。"
       - "搭建 Flask Web 管理台与 API（仪表盘、SQL 控制台、图像画廊），支持感兴趣图片标注与 AI 预测过滤。"
@@ -200,7 +200,7 @@ projects:
       - "对 Web 界面与爬虫配置实行脚本化验证与回归测试（run_tests.py），确保关键路径稳定。"
     deliverables_or_features:
       - "垂直站点专用图像爬虫与 YAML 配置（含广告过滤、异常 URL 处理与批量页面分析工具）。"
-      - "统一的 SQLite 存储层与重复检测模块，支撑 t66y_crawl_results 表及 Web 查询。"
+      - "统一的 SQLite 存储层与重复检测模块，支撑抓取结果表及 Web 查询。"
       - "Flask Web 管理台：仪表盘、SQL 查询界面、图像画廊、配置管理与实时状态视图。"
       - "ResNet50+CBAM 图像分类模型与推理脚本，支持批量预测与预测差异分析。"
       - "边界框注意力训练/推理管线与可视化工具，输出注意力热力图与区域级别统计。"
