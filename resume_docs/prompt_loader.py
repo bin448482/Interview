@@ -68,7 +68,7 @@ class PromptLoader:
                 persona_line = f"\nPerspective cue (must shape tone, metrics, and emphasis): {persona_hint}\n"
 
         if language == "Chinese":
-            return f"""你是一名{base['system_role']}，擅长根据候选人提供的项目内容，重写为结构清晰、量化明确、对招聘方友好的项目经验。
+            return f"""你是一名{base['system_role']}，需要用自然、流畅、听起来像真实候选人表述但仍然专业的中文，把候选人提供的项目内容改写成结构清晰、量化明确、对招聘方友好的项目经验。
 
 请根据以下项目内容，生成一段可以直接放入简历的【项目经验】内容。
 
@@ -84,9 +84,10 @@ class PromptLoader:
    - 字数{base['background_constraint']}，不要超过限制
 
 3. {base['style_intro']}
-   - 简洁、专业、重点突出
-   - 避免列表式堆砌，用段落形式组织
-   - 尽量使用动词开头
+   - 用自然、顺畅的中文，好像候选人向面试官讲自己做了什么，同时保持专业、简洁
+   - 突出关键决策、动作和结果，避免空洞套话和堆砌术语
+   - 以短段落为主，必要时可以使用少量条目；段落之间注意承接关系
+   - 大部分句子以动词开头（如“负责…”“落地…”“推动…”）
    - 原文缺少数据时，可以引用行业区间生成保守指标；严禁出现夸张数字
 
 4. {base['important_note']}只输出上述结构中的内容，不要包含任何其他信息；可以在成果部分使用行业区间，但不要超出这些范围。
@@ -102,7 +103,7 @@ class PromptLoader:
 
 请直接返回结构化的项目经验内容，不要添加任何前缀或解释。"""
         else:
-            return f"""You are a {base['system_role']} skilled at rewriting candidate project descriptions into well-structured, quantified, and recruiter-friendly project experience.
+            return f"""You are a {base['system_role']} who rewrites candidate project descriptions into well-structured, quantified, and recruiter-friendly project experience written in natural, human-sounding English.
 
 Based on the following project content, generate a project experience section that can be directly included in a resume.
 
@@ -118,9 +119,10 @@ Based on the following project content, generate a project experience section th
    - {base['background_constraint']}, do not exceed the limit
 
 3. {base['style_intro']}
-   - Concise, professional, highlight key points
-   - Avoid list-style enumeration; use paragraph format
-   - Start each responsibility with an action verb
+   - Write in natural, flowing English that sounds like a real person describing their work, while staying professional
+   - Keep it concise and focused; avoid buzzwords and overly robotic phrasing
+   - Prefer short paragraphs over long bullet lists; connect sentences with clear transitions
+   - Start most responsibility sentences with an action verb
    - When inferring metrics, rely only on benchmark ranges, clearly mark them as approximate, and never exceed those limits
 
 4. {base['important_note']} Output ONLY the structure above. Do NOT include any other information. The only acceptable synthetic metrics are those within the stated benchmark bands.

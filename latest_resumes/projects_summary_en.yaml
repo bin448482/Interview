@@ -149,6 +149,101 @@ projects:
     description: Personal independent development + AI collaboration + multi-repo, documentation-driven
   notes: 'See tarotAI repo (Expo app, FastAPI backend, Next.js admin, AI generator,
     Docker/Nginx) plus user interview and prompt governance notes. GitHub: https://github.com/bin448482/tarotAI'
+- project_name: MyFirst Vertical-site Image Crawler and AI Vision Filtering System
+  company_or_context: Personal independent project / self-built image data pipeline
+  timeframe:
+    label: August 2025
+    start: 2025-08
+    end: 2025-08
+  role_title: Independent Developer & Computer Vision Engineer
+  role_perspective: developer
+  llm_primary_role: ai_engineer
+  llm_secondary_roles:
+  - data_development
+  - ai_development
+  - full_stack
+  management_scope:
+    team_size: 1
+    budget_level: lt_100k
+    stakeholder_tiers:
+    - ops
+  decision_accountability:
+  - delivery_owner
+  - technical_strategy
+  - hands_on_build
+  responsibility_focus:
+  - architecture
+  - implementation
+  - operations
+  impact_metrics:
+    business_metrics:
+    - 'Replaced 80%+ of manual image-by-image review with AI-assisted filtering, cutting daily screening time from ~2 hours to under 30 minutes while supplying high-quality training data for downstream CV projects.'
+    - 'Built a reusable crawl → filter → label → train loop that significantly reduces preparation overhead for fine-tuning and transfer learning experiments.'
+    technical_metrics:
+    - 'ResNet50 + CBAM classifier reaches 95.71% validation accuracy with 3.85% false negative rate and 4.46% false positive rate, clearly outperforming the baseline model.'
+    - 'Bounding-box attention + YOLO-Pose region awareness improved inference throughput by ~30% while reducing memory usage by ~25%.'
+    operational_metrics:
+    - 'SHA-256 content hashing driven deduplication sharply reduced duplicate image writes with 100% extraction success on typical pages.'
+    - 'Flask web console stably hosts tens of thousands of crawl records and several GB of image data for real-time review and labeling.'
+  governance_artifacts:
+  - runbook
+  - training_plan
+  project_overview: 'An end-to-end image pipeline for a specific vertical site: a customized crawler that handles non-standard HTML attributes, consolidated SQLite storage with deduplication, a Flask web console, and ResNet/YOLO-Pose-based vision models that automate “interesting image” selection and support anti-overfitting fine-tuning experiments.'
+  data_domain: Vertical-site image crawling / content filtering / computer vision
+  ai_component_flag: true
+  challenges_or_objectives:
+  - 'Robustly extract images from non-standard HTML (ess-data / data-link attributes) while keeping the crawler configurable.'
+  - 'Wire crawler, SQLite store, web console, and ML training datasets into a single end-to-end workflow to reduce data wrangling cost.'
+  - 'Design a high-recall classifier that keeps false negatives low in a sensitive screening scenario.'
+  - 'Mitigate severe overfitting under limited data via color augmentation, sample balancing, and noisy sample injection.'
+  responsibilities:
+  - 'Refactored the vertical-site specific crawler and YAML configs to handle ess-data/data-link attributes and maintain an ad URL blacklist.'
+  - 'Designed SQLite schemas and deduplication logic to centralize crawl_results storage and feed the web console.'
+  - 'Implemented the ResNet50 + CBAM classification pipeline, bounding-box attention module, and YOLO-Pose region-awareness flow.'
+  - 'Authored fine-tuning scripts (train/evaluate/visualize) integrating color augmentation, sample rebalancing, noise injection, and multi-level fallback logic.'
+  - 'Built the Flask web console and APIs (dashboard, SQL console, image gallery), enabling manual + AI-assisted labeling and filtering.'
+  architecture_or_solution:
+  - 'Modular architecture: crawler (requests/custom parsing) → SQLite storage → ML training datasets → Flask web console.'
+  - 'Custom YAML crawler configs using CSS selectors on img[ess-data]/img[data-link] plus ad URL blacklist support.'
+  - 'Content-hash (SHA-256) and perceptual-hash based deduplication and image naming with date-based directory layout.'
+  - 'ResNet50 + CBAM classifier with adaptive focal loss and dynamic thresholding tuned to reduce false negatives.'
+  - 'YOLOv8 Pose–driven body-region detection plus bounding-box attention to keep accuracy while improving efficiency and robustness.'
+  - 'Fine-tuning architecture with SmartColorAugmentation, DynamicSampleBalancer, NoiseDataInjector, and OverfittingMonitor components.'
+  process_or_methodology:
+  - 'Experiment-log and Markdown-driven iteration (CLAUDE.md + fine_tuning_* docs) to progressively stabilize the CV solution design.'
+  - 'Automated reports via evaluate_fine_tuning.py (training/validation curves, confusion matrices, metrics) to support model selection and regression checks.'
+  - 'Progressive unfreezing and layer-wise learning rates combined with dynamic sampling to balance convergence speed and overfitting risk.'
+  - 'Scripted regression checks (run_tests.py) around crawler configs and web console endpoints to keep critical paths stable.'
+  deliverables_or_features:
+  - 'Vertical-site specific image crawler + YAML configs (including ad filtering, broken URL handling, and batch page analysis tools).'
+  - 'Unified SQLite storage layer and deduplication utilities powering the crawl_results table and web queries.'
+  - 'Flask web console: dashboard, SQL query console, image gallery, config editor, and live status views.'
+  - 'ResNet50 + CBAM classifier and inference scripts supporting batch prediction and prediction-delta analysis.'
+  - 'Bounding-box attention training/inference pipelines and visualization tools for attention heatmaps and region-level statistics.'
+  - 'Fine-tuning usage guide and configuration examples packaging color augmentation, sample balancing, and noise injection strategies.'
+  metrics_or_impact:
+  - 'Achieved 100% extraction success on typical target pages with ~15 images per page (thumbnails + HD).'
+  - 'Ad-blocking list filters specified URLs with 100% precision (~20% block ratio) without harming normal downloads.'
+  - 'Optimized ResNet50 model reaches 95.71% validation accuracy while cutting false negative rate from 21.54% to 3.85%.'
+  - 'Bounding-box attention and lightweight attention modules improve inference speed by ~30% with ~25% lower memory usage.'
+  - 'Web console reliably manages tens of thousands of crawl records and several GB of images, enabling joint manual + AI curation of interesting samples.'
+  tech_stack:
+  - Python 3.10
+  - Requests / BeautifulSoup / custom HTML parsing
+  - Flask / Jinja2 / WebSocket
+  - SQLite / SQLAlchemy
+  - PyTorch / torchvision / ResNet50
+  - YOLOv8 Pose (ultralytics)
+  - imagehash / OpenCV / Pillow
+  tools_platforms:
+  - pytest / run_tests.py
+  - matplotlib / seaborn
+  - VS Code / Jupyter Notebook
+  - Local Git repo
+  team_info:
+    team_size: 1
+    description: Sole owner of crawler, web console, database, and vision training pipeline.
+  notes: 'See MyFirst repo (vertical-site crawler, SQLite storage, Flask web console, ResNet/YOLO-Pose models, fine-tuning toolkit) for full implementation and experiment logs.'
 - project_name: NGSE (Next Generation Sales Engine)
   company_or_context: Zoetis
   timeframe:
