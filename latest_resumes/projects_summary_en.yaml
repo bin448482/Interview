@@ -2,7 +2,7 @@ schema_version: 1.1
 generated_at: '2025-11-28T10:40:46.354834'
 source_file: Resume_Data_Engineer_CN_20250529.md
 projects:
-- project_name: MySixth Tarot Card Intelligent Application
+- project_name: Tarot Card Intelligent Application
   company_or_context: Zoetis / Individual Independent Developer
   timeframe:
     label: October 2025 - Present
@@ -250,7 +250,7 @@ projects:
     - Position extraction speed > 100 positions/min, system availability > 99%
   governance_artifacts:
   - runbook
-  project_overview: The MyThird platform driven by Python and LangChain integrates
+  project_overview: This job automation platform driven by Python and LangChain integrates
     job extraction, RAG analysis, intelligent matching, LangChain Agent, Selenium
     automated submission, and anti-scraping behavior simulation into a scriptable
     job-hunting automation suite.
@@ -350,8 +350,8 @@ projects:
     team_size: 1
     description: Individual independent development, covering AI, RAG, automation,
       and anti-crawling systems.
-  notes: For details, see D:/0-development/projects/MyThird (MyThird.code-workspace
-    + Modular CLAUDE document architecture).
+  notes: For details, see the local job automation project workspace (VS Code workspace
+    + modular CLAUDE documentation).
 - project_name: AI-enhanced Image Crawler experiment
   company_or_context: Individual independent developer
   timeframe:
@@ -384,7 +384,7 @@ projects:
   governance_artifacts:
   - runbook
   - playbook
-  project_overview: 'MyFirst Image Crawler Platform: Custom forum crawler +
+  project_overview: 'Image Crawler Platform: Custom forum crawler +
     SHA-256 deduplication + SQLite data lake + Flask web console + ResNet/YOLO-Pose
     classification and attention heatmaps, achieving the closed-loop of collection
     → governance → prediction → operation.'
@@ -480,7 +480,7 @@ projects:
     team_size: 1
     description: Individual independent development, covering crawler, Web, database,
       and CV models.
-  notes: See details in D:/0-development/projects/MyFirst (MyFirst.code-workspace
+  notes: See details in the local image crawler project workspace (VS Code workspace
     + CLAUDE/YOLO/Fine-tuning documents).
 - project_name: Remedium (BI)
   company_or_context: Portable Water Craft

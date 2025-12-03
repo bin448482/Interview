@@ -227,7 +227,7 @@ projects:
     team_info:
       team_size: 1
       description: "个人独立完成爬虫、Web、数据库与计算机视觉训练全链路。"
-    notes: "完整实现与实验记录见 MyFirst 仓库（垂直站点专用爬虫、SQLite 存储、Flask Web 管理台、ResNet/YOLO-Pose 模型与 Fine-tuning 工具链），适合作为 AI 视觉筛选与数据管道项目示例。"
+    notes: "完整实现与实验记录见本地示例仓库（垂直站点专用爬虫、SQLite 存储、Flask Web 管理台、ResNet/YOLO-Pose 模型与 Fine-tuning 工具链），适合作为 AI 视觉筛选与数据管道项目示例。"
 
   - project_name: "NGSE（Next Generation Sales Engine）"
     company_or_context: "Zoetis"
