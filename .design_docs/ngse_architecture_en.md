@@ -75,6 +75,19 @@ NGSE Application DB & Serving (application DB / Power BI / Web API)
 | Compute & DNA Feature Layer   | Databricks (Spark SQL / PySpark, DNA feature tables, method registry)    |
 | NGSE Application DB & Serving | SQL Server (NGSE application DB), Power BI reports, REST APIs            |
 
+### Diagram-Based End-to-End Flow
+
+The “NGSE Architecture Diagram” image in this repository can be read left-to-right as the concrete implementation of the above layers:
+
+- Source systems on the left: external SQL servers, CRM, SAP Cloud, and OSS act as primary structured and semi-structured data providers.  
+- Ingestion via ADF: Azure Data Factory pulls data from these systems (including cross-cloud transfers) and lands them into the lakehouse.  
+- DDP layer on Databricks: inside the Databricks box, data moves through `RAW → Transform → Governed` folders, forming the DDP layer that standardizes, cleanses, and governs data.  
+- DNA feature zone: the `DNA` folder beneath the DDP layer represents AI-oriented feature tables generated from the Governed layer for recommendation and LLM use cases.  
+- Data Market: curated and governed data is published into a `Data Market` SQL database, which serves as the primary serving store for analytics and downstream applications.  
+- BI and Web analytics: Power BI (BI) and web-based analytics (WEB) consume data from the Data Market to provide dashboards and self-service analysis.  
+- External APIs and NGSE Web: external APIs connect through API Management and NGSE Web to support online application scenarios, surfacing metrics and recommendations to end users.  
+- NGSE functions and external SQL: NGSE-specific functions and additional external SQL servers integrate with the platform through API Management and SQL endpoints, closing the loop between operational systems and the DDP/AI layers.
+
 ---
 
 ## 3. Data Flow Design
@@ -284,4 +297,3 @@ My responsibilities:
 ## 11. Summary
 
 The NGSE project delivers a data platform in China that balances “lakehouse architecture, AI capabilities, and compliance governance”. It provides a local DDP mirror and high-quality training data for the global sales engine, delivers recommendation capabilities to frontline sales through Sales Copilot, and supports multi-market expansion with a replicable architecture and governance framework.
-
