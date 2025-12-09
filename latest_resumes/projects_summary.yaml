@@ -15,7 +15,7 @@ schema_version: 1.1
 generated_at: "2025-11-27"
 source_file: "Resume_Data_Engineer_CN_20250529.md"
 projects:
-  - project_name: "MySixth 塔罗牌智能应用"
+  - project_name: "塔罗牌智能应用"
     company_or_context: "Zoetis / 个人独立开发者"
     timeframe:
       label: "2025.10 - 至今"
@@ -132,6 +132,102 @@ projects:
       team_size: 1
       description: "个人独立开发 + AI 协作 + 多仓文档驱动"
     notes: "详细设计参见 tarotAI 仓库（Expo 客户端、FastAPI 后端、Next.js 管理台、AI 生成器、Docker/Nginx 部署），另附用户访谈与提示治理纪要。GitHub: https://github.com/bin448482/tarotAI"
+
+  - project_name: "垂直站点图像爬虫与 AI 视觉筛选系统"
+    company_or_context: "个人独立开发者 / 自研图像数据管道"
+    timeframe:
+      label: "2025.8"
+      start: "2025-08"
+      end: "2025-08"
+    role_title: "独立开发者 & 计算机视觉工程师"
+    role_perspective: developer
+    llm_primary_role: ai_engineer
+    llm_secondary_roles:
+    - data_development
+    - ai_development
+    - full_stack
+    management_scope:
+      team_size: 1
+      budget_level: lt_100k
+      stakeholder_tiers:
+      - ops
+    decision_accountability:
+    - delivery_owner
+    - technical_strategy
+    - hands_on_build
+    responsibility_focus:
+    - architecture
+    - implementation
+    - operations
+    impact_metrics:
+      business_metrics:
+      - "利用 AI 自动筛选替代 >80% 手工逐图检查，将每日图像筛选时间从约 2 小时压缩到 <30 分钟，为后续视觉项目持续提供高质量训练数据。"
+      - "构建可复用的图像采集→筛选→标注→训练闭环，为 Fine-tuning/迁移学习实验节省大量准备时间。"
+      technical_metrics:
+      - "ResNet50+CBAM 分类模型在验证集上达到 95.71% 准确率，假阴性率 3.85%，假阳性率 4.46%，显著优于基线模型。"
+      - "边界框注意力 + YOLO-Pose 区域感知设计使推理速度提升约 30%，内存占用降低约 25%。"
+      operational_metrics:
+      - "基于 SHA-256 内容哈希的重复检测将重复图片写入率显著降低，典型页面图像提取成功率达到 100%。"
+      - "Flask Web 管理台稳定承载数万条爬取记录与数 GB 级别图像数据，支持实时筛选与标注。"
+    governance_artifacts:
+    - runbook
+    - training_plan
+    project_overview: "围绕特定垂直站点构建端到端图像数据管道：定制爬虫适配非标准 HTML 属性，接入 SQLite 存储与重复检测，叠加 Flask Web 管理台和 ResNet/YOLO-Pose 视觉模型，实现对感兴趣图片的自动筛选与过拟合敏感场景下的 Fine-tuning 实验平台。"
+    data_domain: "垂直网站图像爬取 / 内容筛选 / 计算机视觉"
+    ai_component_flag: true
+    challenges_or_objectives:
+      - "在非标准 HTML 结构（ess-data / data-link 属性）下稳定提取目标站点图像并构建可配置爬虫。"
+      - "打通爬虫、SQLite 存储、Web 管理界面与 ML 训练数据集的端到端闭环，降低数据整理成本。"
+      - "设计高召回率的图像分类模型，在敏感场景中尽量降低假阴性率。"
+      - "通过颜色增强、样本平衡与噪声注入缓解小样本场景下的严重过拟合。"
+    responsibilities:
+      - "重构垂直站点专用爬虫与 YAML 配置，支持 ess-data/data-link 图像属性解析与广告 URL 黑名单过滤。"
+      - "设计 SQLite 表结构与重复检测逻辑，统一抓取结果存储并与 Web 界面联动。"
+      - "实现 ResNet50+CBAM 图像分类管线、边界框注意力模块与 YOLO-Pose 区域感知流程。"
+      - "编写 Fine-tuning 相关脚本（训练/评估/可视化），集成颜色增强、样本平衡、噪声注入与多级 Fallback 逻辑。"
+      - "搭建 Flask Web 管理台与 API（仪表盘、SQL 控制台、图像画廊），支持感兴趣图片标注与 AI 预测过滤。"
+    architecture_or_solution:
+      - "模块化架构：Crawler（requests/自定义解析）→ SQLite 存储 → ML 训练数据集 → Flask Web 管理台。"
+      - "自定义 YAML 爬虫配置：使用 CSS 选择器提取 img[ess-data]/img[data-link]，并集成广告 URL 黑名单。"
+      - "基于 SHA-256 内容哈希与感知哈希的重复检测与图像文件命名策略，按日期目录组织下载数据。"
+      - "ResNet50+CBAM 分类器 + 自适应 Focal Loss + 动态阈值优化，聚焦降低假阴性。"
+      - "YOLO-Pose 驱动的身体区域检测 + 边界框注意力机制，在保持精度的前提下提升推理效率与鲁棒性。"
+      - "Fine-tuning 架构：SmartColorAugmentation、DynamicSampleBalancer、NoiseDataInjector、OverfittingMonitor 等可配置组件。"
+    process_or_methodology:
+      - "以实验日志和 Markdown 设计文档驱动的迭代（CLAUDE.md + fine_tuning_* 文档），逐步固化视觉方案。"
+      - "通过 evaluate_fine_tuning.py 自动生成训练/验证曲线、混淆矩阵与指标报表，支撑模型选择与回归分析。"
+      - "引入分阶段解冻与分层学习率策略，配合动态采样，控制过拟合与收敛稳定性。"
+      - "对 Web 界面与爬虫配置实行脚本化验证与回归测试（run_tests.py），确保关键路径稳定。"
+    deliverables_or_features:
+      - "垂直站点专用图像爬虫与 YAML 配置（含广告过滤、异常 URL 处理与批量页面分析工具）。"
+      - "统一的 SQLite 存储层与重复检测模块，支撑抓取结果表及 Web 查询。"
+      - "Flask Web 管理台：仪表盘、SQL 查询界面、图像画廊、配置管理与实时状态视图。"
+      - "ResNet50+CBAM 图像分类模型与推理脚本，支持批量预测与预测差异分析。"
+      - "边界框注意力训练/推理管线与可视化工具，输出注意力热力图与区域级别统计。"
+      - "Fine-tuning 使用指南与配置示例，封装颜色增强/样本平衡/噪声注入策略。"
+    metrics_or_impact:
+      - "在典型目标页面上实现 100% 图像提取成功率，每页平均提取约 15 张图像（缩略图+高清）。"
+      - "广告过滤名单对指定 URL 的过滤准确率 100%，过滤比约 20%，无误杀正常图像。"
+      - "优化后 ResNet50 模型在验证集上达到 95.71% 准确率，假阴性率从 21.54% 降至 3.85%。"
+      - "边界框注意力与轻量化注意力模块使推理速度提升约 30%，内存占用降低约 25%。"
+      - "Web 管理台稳定托管数万条抓取记录和数 GB 级别图像数据，支持手动与 AI 共同标注感兴趣图像。"
+    tech_stack:
+      - "Python 3.10"
+      - "Requests / BeautifulSoup / 自定义 HTML 解析"
+      - "Flask / Jinja2 / WebSocket"
+      - "SQLite / SQLAlchemy"
+      - "PyTorch / torchvision / ResNet50"
+      - "YOLOv8 Pose (ultralytics)"
+      - "imagehash / OpenCV / Pillow"
+    tools_platforms:
+      - "pytest / run_tests.py"
+      - "matplotlib / seaborn 报表与可视化"
+      - "VS Code / Jupyter Notebook"
+      - "Git 本地仓库"
+    team_info:
+      team_size: 1
+      description: "个人独立完成爬虫、Web、数据库与计算机视觉训练全链路。"
+    notes: "完整实现与实验记录见本地示例仓库（垂直站点专用爬虫、SQLite 存储、Flask Web 管理台、ResNet/YOLO-Pose 模型与 Fine-tuning 工具链），适合作为 AI 视觉筛选与数据管道项目示例。"
 
   - project_name: "NGSE（Next Generation Sales Engine）"
     company_or_context: "Zoetis"
